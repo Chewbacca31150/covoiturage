@@ -1,24 +1,36 @@
-<mat-form-field>
-    <input matInput placeholder="UsernameLogin" [(ngModel)]='name'>
-</mat-form-field>
-<!--
-<br>
-<mat-form-field>
-    <input matInput placeholder="PasswordLogin">
-</mat-form-field><br>
-<button (click)='Valid()'>Login</button>
-
-<mat-form-field>
-    <input matInput placeholder="UsernameRegister">
-</mat-form-field><br>
-<mat-form-field>
-    <input matInput placeholder="EmailRegister">
-</mat-form-field><br>
-<mat-form-field>
-    <input matInput placeholder="PasswordRegister">
-</mat-form-field><br>
-<mat-form-field>
-    <input matInput placeholder="RePasswordRegister">
-</mat-form-field><br>
-<button (click)='Valid()'>Register</button>
--->
+<div fxLayoutGap="10px" fxLayout="row" fxLayoutAlign="center" class="width-div-80">
+    <!-- Sign in -->
+    <mat-card fxFlex>
+        <form fxFlex fxLayout="column" (ngSubmit)="signinForm.valid && onSigninSubmit(signinForm.value)" [formGroup]="signinForm" novalidate>
+            <h2 mat-dialog-title>Sign in</h2>
+            <mat-form-field>
+                <input matInput name="email" formControlName="email" placeholder="Email" required (change)="debug(signinForm)" />
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput name="username" formControlName="username" placeholder="Username" required minlength="3" (change)="debug(signinForm)"/>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput type="password" name="password" formControlName="password" placeholder="Password" required (change)="debug(signinForm)"/>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput type="password" name="passwordConfirm" formControlName="passwordConfirm" placeholder="Confirm Password" required (change)="debug(signinForm)" />
+            </mat-form-field>
+            <button mat-button type="submit" [disabled]="!signinForm.valid">Sign In</button>
+        </form>
+    </mat-card>
+    <!-- Log in -->
+    <mat-card fxFlex>
+        <form fxFlex fxLayout="column" (ngSubmit)="loginForm.valid && onLoginSubmit(loginForm.value)" [formGroup]="loginForm" novalidate>
+            <h2 mat-dialog-title>Login</h2>
+            <mat-form-field>
+                <input matInput name="username" formControlName="username" placeholder="Username" required>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput name="password" formControlName="password" type="password" placeholder="Password" required>
+            </mat-form-field>
+            <div fxLayout="column" fxLayoutAlign="center">
+                <button mat-button type="submit" [disabled]="!loginForm.valid">Connect</button>
+            </div>
+        </form>
+    </mat-card>
+</div>

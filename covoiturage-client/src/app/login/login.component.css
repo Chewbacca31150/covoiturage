@@ -1,0 +1,7 @@
+.error {
+  font-size: 12px;
+  color:red;
+}
+div[fxLayoutAlign] { 
+  padding:20px; 
+}
