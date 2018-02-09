@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-header',

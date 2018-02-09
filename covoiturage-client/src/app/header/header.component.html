@@ -1,3 +1,26 @@
-<p>
-  header works!
-</p>
+<div class="header-container">
+  <p>
+    header works!
+  </p>  
+  <mat-toolbar color="primary">
+    <span class="toolbar-fill-remaining-space">
+      <button mat-button routerLink="/home" class="toolbar-home-button">
+        <a href="/" class="title">VroumVroum</a>
+      </button>
+      <button mat-button routerLink="/market">Button #1</button>
+    </span>
+    <form class="toolbar-form">
+      <mat-form-field class="toolbar-full-width">
+        <input matInput placeholder="Search" aria-label="Search" [matAutocomplete]="auto" [formControl]="mangasCtrl">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let manga of filteredMangas | async" [value]="manga.name">
+            <span>{{ manga.name }}</span> |
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
+    <button mat-button routerLink="/login" *ngIf="!isLogged">Login</button>
+    <button mat-button *ngIf="isLogged" (click)="logout()">Logout</button>
+    <button mat-button routerLink="/dashboard" *ngIf="user && isLogged">{{user.username}}</button>
+  </mat-toolbar>
+</div>
