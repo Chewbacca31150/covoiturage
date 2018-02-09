@@ -1,7 +1,4 @@
-<div class="header-container">
-  <p>
-    header works!
-  </p>  
+<div class="header-container"> 
   <mat-toolbar color="primary">
     <span class="toolbar-fill-remaining-space">
       <button mat-button routerLink="/home" class="toolbar-home-button">
@@ -11,10 +8,10 @@
     </span>
     <form class="toolbar-form">
       <mat-form-field class="toolbar-full-width">
-        <input matInput placeholder="Search" aria-label="Search" [matAutocomplete]="auto" [formControl]="mangasCtrl">
+        <input matInput placeholder="Search" aria-label="Search" [matAutocomplete]="auto" [formControl]="">
         <mat-autocomplete #auto="matAutocomplete">
           <mat-option *ngFor="let manga of filteredMangas | async" [value]="manga.name">
-            <span>{{ manga.name }}</span> |
+            <span></span>
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
