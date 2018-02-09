@@ -1,8 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatButtonModule, MatCheckboxModule, MatToolbarModule, MatTableModule,
+  MatInputModule, MatIconModule, MatSelectModule} from '@angular/material';
+import {MatCardModule} from '@angular/material/card';
+import {FormsModule} from '@angular/forms';
+import {MatDialogModule} from '@angular/material/dialog';
 
 import { appRoutes } from './appRoutes';
 import { AppComponent } from './app.component';
@@ -26,8 +30,16 @@ import { FooterComponent } from './footer/footer.component';
     BrowserModule,
     BrowserAnimationsModule,
     MatButtonModule,
+    MatToolbarModule,
     MatCheckboxModule,
-    RouterModule.forRoot(appRoutes)
+    MatTableModule,
+    MatInputModule,
+    MatIconModule,
+    MatSelectModule,
+    MatDialogModule,
+    MatCardModule,
+    FormsModule,
+    RouterModule.forRoot(appRoutes),
   ],
   providers: [],
   bootstrap: [AppComponent]
