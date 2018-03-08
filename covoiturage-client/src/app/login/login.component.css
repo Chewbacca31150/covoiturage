@@ -3,5 +3,9 @@
   color:red;
 }
 div[fxLayoutAlign] { 
-  padding:20px; 
+  padding:20px;
+}
+div[fxLayoutAlign] mat-card { 
+  margin-left:100px;
+  margin-right:100px;
 }

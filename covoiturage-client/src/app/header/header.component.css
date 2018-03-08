@@ -21,3 +21,7 @@ width: 100%;
   min-width: 100px;
   font-size: 1.2em;
 }
+
+.toolbar-other-button {
+  font-size: 0.8em;
+}
