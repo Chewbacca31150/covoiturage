@@ -6,17 +6,8 @@
       </button>
       <button class="toolbar-other-button" mat-button routerLink="/map">Map</button>
       <button class="toolbar-other-button" mat-button routerLink="/market">Button #1</button>
+      <button class="toolbar-other-button" mat-button routerLink="/path-conditions">Cond.</button>
     </span>
-    <form class="toolbar-form">
-      <mat-form-field class="toolbar-full-width">
-        <input matInput placeholder="Search" aria-label="Search" [matAutocomplete]="auto" [formControl]="">
-        <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let manga of filteredMangas | async" [value]="manga.name">
-            <span></span>
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
-    </form>
     <button class="toolbar-other-button" mat-button routerLink="/login" *ngIf="user == null">Login</button>
     <button class="toolbar-other-button" mat-button *ngIf="user != null" (click)="logout()">Logout</button>
     <button class="toolbar-other-button" mat-button routerLink="/dashboard" *ngIf="user && isLogged">{{user.username}}</button>
