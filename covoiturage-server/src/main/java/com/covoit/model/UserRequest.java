@@ -9,10 +9,7 @@ public class UserRequest {
 
   private String password;
 
-  private String firstname;
-
-  private String lastname;
-
+  private String email;
 
   public String getUsername() {
     return username;
@@ -30,20 +27,12 @@ public class UserRequest {
     this.password = password;
   }
 
-  public String getFirstname() {
-    return firstname;
+  public String getEmail() {
+    return email;
   }
 
-  public void setFirstname(String firstname) {
-    this.firstname = firstname;
-  }
-
-  public String getLastname() {
-    return lastname;
-  }
-
-  public void setLastname(String lastname) {
-    this.lastname = lastname;
+  public void setEmail(String email) {
+    this.email = email;
   }
 
   public Long getId() {

@@ -37,11 +37,9 @@ public class User implements UserDetails, Serializable {
   @Column(name = "password")
   private String password;
 
-  @Column(name = "firstname")
-  private String firstname;
+  @Column(name = "email")
+  private String email;
 
-  @Column(name = "lastname")
-  private String lastname;
 
 
   @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -74,21 +72,12 @@ public class User implements UserDetails, Serializable {
     this.password = password;
   }
 
-  public String getFirstname() {
-    return firstname;
+  public String getEmail() {
+    return email;
   }
 
-  public void setFirstname(String firstname) {
-    this.firstname = firstname;
-  }
-
-  public String getLastname() {
-    return lastname;
-  }
-
-  public void setLastname(String lastname) {
-
-    this.lastname = lastname;
+  public void setEmail(String email) {
+    this.email = email;
   }
 
   public void setAuthorities(List<Authority> authorities) {

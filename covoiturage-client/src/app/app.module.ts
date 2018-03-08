@@ -16,6 +16,14 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { ApiService } from './services/api.service';
+import { AuthService } from './services/auth.service';
+import { ConfigService } from './services/config.service';
+import { UserService } from './services/user.service';
+import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
+import { MapComponent } from './map/map.component';
+import { AuthGuard } from './guard/auth.guard';
 
 
 
@@ -26,18 +34,21 @@ import { FooterComponent } from './footer/footer.component';
     NotFoundComponent,
     AccueilComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    MapComponent
   ],
   imports: [
     AppModuleMaterial,
     BrowserModule,
     BrowserAnimationsModule,
+    HttpModule,
+    HttpClientModule,
     FormsModule,
     FlexLayoutModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
   ],
-  providers: [],
+  providers: [AuthGuard, ApiService, AuthService, ConfigService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
