@@ -1,0 +1,25 @@
+app:
+  name: covoit
+  
+# Mongo DB 
+mongodb:
+  url: localhost
+  name: covoiturage_db
+  
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+
+
+jwt:
+  header: Authorization
+  expires_in: 600 # 10 minutes
+  secret: test
+  cookie: AUTH-TOKEN
+
+logging:
+  level:
+    org.springframework.web: ERROR
+    com.bfwg: DEBUG

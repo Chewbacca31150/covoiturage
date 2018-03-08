@@ -1,0 +1,26 @@
+                                                                                                        
+                                                                                                          
+        CCCCCCCCCCCCC                                                         iiii          tttt          
+     CCC::::::::::::C                                                        i::::i      ttt:::t          
+   CC:::::::::::::::C                                                         iiii       t:::::t          
+  C:::::CCCCCCCC::::C                                                                    t:::::t          
+ C:::::C       CCCCCC   ooooooooooo vvvvvvv           vvvvvvv ooooooooooo   iiiiiiittttttt:::::ttttttt    
+C:::::C               oo:::::::::::oov:::::v         v:::::voo:::::::::::oo i:::::it:::::::::::::::::t    
+C:::::C              o:::::::::::::::ov:::::v       v:::::vo:::::::::::::::o i::::it:::::::::::::::::t    
+C:::::C              o:::::ooooo:::::o v:::::v     v:::::v o:::::ooooo:::::o i::::itttttt:::::::tttttt    
+C:::::C              o::::o     o::::o  v:::::v   v:::::v  o::::o     o::::o i::::i      t:::::t          
+C:::::C              o::::o     o::::o   v:::::v v:::::v   o::::o     o::::o i::::i      t:::::t          
+C:::::C              o::::o     o::::o    v:::::v:::::v    o::::o     o::::o i::::i      t:::::t          
+ C:::::C       CCCCCCo::::o     o::::o     v:::::::::v     o::::o     o::::o i::::i      t:::::t    tttttt
+  C:::::CCCCCCCC::::Co:::::ooooo:::::o      v:::::::v      o:::::ooooo:::::oi::::::i     t::::::tttt:::::t
+   CC:::::::::::::::Co:::::::::::::::o       v:::::v       o:::::::::::::::oi::::::i     tt::::::::::::::t
+     CCC::::::::::::C oo:::::::::::oo         v:::v         oo:::::::::::oo i::::::i       tt:::::::::::tt
+        CCCCCCCCCCCCC   ooooooooooo            vvv            ooooooooooo   iiiiiiii         ttttttttttt  
+                                                                                                          
+                                                                                                          
+${AnsiColor.BRIGHT_RED}Spring Boot Version : ${spring-boot.version} ${spring-boot.formatted-version}
+                                                                                                          
+                                                                                                          
+                                                                             
+                                                                                                          
+                                                                                                          
