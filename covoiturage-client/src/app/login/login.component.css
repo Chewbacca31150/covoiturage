@@ -9,3 +9,7 @@ div[fxLayoutAlign] mat-card {
   margin-left:100px;
   margin-right:100px;
 }
+
+div[fxLayoutAlign] button {
+  font-size: 1.2em;
+}
