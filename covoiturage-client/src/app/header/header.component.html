@@ -4,6 +4,7 @@
       <button mat-button routerLink="/" class="toolbar-home-button">
         <a href="/" class="title">VroumVroum</a>
       </button>
+      <button class="toolbar-other-button" mat-button routerLink="/map">Map</button>
       <button class="toolbar-other-button" mat-button routerLink="/market">Button #1</button>
     </span>
     <form class="toolbar-form">
@@ -16,8 +17,8 @@
         </mat-autocomplete>
       </mat-form-field>
     </form>
-    <button class="toolbar-other-button" mat-button routerLink="/login" *ngIf="!isLogged">Login</button>
-    <button class="toolbar-other-button" mat-button *ngIf="isLogged" (click)="logout()">Logout</button>
+    <button class="toolbar-other-button" mat-button routerLink="/login" *ngIf="user == null">Login</button>
+    <button class="toolbar-other-button" mat-button *ngIf="user != null" (click)="logout()">Logout</button>
     <button class="toolbar-other-button" mat-button routerLink="/dashboard" *ngIf="user && isLogged">{{user.username}}</button>
   </mat-toolbar>
 </div>

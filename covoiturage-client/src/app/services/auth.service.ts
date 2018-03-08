@@ -4,6 +4,7 @@ import { ApiService } from './api.service';
 import { UserService } from './user.service';
 import { ConfigService } from './config.service';
 import { Observable } from 'rxjs/Observable';
+import { User } from '../models/user.interface';
 
 @Injectable()
 export class AuthService {
@@ -20,6 +21,7 @@ export class AuthService {
       'Content-Type': 'application/x-www-form-urlencoded'
     });
     const body = `username=${user.username}&password=${user.password}`;
+    document.cookie = `username=${user.username}`;
     return this.apiService.post(this.config.login_url, body, loginHeaders).map(() => {
       console.log('Login success');
       this.userService.getMyInfo().subscribe();
@@ -40,6 +42,8 @@ export class AuthService {
     return this.apiService.post(this.config.logout_url, {})
       .map(() => {
         this.userService.currentUser = null;
+        document.cookie = 'username=; expires=Fri, 01 Jan 2010 00:0:00 UTC;'
+        console.log('Logout success');
       });
   }
 

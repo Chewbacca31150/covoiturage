@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Headers } from '@angular/http';
 import { ApiService } from './api.service';
 import { ConfigService } from './config.service';
@@ -7,11 +7,32 @@ import { ConfigService } from './config.service';
 export class UserService {
 
   currentUser;
+  eventUser: EventEmitter<any>;
 
   constructor(
     private apiService: ApiService,
     private config: ConfigService
-  ) { }
+  )
+  {
+    this.eventUser = new EventEmitter();
+  }
+
+  isLogin() {
+    var cookies = document.cookie.split(";");
+    for(var cookie of cookies)
+    {
+      const regSepCookie = new RegExp('^username=(.*)$', 'gi');
+      if(regSepCookie.test(cookie))
+      {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  sendEvent() {
+    this.eventUser.emit(this.isLogin());
+  }
 
   initUser() {
     const promise = this.apiService.get(this.config.refresh_token_url).toPromise()
