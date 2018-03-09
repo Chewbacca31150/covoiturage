@@ -1,5 +1,33 @@
 <div class="footer-container">
-  <p>
-      footer works!
-  </p>  
+    <div class="footer-content" fxLayout="row" fxLayoutAlign="center start">
+        <div class="footer-link" fxLayout="row">
+            <div class="footer-link-list" fxLayout="column">
+                <h3>Informations légales</h3>
+                <a routerLink="legal-mentions">Mentions légales</a>
+                <a routerLink="">Conditions générales d'utilisation</a>
+                <a routerLink="">Protection de la vie privée et cookies</a>
+            </div>
+            <div class="footer-link-list" fxLayout="column">
+                <h3>Un probleme ?</h3>
+                <a routerLink="">Nous contacter</a>
+                <a routerLink="">Foire Aux Questions</a>
+                <a routerLink="">Support techiniques</a>
+            </div>
+            <div class="footer-social-link" fxLayout="row" fxLayoutAlign="center">
+                <div FxLayout="row" fxLayoutAlign="space-evenly center">
+                    <a href="/"><img class="footer-icon-facebook" [src]="imagePathFacebookIcon"></a>
+                    <a href="/"><img class="footer-icon-twitter" [src]="imagePathTwitterIcon"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-social-link" fxLayout="row" fxLayoutAlign="center">
+        <h3>Inscrivez vous gratuitement</h3>
+        <button routerLink="/login" class="footer-button-register">S'inscrire !</button>
+    </div>
+
+    <div FxLayout="row" fxLayoutAlign="center center" class="footer-copyright">
+        <p class="copyright">Copyright © {{copyrightYear}} <strong>VroumVroum</strong> - Tous droits réservés. </p>
+    </div>
 </div>

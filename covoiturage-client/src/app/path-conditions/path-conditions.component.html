@@ -1,45 +1,71 @@
 <div>
-  <mat-tab-group>
-    <mat-tab label="Conducteur">
-        <h1>Conditions de trajet</h1>
-        <p>Cochez les cases si vous souhaitez valider la condition...</p>
-        <div class="md-checkbox" >
-          <img src="./assets/images/path-conditions/cigarette.png" alt="Image de cigarette" class="logo"/>
-          <p>Fumeur ?</p>
-          <mat-checkbox></mat-checkbox>
-        </div>
-        <div class="md-checkbox">
-          <img src="./assets/images/path-conditions/music-note.png" alt="Image de note de musique" class="logo"/>
-          <p>Musique ?</p>
-          <mat-checkbox></mat-checkbox>
-        </div>
-        <div class="md-checkbox">
-          <img src="./assets/images/path-conditions/speech-bubble.png" alt="Image de bulle de discussion" class="logo"/>
-          <p>Bavard ?</p>
-          <mat-checkbox></mat-checkbox>
-        </div>
-        <div>
-          <p></p>
-          <mat-slider></mat-slider>
-        </div>
-    </mat-tab>
-    <mat-tab label="Passager">
-        <h1>Conditions de trajet</h1>
-        <p>Cochez les cases si vous souhaitez valider la condition...</p>
-        <div class="md-checkbox">
-          <p>Trajet Fumeur ?</p>
-          <mat-checkbox></mat-checkbox>
-        </div>
-        <div class="md-checkbox">
-          <p>Trajet en musique </p>
-          <mat-checkbox></mat-checkbox>
-        </div>
-        <div class="md-checkbox">
-          <p>Un peu de discussion ?</p>
-          <mat-checkbox></mat-checkbox>
-        </div>
-    </mat-tab>
-    
-  </mat-tab-group>
-  <button>Enregistrer</button>
+    <mat-card class="mat-card-path-condition">
+        <mat-tab-group>
+            <mat-tab label="Conducteur">
+                <h1>Conditions de trajet</h1>
+                <p>Cochez les cases si vous souhaitez valider la condition...</p>
+
+                <div fxLayout="row" fxLayoutAlign="space-between center" class="row-proposition">
+                    <div fxLayout="row">
+                        <img src="./assets/images/path-conditions/cigarette.png" alt="Image de cigarette" class="logo" />
+                        <p class="question-paragraph">Fumeur ?</p>
+                    </div>
+                    <mat-checkbox></mat-checkbox>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-between center" class="row-proposition">
+                    <div fxLayout="row">
+                        <img src="./assets/images/path-conditions/music-note.png" alt="Image de note de musique" class="logo" />
+                        <p class="question-paragraph">Musique ?</p>
+                    </div>
+                    <mat-checkbox></mat-checkbox>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-between center" class="row-proposition">
+                    <div fxLayout="row">
+                        <img src="./assets/images/path-conditions/speech-bubble.png" alt="Image de bulle de discussion" class="logo" />
+                        <p class="question-paragraph">Bavard ?</p>
+                    </div>
+                    <mat-checkbox></mat-checkbox>
+                </div>
+                <div>
+                    <p class="question-paragraph">Distance d'ecart de votre trajet initial tolerable ?</p>
+                    <div>  
+                        <mat-slider
+                            class="mat-slider"
+                            [max]="10"
+                            [min]="0"
+                            [step]="1"
+                            [thumb-label]="thumbLabel"
+                            [tick-interval]="tickInterval"
+                            [(ngModel)]="value"
+                            [vertical]="vertical">
+                        </mat-slider>
+                        <mat-form-field class="example-margin">
+                            <input matInput type="number" placeholder="Value" [(ngModel)]="value">
+                        </mat-form-field>
+                    </div>
+                </div>
+            </mat-tab>
+            <mat-tab label="Passager">
+                <h1>Conditions de trajet</h1>
+                <p>Cochez les cases si vous souhaitez valider la condition...</p>
+                <div fxLayout="row" class="row-proposition">
+                    <img src="./assets/images/path-conditions/cigarette.png" alt="Image de cigarette" class="logo" />
+                    <p class="question-paragraph">Fumeur ?</p>
+                    <mat-checkbox></mat-checkbox>
+                </div>
+                <div fxLayout="row" class="row-proposition">
+                    <img src="./assets/images/path-conditions/music-note.png" alt="Image de note de musique" class="logo" />
+                    <p class="question-paragraph">Musique ?</p>
+                    <mat-checkbox></mat-checkbox>
+                </div>
+                <div fxLayout="row" class="row-proposition">
+                    <img src="./assets/images/path-conditions/speech-bubble.png" alt="Image de bulle de discussion" class="logo" />
+                    <p class="question-paragraph">Bavard ?</p>
+                    <mat-checkbox></mat-checkbox>
+                </div>
+            </mat-tab>
+
+        </mat-tab-group>
+        <button mat-button>Enregistrer</button>
+    </mat-card>
 </div>

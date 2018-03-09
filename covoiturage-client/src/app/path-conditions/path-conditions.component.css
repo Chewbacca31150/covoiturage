@@ -1,4 +1,20 @@
+.mat-card-path-condition{
+    width: 50%;
+    margin: 20px;
+}
+
 .logo {
     width: 25px;
     height: 25px;
+}
+.question-paragraph{
+    margin: 0px;
+}
+
+.row-proposition{
+    margin: 10px 0px;
+}
+
+.slider{
+    width: 300px;
 }
