@@ -7,27 +7,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PathConditionsComponent implements OnInit {
 
+  autoTicks: boolean
+  max: number
+  min: number
+  showTicks: boolean
+  step: number
+  thumbLabel: boolean
+  value: number
+  tickInterval:number = 1;
   constructor() { }
 
   ngOnInit() {
+    this.autoTicks = true;
+    this.max = 10;
+    this.min = 0;
+    this.showTicks = false;
+    this.step = 1;
+    this.thumbLabel = true;
+    this.value = 0;
   }
 
-}
 
-class SliderConfigurableExample {
-  autoTicks = false;
-  max = 10;
-  min = 0;
-  showTicks = true;
-  step = 1;
-  thumbLabel = true;
-  value = 0;
-
-  get tickInterval(): number | 'auto' {
-    return this.showTicks ? (this.autoTicks ? 'auto' : this._tickInterval) : 0;
-  }
-  set tickInterval(v) {
-    this._tickInterval = Number(v);
-  }
   private _tickInterval = 1;
+
 }

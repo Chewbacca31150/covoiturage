@@ -15,6 +15,11 @@
     margin: 10px 0px;
 }
 
-.slider{
-    width: 300px;
+.mat-slider{
+    width: 400px;
+    position: relative;
+    z-index: 1;
+}
+.mat-form-field-slider{
+    width: 50px;
 }

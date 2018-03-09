@@ -26,8 +26,9 @@ import { MapComponent } from './map/map.component';
 import { AuthGuard } from './guard/auth.guard';
 import { PathConditionsComponent } from './path-conditions/path-conditions.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
-
+import 'hammerjs';
 
 @NgModule({
   declarations: [
@@ -42,9 +43,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     DashboardComponent
   ],
   imports: [
-    AppModuleMaterial,
     BrowserModule,
     BrowserAnimationsModule,
+    AppModuleMaterial,    
     HttpModule,
     HttpClientModule,
     FormsModule,
