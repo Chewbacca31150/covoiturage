@@ -13,14 +13,14 @@
                                 <img src="./assets/images/path-conditions/smoking.png" alt="Image de cigarette" class="logo" />
                                 <p class="question-paragraph">Fumeur ?</p>
                             </div>
-                            <mat-checkbox></mat-checkbox>
+                            <mat-checkbox [checked]="smoke" (change)="reverseSmokeCheckbox()" ></mat-checkbox>
                         </div>
                         <div fxLayout="row" fxLayoutAlign="space-between center" class="row-proposition">
                             <div fxLayout="row">
                                 <img src="./assets/images/path-conditions/no-smoking.png" alt="Image de cigarette interdite" class="logo" />
                                 <p class="question-paragraph">Non fumeur ?</p>
                             </div>
-                            <mat-checkbox></mat-checkbox>
+                            <mat-checkbox [checked]="noSmoke" (change)="reverseNoSmokeCheckbox()" ></mat-checkbox>
                         </div>
                         <div fxLayout="row" fxLayoutAlign="space-between center" class="row-proposition">
                             <div fxLayout="row">
@@ -61,14 +61,14 @@
                             <img src="./assets/images/path-conditions/smoking.png" alt="Image de cigarette" class="logo" />
                             <p class="question-paragraph">Fumeur ?</p>
                         </div>
-                        <mat-checkbox></mat-checkbox>
+                        <mat-checkbox [checked]="smokePassenger" (change)="reverseSmokeCheckboxPassenger()" ></mat-checkbox>
                     </div>
                     <div fxLayout="row" fxLayoutAlign="space-between center" class="row-proposition">
                         <div fxLayout="row">
                             <img src="./assets/images/path-conditions/no-smoking.png" alt="Image de cigarette interdite" class="logo" />
                             <p class="question-paragraph">Non fumeur ?</p>
                         </div>
-                        <mat-checkbox></mat-checkbox>
+                        <mat-checkbox [checked]="noSmokePassenger" (change)="reverseNoSmokeCheckboxPassenger()" ></mat-checkbox>
                     </div>
                     <div fxLayout="row" fxLayoutAlign="space-between center" class="row-proposition">
                         <div fxLayout="row">
