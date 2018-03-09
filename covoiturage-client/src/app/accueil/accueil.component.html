@@ -1,12 +1,11 @@
 <div class="background">
-  <div class="paddingleft">
-    <h1>Avec VroumVroum, le covoiturage prend des dimensions stratosphériques</h1>
-    <h2>En ce moment, {{numberUsers}} personnes font du covoiturage dans votre galaxie, pourquoi pas vous ?</h2>
-    <form>
-      <mat-form-field class="example-full-width">
-        <input matInput placeholder="Je suis à...">
-      </mat-form-field>
-    </form>
-    <button mat-button class="button" (click)="login()">Login</button>
-  </div>
+    <div class="paddingleft" fxLayout="column" fxLayoutAlign="start end">
+        <div class="text-home-slogan" fxLayout="column" fxLayoutAlign="right">
+            <h1>Avec VroumVroum, le covoiturage prend des dimensions stratosphériques.</h1>
+            <h2>En ce moment, {{numberUsers}} personnes font du covoiturage dans votre galaxie, pourquoi pas vous ?</h2>
+        </div>
+        <div>
+            <button mat-button class="button-home-login" (click)="login()">Login</button>
+        </div>
+    </div>
 </div>
