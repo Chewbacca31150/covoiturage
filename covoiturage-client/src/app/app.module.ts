@@ -29,7 +29,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { DialogOverviewComponent } from './dialog/dialog-overview.component';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 
-
+import 'hammerjs'; //Laisse ca là, sinon l'animation du slider foire... Bisous ;*
 
 @NgModule({
   declarations: [
