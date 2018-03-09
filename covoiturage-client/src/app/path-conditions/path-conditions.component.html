@@ -1,51 +1,72 @@
-<div>
+<div class="">
     <mat-card class="mat-card-path-condition">
         <mat-tab-group>
-            <mat-tab label="Conducteur">
-                <div style="width:100%; overflow-x:hidden;">
-                    <h1>Conditions de trajet</h1>
-                    <p>Cochez les cases si vous souhaitez valider la condition...</p>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="row-proposition">
-                        <div fxLayout="row">
-                            <img src="./assets/images/path-conditions/cigarette.png" alt="Image de cigarette" class="logo" />
-                            <p class="question-paragraph">Fumeur ?</p>
-                        </div>
-                        <mat-checkbox></mat-checkbox>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="row-proposition">
-                        <div fxLayout="row">
-                            <img src="./assets/images/path-conditions/music-note.png" alt="Image de note de musique" class="logo" />
-                            <p class="question-paragraph">Musique ?</p>
-                        </div>
-                        <mat-checkbox></mat-checkbox>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" class="row-proposition">
-                        <div fxLayout="row">
-                            <img src="./assets/images/path-conditions/speech-bubble.png" alt="Image de bulle de discussion" class="logo" />
-                            <p class="question-paragraph">Bavard ?</p>
-                        </div>
-                        <mat-checkbox></mat-checkbox>
-                    </div>
+            <mat-tab label="Conducteur" style="width:50%;">
+                <div style="width:100%; overflow-x:hidden;" fxLayout="column" fxLayoutAlign="center">
                     <div>
-                        <p class="question-paragraph">Distance d'ecart de votre trajet initial tolerable ?</p>
-                        <div fxLayout="row" fxLayoutAlign="space-around" >
+                        <h1>Preferences</h1>
+                        <p>Quelles sont vos preferences pour vos trajets de covoiturage ?</p>
+                    </div>
+                    <div class="option-checkbox">
+                        <div fxLayout="row" fxLayoutAlign="space-between center" class="row-proposition">
+                            <div fxLayout="row">
+                                <img src="./assets/images/path-conditions/smoking.png" alt="Image de cigarette" class="logo" />
+                                <p class="question-paragraph">Fumeur ?</p>
+                            </div>
+                            <mat-checkbox></mat-checkbox>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="space-between center" class="row-proposition">
+                            <div fxLayout="row">
+                                <img src="./assets/images/path-conditions/no-smoking.png" alt="Image de cigarette interdite" class="logo" />
+                                <p class="question-paragraph">Non fumeur ?</p>
+                            </div>
+                            <mat-checkbox></mat-checkbox>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="space-between center" class="row-proposition">
+                            <div fxLayout="row">
+                                <img src="./assets/images/path-conditions/music-note.png" alt="Image de note de musique" class="logo" />
+                                <p class="question-paragraph">Musique ?</p>
+                            </div>
+                            <mat-checkbox></mat-checkbox>
+                        </div>
+                        <div fxLayout="row" fxLayoutAlign="space-between center" class="row-proposition">
+                            <div fxLayout="row">
+                                <img src="./assets/images/path-conditions/speech-bubble.png" alt="Image de bulle de discussion" class="logo" />
+                                <p class="question-paragraph">Bavard ?</p>
+                            </div>
+                            <mat-checkbox></mat-checkbox>
+                        </div>
+
+                    </div>
+                    <hr>
+                    <div>
+                        <p class="question-paragraph">Distance d'ecart (en Km) tolerable de votre trajet initial pour recuperer un passager ? ?</p>
+                        <div fxLayout="row" fxLayoutAlign="space-around">
                             <mat-slider class="mat-slider" [max]="max" [min]="min" [step]="step" [thumb-label]="thumbLabel" [tick-interval]="tickInterval"
                                 [disabled]="false" [(ngModel)]="value">
                             </mat-slider>
                             <mat-form-field class="mat-form-field-slider">
-                                <input matInput type="number" placeholder="Value" [(ngModel)]="value">
+                                <input matInput type="number" placeholder="Km" [(ngModel)]="value">
                             </mat-form-field>
                         </div>
                     </div>
                 </div>
             </mat-tab>
-            <mat-tab label="Passager">
-                    <h1>Conditions de trajet</h1>
-                    <p>Cochez les cases si vous souhaitez valider la condition...</p>
+            <mat-tab label="Passager" style="width:50%;">
+                <h1>Preferences</h1>
+                <p>Quelles sont vos preferences pour vos trajets de covoiturage ?</p>
+                <div class="option-checkbox">
                     <div fxLayout="row" fxLayoutAlign="space-between center" class="row-proposition">
                         <div fxLayout="row">
-                            <img src="./assets/images/path-conditions/cigarette.png" alt="Image de cigarette" class="logo" />
+                            <img src="./assets/images/path-conditions/smoking.png" alt="Image de cigarette" class="logo" />
                             <p class="question-paragraph">Fumeur ?</p>
+                        </div>
+                        <mat-checkbox></mat-checkbox>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center" class="row-proposition">
+                        <div fxLayout="row">
+                            <img src="./assets/images/path-conditions/no-smoking.png" alt="Image de cigarette interdite" class="logo" />
+                            <p class="question-paragraph">Non fumeur ?</p>
                         </div>
                         <mat-checkbox></mat-checkbox>
                     </div>
@@ -63,8 +84,12 @@
                         </div>
                         <mat-checkbox></mat-checkbox>
                     </div>
+
+                </div>
             </mat-tab>
         </mat-tab-group>
-        <button mat-button>Enregistrer</button>
+        <div fxLayout="row" fxLayoutAlign="center">
+            <button mat-button class="button-edit-path-condition">Enregistrer</button>
+        </div>
     </mat-card>
 </div>

@@ -1,11 +1,33 @@
-.mat-card-path-condition{
+h1 {
+    text-align: center;
+}
+
+p {
+    font-size: 0.8em;
+    text-align: center;
+}
+
+hr {
+    margin: 20px 0px;
+}
+
+.option-checkbox{
     width: 50%;
-    margin: 20px;
+    position: relative;
+    right: 25%;
+    left: 25%;
+}
+
+.mat-card-path-condition{
+    width: 25%;
+    margin: 20px auto;
+
 }
 
 .logo {
     width: 25px;
     height: 25px;
+    padding-right: 20px;
 }
 .question-paragraph{
     margin: 0px;
@@ -16,10 +38,14 @@
 }
 
 .mat-slider{
-    width: 400px;
+    width: 300px;
     position: relative;
     z-index: 1;
 }
 .mat-form-field-slider{
     width: 50px;
+}
+
+.button-edit-path-condition{
+
 }
