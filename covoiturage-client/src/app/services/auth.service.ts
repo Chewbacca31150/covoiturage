@@ -21,7 +21,9 @@ export class AuthService {
       'Content-Type': 'application/x-www-form-urlencoded'
     });
     const body = `username=${user.username}&password=${user.password}`;
-    document.cookie = `username=${user.username}`;
+    var d = new Date();
+    d.setTime(d.getTime() + (7*24*60*60*1000));
+    document.cookie = `username=${user.username}; expires=`+ d.toUTCString();
     return this.apiService.post(this.config.login_url, body, loginHeaders).map(() => {
       console.log('Login success');
       this.userService.getMyInfo().subscribe();
