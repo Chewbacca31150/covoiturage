@@ -6,63 +6,62 @@ import { UserService } from '../services/user.service';
 import { AuthService } from '../services/auth.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  signinForm: FormGroup;
-  loginForm: FormGroup;
+    signinForm: FormGroup;
+    loginForm: FormGroup;
 
-  error: string;
+    error: string;
 
-  constructor(
-    private _fb: FormBuilder,
-    private _router: Router,
-    private _userService: UserService,
-    private _authService: AuthService
-  ) { }
+    constructor(
+        private _fb: FormBuilder,
+        private _router: Router,
+        private _userService: UserService,
+        private _authService: AuthService
+    ) { }
 
-  ngOnInit(): void {
-    // VALIDATORS FOR SIGNIN
-    this.signinForm = this._fb.group({
-      email: [''],
-      username: [''],
-      password: [''],
-      passwordConfirm: ['']
-    }, {});
+    ngOnInit(): void {
+        // VALIDATORS FOR SIGNIN
+        this.signinForm = this._fb.group({
+            email: [''],
+            username: [''],
+            password: [''],
+            passwordConfirm: ['']
+        }, {});
 
-    // VALIDATORS FOR LOGIN
-    this.loginForm = this._fb.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
-    });
-  }
-
-  onSigninSubmit(form) {
-    this._authService.signup(form)
-      .subscribe(resp => {
-        this._authService.login(form).subscribe(data => {
-          this._userService.getMyInfo().subscribe(() => {
-            this._router.navigate(['/map']);
-          });
+        // VALIDATORS FOR LOGIN
+        this.loginForm = this._fb.group({
+            username: ['', Validators.required],
+            password: ['', Validators.required]
         });
-      });
-  }
+    }
 
-  onLoginSubmit(form) {
-    this._authService.login(form)
-      .subscribe(data => {
-        this._userService.getMyInfo().subscribe(() => {
-          this._userService.sendEvent();
-          this._router.navigate(['/map']);
-        });
-      });
-    this.error = null;
+    onSigninSubmit(form) {
+        this._authService.signup(form)
+            .subscribe(resp => {
+                this._authService.login(form).subscribe(data => {
+                    this._authService.getMyInfo().subscribe(() => {
+                        this._router.navigate(['/map']);
+                    });
+                });
+            });
+    }
 
-  }
+    onLoginSubmit(form) {
+        this._authService.login(form)
+            .subscribe(data => {
+                this._authService.getMyInfo().subscribe(() => {
+                    this._router.navigate(['/map']);
+                });
+            });
+        this.error = null;
 
-  debug(signInForm) {
-    console.log(signInForm);
-  }
+    }
+
+    debug(signInForm) {
+        console.log(signInForm);
+    }
 }

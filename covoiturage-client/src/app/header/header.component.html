@@ -4,9 +4,8 @@
       <button mat-button routerLink="/" class="toolbar-home-button">
         <a href="/" class="title">VroumVroum</a>
       </button>
-      <button class="toolbar-other-button" mat-button routerLink="/map">Map</button>
-      <button class="toolbar-other-button" mat-button routerLink="/market">Button #1</button>
-      <button class="toolbar-other-button" mat-button routerLink="/path-conditions">Cond.</button>
+      <button *ngIf="user" class="toolbar-other-button" mat-button routerLink="/map">Map</button>
+      <button *ngIf="user" class="toolbar-other-button" mat-button routerLink="/path-conditions">Cond.</button>
     </span>
     <button class="toolbar-other-button" mat-button routerLink="/login" *ngIf="user == null">Login</button>
     <button class="toolbar-other-button" mat-button *ngIf="user != null" (click)="logout()">Logout</button>
