@@ -26,9 +26,10 @@ import { MapComponent } from './map/map.component';
 import { AuthGuard } from './guard/auth.guard';
 import { PathConditionsComponent } from './path-conditions/path-conditions.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import { DialogOverviewComponent } from './dialog/dialog-overview.component';
+import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 
-import 'hammerjs';
+
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import 'hammerjs';
     FooterComponent,
     MapComponent,
     PathConditionsComponent,
-    DashboardComponent
+    DashboardComponent,
+    DialogOverviewComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +55,11 @@ import 'hammerjs';
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
   ],
-  providers: [AuthGuard, ApiService, AuthService, ConfigService, UserService],
+  entryComponents: [
+    DialogOverviewComponent
+  ],
+  providers: [AuthGuard, ApiService, AuthService, ConfigService, UserService, 
+    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

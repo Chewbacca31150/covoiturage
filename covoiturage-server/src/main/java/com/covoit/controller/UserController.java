@@ -82,11 +82,10 @@ public class UserController {
   /**
    * 
    */
-  @RequestMapping(name = "/user/delete", method=POST)
+  /*@RequestMapping(name = "/user/delete", method=POST)
   @PreAuthorize("hasRole('User')")
   public ResponseEntity<?> deleteUser(@RequestBody ){
 	  
-  }
+  }*/
   
-  public statci
 }

@@ -10,6 +10,6 @@
     </span>
     <button class="toolbar-other-button" mat-button routerLink="/login" *ngIf="user == null">Login</button>
     <button class="toolbar-other-button" mat-button *ngIf="user != null" (click)="logout()">Logout</button>
-    <button class="toolbar-other-button" mat-button routerLink="/dashboard" *ngIf="user && isLogged">{{user.username}}</button>
+    <button class="toolbar-other-button" mat-button routerLink="/dashboard" *ngIf="user">{{user.username}}</button>
   </mat-toolbar>
 </div>

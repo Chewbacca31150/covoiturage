@@ -26,7 +26,13 @@ export class ConfigService {
 
   private _delete_user_url = this._api_url + '/delete-user';
 
-  get delete_user(): string {
+  private _all_number_url = this._api_url + '/all-users';
+
+  get all_number_url(): string {
+    return this._all_number_url;
+  }
+
+  get delete_user_url(): string {
     return this._delete_user_url;
   }
 

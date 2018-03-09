@@ -61,6 +61,10 @@ public class UserServiceImpl implements UserService {
     List<User> result = userRepository.findAll();
     return result;
   }
+  
+  public int findAllNumber() {
+	  return  userRepository.findAll().size();
+  }
 
   @Override
   public User save(UserRequest userRequest) {

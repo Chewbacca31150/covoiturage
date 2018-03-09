@@ -43,7 +43,7 @@ export class UserService {
     }
 
     removeUser(user, password) {
-        return this.apiService.post(this.config.delete_user, { user: user, password: password });
+        return this.apiService.post(this.config.delete_user_url, { user: user, password: password });
     }
 
     resetCredentials() {
@@ -56,6 +56,10 @@ export class UserService {
 
     getAll() {
         return this.apiService.get(this.config.users_url);
+    }
+
+    getAllNumber() {
+        return this.apiService.get(this.config.all_number_url);
     }
 
 }

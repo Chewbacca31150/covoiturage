@@ -17,20 +17,21 @@ export class HeaderComponent implements OnInit {
   constructor(private _router: Router, private _userService: UserService, private _authService: AuthService) { }
 
   ngOnInit() {
+    if (this._userService.isLogin()) {
+      this._userService.getMyInfo().subscribe(user => {
+        this.user = user;
+      });
+    }
     this._userService.eventUser.subscribe(data => {
-        this.user = (data) ? data : null;
+      this.user = (data) ? data : null;
     });
     this._userService.sendEvent();
   }
-  logout()
-  {
+  logout() {
     this._authService.logout()
-    .subscribe(data => {
+      .subscribe(data => {
         this._userService.sendEvent();
         this._router.navigate(['/']);
-    });
+      });
   }
-
-  
-
 }
