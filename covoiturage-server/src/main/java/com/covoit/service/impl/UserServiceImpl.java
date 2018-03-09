@@ -39,6 +39,10 @@ public class UserServiceImpl implements UserService {
     }
   }
 
+  public void deleteByUsername(String username) {
+	  userRepository.deleteByUsername(username);
+  }
+  
   @Override
   // @PreAuthorize("hasRole('USER')")
   public User findByUsername(String username) throws UsernameNotFoundException {
@@ -68,6 +72,19 @@ public class UserServiceImpl implements UserService {
     user.setAuthorities(auth);
     this.userRepository.save(user);
     return user;
+  }
+  
+  @PreAuthorize("hasRole('User')")
+  public boolean checkPassword(String username, String password) {
+	  User user = findByUsername(username);
+	  String pwd = passwordEncoder.encode(password);
+	  return (user != null && user.getPassword().equals(pwd)) ? true : false;
+  }
+  
+  @PreAuthorize("hasRole('User')")
+  public void removeUser(String username) {
+	User user = findByUsername(username);
+	userRepository.delete(user);
   }
 
 }

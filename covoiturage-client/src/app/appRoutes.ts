@@ -12,5 +12,6 @@ export const appRoutes: Routes = [
     { path: 'not-found', component: NotFoundComponent },
     { path: 'map', component: MapComponent, canActivate: [AuthGuard] },
     { path: 'path-conditions', component: PathConditionsComponent },
+    { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
     { path: '**', redirectTo: '/not-found' }
 ];

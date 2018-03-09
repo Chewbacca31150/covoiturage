@@ -24,6 +24,12 @@ export class ConfigService {
 
   private _signup_url = this._api_url + '/signup';
 
+  private _delete_user_url = this._api_url + '/delete-user';
+
+  get delete_user(): string {
+    return this._delete_user_url;
+  }
+
   get reset_credentials_url(): string {
     return this._reset_credentials_url;
   }

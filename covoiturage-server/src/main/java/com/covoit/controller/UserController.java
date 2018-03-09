@@ -77,5 +77,16 @@ public class UserController {
   public User user() {
     return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
   }
-
+  
+  
+  /**
+   * 
+   */
+  @RequestMapping(name = "/user/delete", method=POST)
+  @PreAuthorize("hasRole('User')")
+  public ResponseEntity<?> deleteUser(@RequestBody ){
+	  
+  }
+  
+  public statci
 }

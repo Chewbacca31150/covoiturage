@@ -43,7 +43,9 @@ export class LoginComponent implements OnInit {
     this._authService.signup(form)
       .subscribe(resp => {
         this._authService.login(form).subscribe(data => {
-          this._userService.getMyInfo().subscribe();
+          this._userService.getMyInfo().subscribe(() => {
+            this._router.navigate(['/map']);
+          });
         });
       });
   }

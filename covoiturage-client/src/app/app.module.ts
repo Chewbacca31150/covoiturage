@@ -25,6 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MapComponent } from './map/map.component';
 import { AuthGuard } from './guard/auth.guard';
 import { PathConditionsComponent } from './path-conditions/path-conditions.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 
@@ -37,7 +38,8 @@ import { PathConditionsComponent } from './path-conditions/path-conditions.compo
     HeaderComponent,
     FooterComponent,
     MapComponent,
-    PathConditionsComponent
+    PathConditionsComponent,
+    DashboardComponent
   ],
   imports: [
     AppModuleMaterial,

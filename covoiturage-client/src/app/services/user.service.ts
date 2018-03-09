@@ -6,12 +6,12 @@ import { ConfigService } from './config.service';
 @Injectable()
 export class UserService {
 
-  currentUser;
+    currentUser;
   eventUser: EventEmitter<any>;
 
-  constructor(
-    private apiService: ApiService,
-    private config: ConfigService
+    constructor(
+        private apiService: ApiService,
+        private config: ConfigService
   )
   {
     this.eventUser = new EventEmitter();
@@ -34,30 +34,34 @@ export class UserService {
     this.eventUser.emit(this.isLogin());
   }
 
-  initUser() {
-    const promise = this.apiService.get(this.config.refresh_token_url).toPromise()
-    .then(res => {
-      if (res.access_token !== null) {
-        return this.getMyInfo().toPromise()
-        .then(user => {
-          this.currentUser = user;
-        });
-      }
-    })
-    .catch(() => null);
-    return promise;
-  }
+    initUser() {
+        const promise = this.apiService.get(this.config.refresh_token_url).toPromise()
+            .then(res => {
+                if (res.access_token !== null) {
+                    return this.getMyInfo().toPromise()
+                        .then(user => {
+                            this.currentUser = user;
+                        });
+                }
+            })
+            .catch(() => null);
+        return promise;
+    }
 
-  resetCredentials() {
-    return this.apiService.get(this.config.reset_credentials_url);
-  }
+    removeUser(user, password) {
+        return this.apiService.post(this.config.delete_user, { user: user, password: password });
+    }
 
-  getMyInfo() {
-    return this.apiService.get(this.config.whoami_url).map(user => this.currentUser = user);
-  }
+    resetCredentials() {
+        return this.apiService.get(this.config.reset_credentials_url);
+    }
 
-  getAll() {
-    return this.apiService.get(this.config.users_url);
-  }
+    getMyInfo() {
+        return this.apiService.get(this.config.whoami_url).map(user => this.currentUser = user);
+    }
+
+    getAll() {
+        return this.apiService.get(this.config.users_url);
+    }
 
 }
