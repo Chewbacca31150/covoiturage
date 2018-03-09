@@ -9,6 +9,6 @@ import com.covoit.model.User;
  */
 public interface UserRepository extends JpaRepository<User, Long> {
     User findByUsername( String username );
-    User deleteByUsername(String username);
+    void deleteByUsername(String username);
 }
 

@@ -16,17 +16,9 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
   }
 
-  removeUser() {
-    this._userService.removeUser(this._userService.getMyInfo(), '');
-  }
-
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogOverviewComponent, {
-      width: '250px',
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      width: '800px',
     });
   }
 

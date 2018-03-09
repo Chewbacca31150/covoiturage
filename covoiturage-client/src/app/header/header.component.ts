@@ -23,7 +23,9 @@ export class HeaderComponent implements OnInit {
       });
     }
     this._userService.eventUser.subscribe(data => {
-      this.user = (data) ? data : null;
+      this._userService.getMyInfo().subscribe(user => {
+        this.user = user;
+      });
     });
     this._userService.sendEvent();
   }

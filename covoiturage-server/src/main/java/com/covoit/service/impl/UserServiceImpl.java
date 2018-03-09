@@ -7,12 +7,14 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.covoit.model.Authority;
 import com.covoit.model.User;
 import com.covoit.model.UserRequest;
 import com.covoit.repository.UserRepository;
 import com.covoit.service.AuthorityService;
+import com.covoit.service.UserAuthorityService;
 import com.covoit.service.UserService;
 
 /**
@@ -30,6 +32,9 @@ public class UserServiceImpl implements UserService {
 
   @Autowired
   private AuthorityService authService;
+  
+  @Autowired
+  private UserAuthorityService userAuthorityService;
 
   public void resetCredentials() {
     List<User> users = userRepository.findAll();
@@ -78,17 +83,18 @@ public class UserServiceImpl implements UserService {
     return user;
   }
   
-  @PreAuthorize("hasRole('User')")
+  @Override
   public boolean checkPassword(String username, String password) {
 	  User user = findByUsername(username);
-	  String pwd = passwordEncoder.encode(password);
-	  return (user != null && user.getPassword().equals(pwd)) ? true : false;
+	  return (user != null && passwordEncoder.matches(password, user.getPassword())) ? true : false;
   }
   
-  @PreAuthorize("hasRole('User')")
+  @Override
+  @Transactional
   public void removeUser(String username) {
+	
 	User user = findByUsername(username);
-	userRepository.delete(user);
+	userRepository.deleteByUsername(username);
   }
 
 }

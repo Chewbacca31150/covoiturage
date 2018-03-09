@@ -33,5 +33,4 @@ public class AuthorityServiceImpl implements AuthorityService {
     auths.add(auth);
     return auths;
   }
-
 }

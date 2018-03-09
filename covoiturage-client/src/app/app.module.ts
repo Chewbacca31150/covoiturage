@@ -47,7 +47,7 @@ import 'hammerjs'; //Laisse ca là, sinon l'animation du slider foire... Bisous 
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AppModuleMaterial,    
+    AppModuleMaterial,
     HttpModule,
     HttpClientModule,
     FormsModule,
@@ -58,7 +58,7 @@ import 'hammerjs'; //Laisse ca là, sinon l'animation du slider foire... Bisous 
   entryComponents: [
     DialogOverviewComponent
   ],
-  providers: [AuthGuard, ApiService, AuthService, ConfigService, UserService, 
+  providers: [AuthGuard, ApiService, AuthService, ConfigService, UserService,
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } }],
   bootstrap: [AppComponent]
 })

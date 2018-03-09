@@ -42,8 +42,8 @@ export class UserService {
         return promise;
     }
 
-    removeUser(user, password) {
-        return this.apiService.post(this.config.delete_user_url, { user: user, password: password });
+    removeUser(password) {
+        return this.apiService.post(this.config.delete_user_url, { username: this.currentUser.username, password: password });
     }
 
     resetCredentials() {

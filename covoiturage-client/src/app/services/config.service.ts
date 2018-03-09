@@ -24,7 +24,7 @@ export class ConfigService {
 
   private _signup_url = this._api_url + '/signup';
 
-  private _delete_user_url = this._api_url + '/delete-user';
+  private _delete_user_url = this._user_url + '/delete';
 
   private _all_number_url = this._api_url + '/all-users';
 

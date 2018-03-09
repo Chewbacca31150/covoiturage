@@ -18,6 +18,10 @@ public interface UserService {
   List<User> findAll();
   
   int findAllNumber();
+  
+  boolean checkPassword(String username, String password);
+  
+  void removeUser(String username);
 
   User save(UserRequest user);
 }

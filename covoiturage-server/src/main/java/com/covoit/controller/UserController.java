@@ -20,6 +20,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.covoit.exception.ResourceConflictException;
 import com.covoit.model.User;
+import com.covoit.model.UserDelete;
 import com.covoit.model.UserRequest;
 import com.covoit.service.UserService;
 
@@ -82,10 +83,16 @@ public class UserController {
   /**
    * 
    */
-  /*@RequestMapping(name = "/user/delete", method=POST)
-  @PreAuthorize("hasRole('User')")
-  public ResponseEntity<?> deleteUser(@RequestBody ){
+  @RequestMapping(value = "/user/delete", method=POST)
+  public ResponseEntity<?> deleteUser(@RequestBody UserDelete userDelete){
+	  if(userService.checkPassword(userDelete.getUsername(), userDelete.getPassword())) {
+		  userService.removeUser(userDelete.getUsername());
+		  return ResponseEntity.ok().build();
+	  }
+	  else {
+		  return ResponseEntity.status(400).build();
+	  }
 	  
-  }*/
+  }
   
 }
