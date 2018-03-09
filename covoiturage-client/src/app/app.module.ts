@@ -4,8 +4,7 @@ import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NG_ASYNC_VALIDATORS, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
-
-// material design imports
+import { AgmCoreModule } from '@agm/core';
 
 import { AppModuleMaterial } from './app.module-material';
 
@@ -29,7 +28,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { DialogOverviewComponent } from './dialog/dialog-overview.component';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 
-import 'hammerjs'; //Laisse ca là, sinon l'animation du slider foire... Bisous ;*
+import 'hammerjs'; // Laisse ca là, sinon l'animation du slider foire... Bisous ;*
 
 @NgModule({
   declarations: [
@@ -54,6 +53,9 @@ import 'hammerjs'; //Laisse ca là, sinon l'animation du slider foire... Bisous 
     FlexLayoutModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyDi9cqC_wA23bDv4G8l5EgRAHSmPg7UfV4'
+    })
   ],
   entryComponents: [
     DialogOverviewComponent
