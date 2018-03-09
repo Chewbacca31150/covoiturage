@@ -42,7 +42,7 @@ export class AuthService {
     return this.apiService.post(this.config.logout_url, {})
       .map(() => {
         this.userService.currentUser = null;
-        document.cookie = 'username=; expires=Fri, 01 Jan 2010 00:0:00 UTC;'
+        document.cookie = 'username=; expires=Fri, 01 Jan 2010 00:0:00 UTC;';
         console.log('Logout success');
       });
   }

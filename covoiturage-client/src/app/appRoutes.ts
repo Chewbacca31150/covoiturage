@@ -4,7 +4,8 @@ import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MapComponent } from './map/map.component';
 import { AuthGuard } from './guard/auth.guard';
-import { PathConditionsComponent } from './path-conditions/path-conditions.component' 
+import { PathConditionsComponent } from './path-conditions/path-conditions.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 export const appRoutes: Routes = [
     { path: '', component: AccueilComponent },
