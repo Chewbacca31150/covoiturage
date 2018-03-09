@@ -14,7 +14,6 @@ import com.covoit.model.User;
 import com.covoit.model.UserRequest;
 import com.covoit.repository.UserRepository;
 import com.covoit.service.AuthorityService;
-import com.covoit.service.UserAuthorityService;
 import com.covoit.service.UserService;
 
 /**
@@ -33,8 +32,6 @@ public class UserServiceImpl implements UserService {
   @Autowired
   private AuthorityService authService;
   
-  @Autowired
-  private UserAuthorityService userAuthorityService;
 
   public void resetCredentials() {
     List<User> users = userRepository.findAll();
