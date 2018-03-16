@@ -25,7 +25,7 @@ import com.covoit.model.UserRequest;
 import com.covoit.service.UserService;
 
 /**
- * Created by chewie
+ * Created by quentin
  */
 
 @RestController

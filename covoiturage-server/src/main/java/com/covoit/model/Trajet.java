@@ -1,5 +1,8 @@
 package com.covoit.model;
 
+import java.util.Date;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,23 +21,112 @@ public class Trajet {
 	  @Column(name = "driver_id")
 	  private Long driver_id;
 	  
-	  @Column(name = "passenger_id")
-	  private Long passenger_id;
+	  @Column(name = "passengers_id")
+	  private List<Long> passenger_id;
 	  
-	  public Long getDriver() {
-		  return driver_id;
-	  }
+	  @Column(name = "is_smoke")
+	  private boolean isSmoke;
+
+	  @Column(name = "is_talk")
+	  private boolean isTalk;
 	  
-	  public void setDriver(Long driverId) {
-		  driver_id = driverId;
-	  }
+	  @Column(name = "is_music")
+	  private boolean isMusic;
 	  
-	  public Long getPassenger() {
-		  return passenger_id;
-	  }
+	  @Column(name = "is_completed")
+	  private boolean isCompleted;
 	  
-	  public void setPassenger(Long passengerId) {
-		  passenger_id = passengerId;
-	  }
+	  @Column(name = "point_departure")
+	  private long pointDeparture;
+	  
+	  @Column(name = "pointArrival")
+	  private long pointArrival;
+	  
+	  @Column(name = "date_departure")
+	  private Date date_departure;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Long getDriver_id() {
+		return driver_id;
+	}
+
+	public void setDriver_id(Long driver_id) {
+		this.driver_id = driver_id;
+	}
+
+	public List<Long> getPassenger_id() {
+		return passenger_id;
+	}
+
+	public void setPassenger_id(List<Long> passenger_id) {
+		this.passenger_id = passenger_id;
+	}
+
+	public boolean isSmoke() {
+		return isSmoke;
+	}
+
+	public void setSmoke(boolean isSmoke) {
+		this.isSmoke = isSmoke;
+	}
+
+	public boolean isTalk() {
+		return isTalk;
+	}
+
+	public void setTalk(boolean isTalk) {
+		this.isTalk = isTalk;
+	}
+
+	public boolean isMusic() {
+		return isMusic;
+	}
+
+	public void setMusic(boolean isMusic) {
+		this.isMusic = isMusic;
+	}
+
+	public boolean isCompleted() {
+		return isCompleted;
+	}
+
+	public void setCompleted(boolean isCompleted) {
+		this.isCompleted = isCompleted;
+	}
+
+	public long getPointDeparture() {
+		return pointDeparture;
+	}
+
+	public void setPointDeparture(long pointDeparture) {
+		this.pointDeparture = pointDeparture;
+	}
+
+	public long getPointArrival() {
+		return pointArrival;
+	}
+
+	public void setPointArrival(long pointArrival) {
+		this.pointArrival = pointArrival;
+	}
+
+	public Date getDate_departure() {
+		return date_departure;
+	}
+
+	public void setDate_departure(Date date_departure) {
+		this.date_departure = date_departure;
+	}
+
+	  
+	  
+
 	  
 }

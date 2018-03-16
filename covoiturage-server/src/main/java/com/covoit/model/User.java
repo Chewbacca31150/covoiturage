@@ -41,6 +41,15 @@ public class User implements UserDetails, Serializable {
 
   @Column(name = "email")
   private String email;
+  
+  @Column(name = "is_smoke")
+  private boolean isSmoke;
+
+  @Column(name = "is_talk")
+  private boolean isTalk;
+
+  @Column(name = "is_music")
+  private boolean isMusic;
 
 
 
@@ -49,6 +58,9 @@ public class User implements UserDetails, Serializable {
       joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
       inverseJoinColumns = @JoinColumn(name = "authority_id", referencedColumnName = "id"))
   private List<Authority> authorities;
+  
+  
+  
 
   public Long getId() {
     return id;
@@ -116,4 +128,6 @@ public class User implements UserDetails, Serializable {
   public boolean isEnabled() {
     return true;
   }
+
+
 }
