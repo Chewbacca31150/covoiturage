@@ -8,6 +8,8 @@ import { AgmCoreModule } from '@agm/core';
 
 import { AppModuleMaterial } from './app.module-material';
 
+import 'hammerjs'; // Laisse ca là, sinon l'animation du slider foire... Bisous ;*
+
 import { appRoutes } from './appRoutes';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -28,10 +30,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { DialogOverviewComponent } from './dialog/dialog-overview.component';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 
-import 'hammerjs';
+
 import { AddPathComponent } from './add-path/add-path.component';
 import { PathInformationComponent } from './path-information/path-information.component';
-import { PathResultsComponent } from './path-results/path-results.component'; // Laisse ca là, sinon l'animation du slider foire... Bisous ;*
+import { PathResultsComponent } from './path-results/path-results.component'; 
 
 @NgModule({
   declarations: [
