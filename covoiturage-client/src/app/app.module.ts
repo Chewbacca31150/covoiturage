@@ -44,10 +44,10 @@ import { PathResultsComponent } from './path-results/path-results.component'; //
     MapComponent,
     PathConditionsComponent,
     DashboardComponent,
-    DialogOverviewComponen,
+    DialogOverviewComponent,
     AddPathComponent,
     PathInformationComponent,
-    PathResultsComponentt
+    PathResultsComponent
   ],
   imports: [
     BrowserModule,
