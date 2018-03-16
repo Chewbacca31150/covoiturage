@@ -13,6 +13,7 @@ export class AccueilComponent implements OnInit {
   constructor(private _route: Router, private _userService: UserService) { }
 
   ngOnInit() {
+
     this._userService.getAllNumber().subscribe(resp => this.numberUsers = resp);
   }
 

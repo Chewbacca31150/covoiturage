@@ -11,11 +11,11 @@ import { PathInformationComponent } from "./path-information/path-information.co
 import { PathResultsComponent } from "./path-results/path-results.component";
 
 export const appRoutes: Routes = [
-    { path: '', component: AccueilComponent },
+    { path: '', component: AccueilComponent},
     { path: 'login', component: LoginComponent },
     { path: 'not-found', component: NotFoundComponent },
     { path: 'map', component: MapComponent, canActivate: [AuthGuard] },
-    { path: 'path-conditions', component: PathConditionsComponent },
+    { path: 'path-conditions', component: PathConditionsComponent, canActivate: [AuthGuard] },
     { path: 'path-informations', component: PathConditionsComponent },
     { path: 'path-results', component: PathConditionsComponent },
     { path: 'add-path', component: PathConditionsComponent },
