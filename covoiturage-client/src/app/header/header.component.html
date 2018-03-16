@@ -6,9 +6,9 @@
       </button>
       <button *ngIf="user" class="toolbar-other-button" mat-button routerLink="/map">Map</button>
       <button *ngIf="user" class="toolbar-other-button" mat-button routerLink="/path-conditions">Cond.</button>
-      <button class="toolbar-other-button" mat-button routerLink="/path-conditions">Add-P</button>
-      <button class="toolbar-other-button" mat-button routerLink="/path-conditions">Resu</button>
-      <button class="toolbar-other-button" mat-button routerLink="/path-conditions">Info</button>
+      <button class="toolbar-other-button" mat-button routerLink="/add-path">Add-P</button>
+      <button class="toolbar-other-button" mat-button routerLink="/path-results">Resu</button>
+      <button class="toolbar-other-button" mat-button routerLink="/path-information">Info</button>
     </span>
     <button class="toolbar-other-button" mat-button routerLink="/login" *ngIf="user == null">Login</button>
     <button class="toolbar-other-button" mat-button *ngIf="user != null" (click)="logout()">Logout</button>
