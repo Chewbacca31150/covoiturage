@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService, User } from '../services/auth.service';
 
 @Component({
     selector: 'app-footer',
@@ -10,11 +11,20 @@ export class FooterComponent implements OnInit {
     copyrightYear: string;
     imagePathFacebookIcon: string;
     imagePathTwitterIcon: string;
-    constructor() {
+    user : User
+    constructor(private _authService: AuthService) {
 
     }
 
     ngOnInit() {
+        this._authService.getMyInfo().subscribe(user => {
+            this.user = user;
+        });
+
+        this._authService.eventUser.subscribe((user: User) => {
+            console.log(user);
+            this.user = user;
+        });
         this.copyrightYear = new Date().getFullYear().toString();
         this.imagePathFacebookIcon = './assets/images/footer/1000px-F_icon_black.png';
         this.imagePathTwitterIcon = './assets/images/footer/1024px-T_icon_black.png';

@@ -22,7 +22,7 @@
         </div>
     </div>
 
-    <div class="footer-social-link" fxLayout="row" fxLayoutAlign="center">
+    <div class="footer-social-link" fxLayout="row" fxLayoutAlign="center" *ngIf="!user">
         <h3>Inscrivez vous gratuitement</h3>
         <button routerLink="/login" class="footer-button-register">S'inscrire !</button>
     </div>
