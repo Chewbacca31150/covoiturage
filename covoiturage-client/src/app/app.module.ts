@@ -28,7 +28,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { DialogOverviewComponent } from './dialog/dialog-overview.component';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 
-import 'hammerjs'; // Laisse ca là, sinon l'animation du slider foire... Bisous ;*
+import 'hammerjs';
+import { AddPathComponent } from './add-path/add-path.component';
+import { PathInformationComponent } from './path-information/path-information.component';
+import { PathResultsComponent } from './path-results/path-results.component'; // Laisse ca là, sinon l'animation du slider foire... Bisous ;*
 
 @NgModule({
   declarations: [
@@ -41,7 +44,10 @@ import 'hammerjs'; // Laisse ca là, sinon l'animation du slider foire... Bisous
     MapComponent,
     PathConditionsComponent,
     DashboardComponent,
-    DialogOverviewComponent
+    DialogOverviewComponen,
+    AddPathComponent,
+    PathInformationComponent,
+    PathResultsComponentt
   ],
   imports: [
     BrowserModule,
