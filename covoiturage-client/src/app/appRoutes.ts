@@ -9,9 +9,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddPathComponent } from './add-path/add-path.component';
 import { PathInformationComponent } from "./path-information/path-information.component";
 import { PathResultsComponent } from "./path-results/path-results.component";
+import { MapAuthGuard } from './guard/map.auth.guard';
 
 export const appRoutes: Routes = [
-    { path: '', component: AccueilComponent},
+    { path: '', component: AccueilComponent, canActivate: [MapAuthGuard]},
     { path: 'login', component: LoginComponent },
     { path: 'not-found', component: NotFoundComponent },
     { path: 'map', component: MapComponent, canActivate: [AuthGuard] },

@@ -10,10 +10,10 @@ import { UserService } from '../services/user.service';
 export class AccueilComponent implements OnInit {
 
   numberUsers = 0;
-  constructor(private _route: Router, private _userService: UserService) { }
+  constructor(private _route: Router, private _userService: UserService) {
+  }
 
   ngOnInit() {
-
     this._userService.getAllNumber().subscribe(resp => this.numberUsers = resp);
   }
 

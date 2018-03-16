@@ -34,6 +34,7 @@ import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 import { AddPathComponent } from './add-path/add-path.component';
 import { PathInformationComponent } from './path-information/path-information.component';
 import { PathResultsComponent } from './path-results/path-results.component'; 
+import { MapAuthGuard } from './guard/map.auth.guard';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,7 @@ import { PathResultsComponent } from './path-results/path-results.component';
   entryComponents: [
     DialogOverviewComponent
   ],
-  providers: [AuthGuard, ApiService, AuthService, ConfigService, UserService,
+  providers: [AuthGuard, MapAuthGuard, ApiService, AuthService, ConfigService, UserService,
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } }],
   bootstrap: [AppComponent]
 })

@@ -106,11 +106,11 @@ export class AuthService {
     }
 
     getMyInfo(): Observable<User> {
-        console.log('get my info');
+        //console.log('get my info');
         return this.apiService.get(this.config.whoami_url).map((user: User) => {
             return this.sendEvent(user);
         }).catch<User, User>((e) => {
-            console.log('err');
+            //console.log('err');
             this.sendEvent(null);
             return Observable.of<User>(null);
         });
