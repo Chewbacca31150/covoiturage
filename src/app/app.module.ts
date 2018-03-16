@@ -8,6 +8,7 @@ import {MatCardModule} from '@angular/material/card';
 import {FormsModule} from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
 import { AgmCoreModule } from '@agm/core';
+import { GoogleMapsAPIWrapper } from '@agm/core/services/google-maps-api-wrapper';
 
 import { appRoutes } from './appRoutes';
 import { AppComponent } from './app.component';
@@ -17,6 +18,9 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { MapComponent } from './map/map.component';
+import {HttpClientModule} from "@angular/common/http";
+import {HttpModule} from "@angular/http";
+// import {AgmDirectionModule} from "agm-direction/src/agm-direction.module";
 
 @NgModule({
   declarations: [
@@ -29,6 +33,8 @@ import { MapComponent } from './map/map.component';
     MapComponent
   ],
   imports: [
+    HttpModule,
+    HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
     MatButtonModule,
