@@ -1,3 +1,53 @@
-<p>
-  add-path works!
-</p>
+<div class="" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="mat-card-path-condition" style="width:50%;">
+        <div style="width:100%;" fxLayout="column" fxLayoutAlign="center">
+            <div class="text-description">
+                <h1>Ajouter votre trajet</h1>
+                <p>En ajoutant votre trajet, vous permettez a vos collegues de vous contacter pour voyager avec vous.</p>
+            </div>
+            <div>
+                <form class="example-form" fxLayout="column" fxLayoutAlign="center stretch">
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Adresse de depart" value="" name="StartAdress">
+                    </mat-form-field>
+
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Adresse d'arrive" name="StopAdress">
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Nombre de place ?" type="number" max="10" name="NumberPlace">
+                    </mat-form-field>
+                    <p>Effecturez vous le trajet regulirement ?</p>
+                    <div fxLayout="row" fxLayoutAlign="center">
+                        <mat-radio-group name="PathRegular">
+                            <mat-radio-button name="PathRegularYes" value="Oui" (click)="setradio('pathRegularTrue')">Oui</mat-radio-button>
+                            <mat-radio-button name="PathRegularNo" value="Non" (click)="setradio('pathRegularFalse')">Non</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                    <div *ngIf="isSelected('pathRegularTrue')">
+                        <mat-select placeholder="Sur quels jours pouvez-vous covoiturer ?" [formControl]="toppings" multiple>
+                            <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+                        </mat-select>
+                    </div>
+                    <div *ngIf="isSelected('pathRegularFalse')">
+                        <mat-form-field>
+                            <input matInput [matDatepicker]="picker" placeholder="Choisissez une date" name="DatePonctualPath">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <p>Effecturez vous le trajet retour en covoiturage le soir ?</p>
+                    <div fxLayout="row" fxLayoutAlign="center">
+                        <mat-radio-group name="pathBackRadioGroup" [(ngModel)]="pathBack" name="PathBack">
+                            <mat-radio-button value="True">Oui</mat-radio-button>
+                            <mat-radio-button value="False">Non</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+            </form>
+        </div>
+</div>
+<div fxLayout="row" fxLayoutAlign="center">
+    <button mat-button class="button-add-path-">Ajouter</button>
+</div>
+</mat-card>
+</div>
