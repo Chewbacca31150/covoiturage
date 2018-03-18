@@ -4,11 +4,11 @@ import com.covoit.model.Trajet;
 import com.covoit.service.TrajetService;
 
 public class TrajetServiceImpl implements TrajetService {
-	@Autowired
+	//@Autowired
 	
 	@Override
 	public Trajet findById(Long id) {
-		return trajetRepository
+		return null;//trajetRepository
 	}
 
 	@Override

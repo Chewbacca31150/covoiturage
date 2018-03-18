@@ -21,8 +21,8 @@ public class Trajet {
 	  @Column(name = "driver_id")
 	  private Long driver_id;
 	  
-	  @Column(name = "passengers_id")
-	  private List<Long> passenger_id;
+	  //@Column(name = "passengers_id")
+	  //private List<Long> passenger_id;
 	  
 	  @Column(name = "is_smoke")
 	  private boolean isSmoke;
@@ -61,13 +61,13 @@ public class Trajet {
 		this.driver_id = driver_id;
 	}
 
-	public List<Long> getPassenger_id() {
+	/*public List<Long> getPassenger_id() {
 		return passenger_id;
 	}
 
 	public void setPassenger_id(List<Long> passenger_id) {
 		this.passenger_id = passenger_id;
-	}
+	}*/
 
 	public boolean isSmoke() {
 		return isSmoke;
