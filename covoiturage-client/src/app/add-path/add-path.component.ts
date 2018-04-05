@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from "@angular/forms";
+import { FormControl } from '@angular/forms';
+import { TrajetService } from '../services/trajet.service';
+import { Trajet } from '../models/trajet';
+import { AuthService } from '../services/auth.service';
 
 @Component({
     selector: 'app-add-path',
@@ -8,14 +11,14 @@ import { FormControl } from "@angular/forms";
 })
 export class AddPathComponent implements OnInit {
 
-    pathRegular: String
-    pathBack: Boolean
-    regularPath: string
+    pathRegular: string;
+    pathBack: boolean;
+    regularPath: string;
 
     toppings = new FormControl();
     toppingList = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
 
-    constructor() {
+    constructor(private trajetService: TrajetService, private authService: AuthService) {
     }
 
     ngOnInit() {
@@ -26,11 +29,24 @@ export class AddPathComponent implements OnInit {
     }
 
     isSelected(name: string): boolean {
-        if (!this.regularPath) // if no radio button is selected, always return false so every nothing is shown  
-        {
+        // if no radio button is selected, always return false so every nothing is shown
+        if (!this.regularPath) {
             return false;
         }
-        return (this.regularPath === name); // if current radio button is selected, return true, else return false  
+        return (this.regularPath === name); // if current radio button is selected, return true, else return false
     }
-
+    add() {
+        const trajet: Trajet = {
+            date_departure: new Date(),
+            driver_id: this.authService.currentUser.id.toString(),
+            is_completed: false,
+            is_music: false,
+            is_smoke: false,
+            is_talk: false,
+            passengers_id: 'fff',
+            point_arrival: 4545,
+            point_departure: 5454
+        };
+        this.trajetService.saveTrajet(trajet);
+    }
 }

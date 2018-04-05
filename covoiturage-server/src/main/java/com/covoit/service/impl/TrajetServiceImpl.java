@@ -1,18 +1,23 @@
 package com.covoit.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.covoit.model.Trajet;
+import com.covoit.repository.TrajetRepository;
 import com.covoit.service.TrajetService;
 
 public class TrajetServiceImpl implements TrajetService {
-	//@Autowired
+	@Autowired 
+	TrajetRepository trajetRepository;
+	
 	@Override
 	public Trajet findById(Long id) {
-		return null;//trajetRepository;
+		return trajetRepository.findById(id);//trajetRepository;
 	}
 
 	@Override
 	public Trajet save(Trajet trajet) {
-		return null;
+		return trajetRepository.save(trajet);
 	}
 
 }

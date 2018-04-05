@@ -26,15 +26,15 @@ public class Trajet {
 	  @Column(name = "driver_id")
 	  private Long driver_id; 
 
-	  @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
+	  /*@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
 	  @JoinTable(name = "user_authority",
 	      joinColumns = @JoinColumn(name = "passengers_id", referencedColumnName = "id"),
-	      inverseJoinColumns = @JoinColumn(name = "passenger_id", referencedColumnName = "id"))
-	  private List<String> passengers_id;
+	      inverseJoinColumns = @JoinColumn(name = "passenger_id", referencedColumnName = "id"))*/
+	  @Column(name = "passengers_id")
+	  private String passengers_id;//List<String> passengers_id;
 
 	  //@Column(name = "passengers_id")
 	  //private List<Long> passenger_id;
-
 	  
 	  @Column(name = "is_smoke")
 	  private boolean isSmoke;
@@ -80,11 +80,19 @@ public class Trajet {
 	public void setPassenger_id(List<Long> passenger_id) {
 		this.passenger_id = passenger_id;
 	}*/
-	public List<String> getPassengers_id() {
+	/*public List<String> getPassengers_id() {
 		return passengers_id;
 	}
 
 	public void setPassengers_id(List<String> passengers_id) {
+		this.passengers_id = passengers_id;
+	}*/
+	
+	public String getPassengers_id() {
+		return passengers_id;
+	}
+	
+	public void setPassengers_id(String passengers_id) {
 		this.passengers_id = passengers_id;
 	}
 

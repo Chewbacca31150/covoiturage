@@ -33,7 +33,7 @@ import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 
 import { AddPathComponent } from './add-path/add-path.component';
 import { PathInformationComponent } from './path-information/path-information.component';
-import { PathResultsComponent } from './path-results/path-results.component'; 
+import { PathResultsComponent } from './path-results/path-results.component';
 import { MapAuthGuard } from './guard/map.auth.guard';
 
 @NgModule({
@@ -50,7 +50,7 @@ import { MapAuthGuard } from './guard/map.auth.guard';
     DialogOverviewComponent,
     AddPathComponent,
     PathInformationComponent,
-    PathResultsComponent
+    PathResultsComponent,
   ],
   imports: [
     BrowserModule,
