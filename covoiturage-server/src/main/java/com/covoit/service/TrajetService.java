@@ -8,5 +8,6 @@ public interface TrajetService {
 	Trajet findById(Long id);
 	List<Trajet> findAll();
 	Trajet save(Trajet trajet);
+	List<Trajet> findBySearch(String search);
 	
 }

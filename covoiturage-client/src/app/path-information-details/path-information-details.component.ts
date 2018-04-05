@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Trajet } from '../models/trajet';
+import { TrajetService } from '../services/trajet.service';
 
 @Component({
   selector: 'app-path-information-details',
@@ -6,10 +9,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./path-information-details.component.css']
 })
 export class PathInformationDetailsComponent implements OnInit {
-
-  constructor() { }
+  trajet: Trajet;
+  constructor(private route: ActivatedRoute, private trajetService: TrajetService) { }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      const id = +params['id'];
+      this.trajetService.getOne(id).subscribe(trajet => this.trajet = trajet);
+    });
   }
 
 }

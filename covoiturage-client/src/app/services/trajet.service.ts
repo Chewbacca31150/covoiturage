@@ -23,4 +23,10 @@ export class TrajetService {
       return response;
     });
   }
+
+  getOne(id: number): Observable<Trajet> {
+    return this.apiService.get(this.config.trajet_one_url).map((response) => {
+      return response;
+    });
+  }
 }

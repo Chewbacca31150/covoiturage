@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.covoit.model.Step;
@@ -66,9 +67,14 @@ public class TrajetController {
 
 	@RequestMapping(method = RequestMethod.GET, value = "/trajet")
 	public ResponseEntity<List<Trajet>> trajets() {
-		System.out.println("hola");
 		List<Trajet> trajets = trajetService.findAll();
 		System.out.println(trajets.size());
 		return new ResponseEntity<List<Trajet>>(trajets, HttpStatus.OK);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/trajet/one")
+	public ResponseEntity<Trajet> getOneTrajet(@RequestParam(value = "id") long id) {
+		Trajet trajet = trajetService.findById(id);
+		return new ResponseEntity<Trajet>(trajet, HttpStatus.OK);
 	}
 }

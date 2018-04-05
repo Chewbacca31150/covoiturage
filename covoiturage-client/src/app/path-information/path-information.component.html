@@ -7,4 +7,7 @@
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
-  <mat-card *ngFor="let trajet of trajets">{{trajet.id}}</mat-card>
+  <mat-card *ngFor="let trajet of trajets" (click)="goTo(trajet.id)">
+    <p>From {{trajet.pointDeparture}} to {{trajet.pointArrival}}</p>
+    <p>Date: {{trajet.dateDeparture}}</p>
+  </mat-card>

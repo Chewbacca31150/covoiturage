@@ -32,6 +32,12 @@ export class ConfigService {
 
     private _trajet_url = this._api_url + '/trajet';
 
+    private _trajet_one_url = this._api_url + this._trajet_url + '/one';
+
+    get trajet_one_url(): string {
+        return this._trajet_one_url;
+    }
+
     get save_user_url(): string {
         return this._save_user_url;
     }

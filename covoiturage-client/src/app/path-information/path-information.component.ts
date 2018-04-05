@@ -5,6 +5,7 @@ import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { startWith } from 'rxjs/operators/startWith';
 import { map } from 'rxjs/operators/map';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-path-information',
@@ -16,7 +17,7 @@ export class PathInformationComponent implements OnInit {
   trajets: Trajet[] = [];
   trajetsCtrl: FormControl;
   filteredStates: Observable<any[]>;
-  constructor(private trajetService: TrajetService) { }
+  constructor(private route: Router, private trajetService: TrajetService) { }
 
   ngOnInit() {
     this.trajetsCtrl = new FormControl();
@@ -33,5 +34,9 @@ export class PathInformationComponent implements OnInit {
     console.log(name, this.trajets);
     return this.trajets.filter(trajet =>
       trajet.passengersId.toLowerCase().indexOf(name.toLowerCase()) === 0);
+  }
+
+  goTo(id: number) {
+    this.route.navigate(['/path-information-details', id]);
   }
 }
