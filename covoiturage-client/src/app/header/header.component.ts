@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { UserService } from '../services/user.service';
-import { AuthService, User } from '../services/auth.service';
+import { AuthService } from '../services/auth.service';
 
 import { Router } from '@angular/router';
+import { User } from '../models/user';
 
 @Component({
     selector: 'app-header',

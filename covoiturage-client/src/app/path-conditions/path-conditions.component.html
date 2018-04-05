@@ -2,55 +2,57 @@
     <mat-card class="mat-card-path-condition">
         <mat-tab-group>
             <mat-tab label="Conducteur" style="width:50%;">
-                <div style="width:100%; overflow-x:hidden;" fxLayout="column" fxLayoutAlign="center">
-                    <div>
-                        <h1>Preferences</h1>
-                        <p>Quelles sont vos preferences pour vos trajets de covoiturage ?</p>
-                    </div>
-                    <div class="option-checkbox">
-                        <div fxLayout="row" fxLayoutAlign="space-between center" class="row-proposition">
-                            <div fxLayout="row">
-                                <img src="./assets/images/path-conditions/smoking.png" alt="Image de cigarette" class="logo" />
-                                <p class="question-paragraph">Fumeur ?</p>
-                            </div>
-                            <mat-checkbox [checked]="smoke" (change)="reverseSmokeCheckbox()" ></mat-checkbox>
+                <form name="form">
+                    <div style="width:100%; overflow-x:hidden;" fxLayout="column" fxLayoutAlign="center">
+                        <div>
+                            <h1>Preferences</h1>
+                            <p>Quelles sont vos preferences pour vos trajets de covoiturage ?</p>
                         </div>
-                        <div fxLayout="row" fxLayoutAlign="space-between center" class="row-proposition">
-                            <div fxLayout="row">
-                                <img src="./assets/images/path-conditions/no-smoking.png" alt="Image de cigarette interdite" class="logo" />
-                                <p class="question-paragraph">Non fumeur ?</p>
+                        <div class="option-checkbox">
+                            <div fxLayout="row" fxLayoutAlign="space-between center" class="row-proposition">
+                                <div fxLayout="row">
+                                    <img src="./assets/images/path-conditions/smoking.png" alt="Image de cigarette" class="logo" />
+                                    <p class="question-paragraph">Fumeur ?</p>
+                                </div>
+                                <mat-checkbox [(ngModel)]="smoke" [checked]="smoke" (change)="reverseSmokeCheckbox()"></mat-checkbox>
                             </div>
-                            <mat-checkbox [checked]="noSmoke" (change)="reverseNoSmokeCheckbox()" ></mat-checkbox>
-                        </div>
-                        <div fxLayout="row" fxLayoutAlign="space-between center" class="row-proposition">
-                            <div fxLayout="row">
-                                <img src="./assets/images/path-conditions/music-note.png" alt="Image de note de musique" class="logo" />
-                                <p class="question-paragraph">Musique ?</p>
+                            <div fxLayout="row" fxLayoutAlign="space-between center" class="row-proposition">
+                                <div fxLayout="row">
+                                    <img src="./assets/images/path-conditions/no-smoking.png" alt="Image de cigarette interdite" class="logo" />
+                                    <p class="question-paragraph">Non fumeur ?</p>
+                                </div>
+                                <mat-checkbox [(ngModel)]="noSmoke" [checked]="noSmoke" (change)="reverseNoSmokeCheckbox()"></mat-checkbox>
                             </div>
-                            <mat-checkbox></mat-checkbox>
-                        </div>
-                        <div fxLayout="row" fxLayoutAlign="space-between center" class="row-proposition">
-                            <div fxLayout="row">
-                                <img src="./assets/images/path-conditions/speech-bubble.png" alt="Image de bulle de discussion" class="logo" />
-                                <p class="question-paragraph">Bavard ?</p>
+                            <div fxLayout="row" fxLayoutAlign="space-between center" class="row-proposition">
+                                <div fxLayout="row">
+                                    <img src="./assets/images/path-conditions/music-note.png" alt="Image de note de musique" class="logo" />
+                                    <p class="question-paragraph">Musique ?</p>
+                                </div>
+                                <mat-checkbox [(ngModel)]="user.isMusic" [checked]="user.isMusic"></mat-checkbox>
                             </div>
-                            <mat-checkbox></mat-checkbox>
-                        </div>
+                            <div fxLayout="row" fxLayoutAlign="space-between center" class="row-proposition">
+                                <div fxLayout="row">
+                                    <img src="./assets/images/path-conditions/speech-bubble.png" alt="Image de bulle de discussion" class="logo" />
+                                    <p class="question-paragraph">Bavard ?</p>
+                                </div>
+                                <mat-checkbox [(ngModel)]="user.isTalk" [checked]="talk" (change)="reverseTalk()"></mat-checkbox>
+                            </div>
 
-                    </div>
-                    <hr>
-                    <div>
-                        <p class="question-paragraph">Distance d'ecart (en Km) tolerable de votre trajet initial pour recuperer un passager ? ?</p>
-                        <div fxLayout="row" fxLayoutAlign="space-around">
-                            <mat-slider class="mat-slider" [max]="max" [min]="min" [step]="step" [thumb-label]="thumbLabel" [tick-interval]="tickInterval"
-                                [disabled]="false" [(ngModel)]="value">
-                            </mat-slider>
-                            <mat-form-field class="mat-form-field-slider">
-                                <input matInput type="number" max="10" placeholder="Km" [(ngModel)]="value">
-                            </mat-form-field>
+                        </div>
+                        <hr>
+                        <div>
+                            <p class="question-paragraph">Distance d'ecart (en Km) tolerable de votre trajet initial pour recuperer un passager ? ?</p>
+                            <div fxLayout="row" fxLayoutAlign="space-around">
+                                <mat-slider class="mat-slider" [max]="max" [min]="min" [step]="step" [thumb-label]="thumbLabel" [tick-interval]="tickInterval"
+                                    [disabled]="false" [(ngModel)]="value">
+                                </mat-slider>
+                                <mat-form-field class="mat-form-field-slider">
+                                    <input matInput type="number" max="10" placeholder="Km" [(ngModel)]="value">
+                                </mat-form-field>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </mat-tab>
             <mat-tab label="Passager" style="width:50%;">
                 <h1>Preferences</h1>
@@ -61,14 +63,14 @@
                             <img src="./assets/images/path-conditions/smoking.png" alt="Image de cigarette" class="logo" />
                             <p class="question-paragraph">Fumeur ?</p>
                         </div>
-                        <mat-checkbox [checked]="smokePassenger" (change)="reverseSmokeCheckboxPassenger()" ></mat-checkbox>
+                        <mat-checkbox [checked]="smokePassenger" (change)="reverseSmokeCheckboxPassenger()"></mat-checkbox>
                     </div>
                     <div fxLayout="row" fxLayoutAlign="space-between center" class="row-proposition">
                         <div fxLayout="row">
                             <img src="./assets/images/path-conditions/no-smoking.png" alt="Image de cigarette interdite" class="logo" />
                             <p class="question-paragraph">Non fumeur ?</p>
                         </div>
-                        <mat-checkbox [checked]="noSmokePassenger" (change)="reverseNoSmokeCheckboxPassenger()" ></mat-checkbox>
+                        <mat-checkbox [checked]="noSmokePassenger" (change)="reverseNoSmokeCheckboxPassenger()"></mat-checkbox>
                     </div>
                     <div fxLayout="row" fxLayoutAlign="space-between center" class="row-proposition">
                         <div fxLayout="row">
@@ -89,7 +91,7 @@
             </mat-tab>
         </mat-tab-group>
         <div fxLayout="row" fxLayoutAlign="center">
-            <button mat-button class="button-edit-path-condition">Enregistrer</button>
+            <button mat-button class="button-edit-path-condition" (click)="update()">Enregistrer</button>
         </div>
     </mat-card>
 </div>

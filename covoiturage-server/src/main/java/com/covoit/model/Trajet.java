@@ -51,7 +51,7 @@ public class Trajet {
 	  @Column(name = "point_departure")
 	  private long pointDeparture;
 	  
-	  @Column(name = "pointArrival")
+	  @Column(name = "point_arrival")
 	  private long pointArrival;
 	  
 	  @Column(name = "date_departure")

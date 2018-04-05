@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService, User } from '../services/auth.service';
+import { AuthService } from '../services/auth.service';
+import { User } from '../models/user';
 
 @Component({
     selector: 'app-footer',
@@ -11,7 +12,7 @@ export class FooterComponent implements OnInit {
     copyrightYear: string;
     imagePathFacebookIcon: string;
     imagePathTwitterIcon: string;
-    user : User
+    user: User;
     constructor(private _authService: AuthService) {
 
     }

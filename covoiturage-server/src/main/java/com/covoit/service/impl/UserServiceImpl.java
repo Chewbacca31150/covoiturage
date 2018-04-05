@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.covoit.model.Authority;
 import com.covoit.model.User;
+import com.covoit.model.UserGeneral;
 import com.covoit.model.UserRequest;
 import com.covoit.repository.UserRepository;
 import com.covoit.service.AuthorityService;
@@ -78,6 +79,15 @@ public class UserServiceImpl implements UserService {
     user.setAuthorities(auth);
     this.userRepository.save(user);
     return user;
+  }
+  
+  @Override
+  public User save(UserGeneral userGeneral) {
+	  User user = userRepository.findOne(userGeneral.getId());
+	  user.setMusic(userGeneral.getIsMusic());
+	  user.setTalk(userGeneral.getIsTalk());
+	  user.setSmoke(userGeneral.getIsSmoke());
+	  return this.userRepository.save(user);
   }
   
   @Override

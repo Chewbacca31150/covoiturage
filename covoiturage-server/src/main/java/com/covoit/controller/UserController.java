@@ -21,6 +21,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.covoit.exception.ResourceConflictException;
 import com.covoit.model.User;
 import com.covoit.model.UserDelete;
+import com.covoit.model.UserGeneral;
 import com.covoit.model.UserRequest;
 import com.covoit.service.UserService;
 
@@ -53,7 +54,16 @@ public class UserController {
     result.put("result", "success");
     return ResponseEntity.accepted().body(result);
   }
-
+  
+  @RequestMapping(method = POST, value = "/user/save")
+  public ResponseEntity<?> saveUser(@RequestBody UserGeneral userGeneral) {
+    User existUser = this.userService.findByUsername(userGeneral.getUsername());
+    if (existUser == null) {
+      throw new ResourceConflictException(userGeneral.getId(), "User not found");
+    }
+	User user = this.userService.save(userGeneral);
+	return new ResponseEntity<User>(user, HttpStatus.OK);
+  }
 
   @RequestMapping(method = POST, value = "/signup")
   public ResponseEntity<?> addUser(@RequestBody UserRequest userRequest,
@@ -62,7 +72,7 @@ public class UserController {
     User existUser = this.userService.findByUsername(userRequest.getUsername());
     if (existUser != null) {
       throw new ResourceConflictException(userRequest.getId(), "Username already exists");
-    }
+    }    
     User user = this.userService.save(userRequest);
     HttpHeaders headers = new HttpHeaders();
     headers.setLocation(ucBuilder.path("/api/user/{userId}").buildAndExpand(user.getId()).toUri());

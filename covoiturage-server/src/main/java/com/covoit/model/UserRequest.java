@@ -1,5 +1,6 @@
 package com.covoit.model;
 
+import javax.persistence.Column;
 
 public class UserRequest {
 
@@ -10,6 +11,12 @@ public class UserRequest {
   private String password;
 
   private String email;
+  
+  private boolean isSmoke;
+
+  private boolean isTalk;
+
+  private boolean isMusic;
 
   public String getUsername() {
     return username;
@@ -42,4 +49,28 @@ public class UserRequest {
   public void setId(Long id) {
     this.id = id;
   }
+
+public boolean isSmoke() {
+	return isSmoke;
+}
+
+public void setSmoke(boolean isSmoke) {
+	this.isSmoke = isSmoke;
+}
+
+public boolean isTalk() {
+	return isTalk;
+}
+
+public void setTalk(boolean isTalk) {
+	this.isTalk = isTalk;
+}
+
+public boolean isMusic() {
+	return isMusic;
+}
+
+public void setMusic(boolean isMusic) {
+	this.isMusic = isMusic;
+}
 }

@@ -129,5 +129,29 @@ public class User implements UserDetails, Serializable {
     return true;
   }
 
+public boolean isSmoke() {
+	return isSmoke;
+}
+
+public void setSmoke(boolean isSmoke) {
+	this.isSmoke = isSmoke;
+}
+
+public boolean isTalk() {
+	return isTalk;
+}
+
+public void setTalk(boolean isTalk) {
+	this.isTalk = isTalk;
+}
+
+public boolean isMusic() {
+	return isMusic;
+}
+
+public void setMusic(boolean isMusic) {
+	this.isMusic = isMusic;
+}
+
 
 }

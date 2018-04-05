@@ -36,7 +36,7 @@ export class AddPathComponent implements OnInit {
         return (this.regularPath === name); // if current radio button is selected, return true, else return false
     }
     add() {
-        console.log('added')
+        console.log('added');
         const trajet: Trajet = {
             date_departure: new Date(),
             driver_id: this.authService.currentUser.id.toString(),

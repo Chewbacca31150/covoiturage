@@ -5,6 +5,7 @@ import { UserService } from './user.service';
 import { ConfigService } from './config.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
+import { User } from '../models/user';
 
 export interface Login {
     password: string;
@@ -20,17 +21,6 @@ export interface SignUp {
     email: string;
     password: string;
     passwordConfirm: string;
-    username: string;
-}
-
-export interface Authority {
-    authority: string;
-}
-
-export interface User {
-    authorities: Authority[];
-    email: string;
-    id: number;
     username: string;
 }
 
@@ -106,11 +96,10 @@ export class AuthService {
     }
 
     getMyInfo(): Observable<User> {
-        //console.log('get my info');
         return this.apiService.get(this.config.whoami_url).map((user: User) => {
             return this.sendEvent(user);
         }).catch<User, User>((e) => {
-            //console.log('err');
+            // console.log('err');
             this.sendEvent(null);
             return Observable.of<User>(null);
         });

@@ -3,6 +3,7 @@ package com.covoit.service;
 import java.util.List;
 
 import com.covoit.model.User;
+import com.covoit.model.UserGeneral;
 import com.covoit.model.UserRequest;
 
 /**
@@ -24,4 +25,6 @@ public interface UserService {
   void removeUser(String username);
 
   User save(UserRequest user);
+  
+  User save(UserGeneral user);
 }
