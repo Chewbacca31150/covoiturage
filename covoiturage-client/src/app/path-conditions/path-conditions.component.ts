@@ -32,7 +32,6 @@ export class PathConditionsComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.authService.currentUser;
-
     this.autoTicks = true;
     this.max = 10;
     this.min = 0;

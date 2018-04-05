@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { TrajetService } from '../services/trajet.service';
 import { Trajet } from '../models/trajet';
 import { AuthService } from '../services/auth.service';
@@ -14,14 +14,19 @@ export class AddPathComponent implements OnInit {
     pathRegular: string;
     pathBack: boolean;
     regularPath: string;
-
+    form: FormGroup;
     toppings = new FormControl();
     toppingList = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
 
-    constructor(private trajetService: TrajetService, private authService: AuthService) {
+    constructor(private trajetService: TrajetService, private authService: AuthService, private formBuilder: FormBuilder) {
     }
 
     ngOnInit() {
+        this.form = this.formBuilder.group({
+            startAddress: [''],
+            stopAddress: [''],
+            numberPlaces: ['']
+        });
     }
 
     setradio(e: string): void {
@@ -35,18 +40,17 @@ export class AddPathComponent implements OnInit {
         }
         return (this.regularPath === name); // if current radio button is selected, return true, else return false
     }
-    add() {
-        console.log('added');
+    onSubmit(event: Event) {
+        event.preventDefault();
+        const form = this.form.value;
         const trajet: Trajet = {
             date_departure: new Date(),
             driver_id: this.authService.currentUser.id.toString(),
             is_completed: false,
-            is_music: false,
-            is_smoke: false,
-            is_talk: false,
-            passengers_id: 'fff',
-            point_arrival: 4545,
-            point_departure: 5454
+            passengers_id: '',
+            point_arrival: form.stopAddress,
+            point_departure: form.startAddress,
+            number_passenger: form.numberPlaces
         };
         this.trajetService.saveTrajet(trajet).subscribe((a) => console.log(a));
     }

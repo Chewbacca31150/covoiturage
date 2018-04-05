@@ -6,18 +6,18 @@
                 <p>En ajoutant votre trajet, vous permettez a vos collegues de vous contacter pour voyager avec vous.</p>
             </div>
             <div>
-                <form class="example-form" fxLayout="column" fxLayoutAlign="center stretch">
+                <form class="example-form" fxLayout="column" fxLayoutAlign="center stretch" name="form" [formGroup]="myForm" (ngSubmit)="onSubmit($event)">
                     <mat-form-field class="example-full-width">
-                        <input matInput placeholder="Adresse de depart" value="" name="StartAdress">
+                        <input matInput placeholder="Adresse de depart" value="" formControlName="startAddress">
                     </mat-form-field>
 
                     <mat-form-field class="example-full-width">
-                        <input matInput placeholder="Adresse d'arrive" name="StopAdress">
+                        <input matInput placeholder="Adresse d'arrive" formControlName="stopAddress">
                     </mat-form-field>
                     <mat-form-field class="example-full-width">
-                        <input matInput placeholder="Nombre de place ?" type="number" max="10" name="NumberPlace">
+                        <input matInput placeholder="Nombre de place ?" type="number" max="10" formControlName="numberPlaces">
                     </mat-form-field>
-                    <p>Effecturez vous le trajet regulirement ?</p>
+                    <p>Effectuerez vous le trajet regulierement ?</p>
                     <div fxLayout="row" fxLayoutAlign="center">
                         <mat-radio-group name="PathRegular">
                             <mat-radio-button name="PathRegularYes" value="Oui" (click)="setradio('pathRegularTrue')">Oui</mat-radio-button>
@@ -38,16 +38,17 @@
                     </div>
                     <p>Effecturez vous le trajet retour en covoiturage le soir ?</p>
                     <div fxLayout="row" fxLayoutAlign="center">
-                        <mat-radio-group name="pathBackRadioGroup" [(ngModel)]="pathBack" name="PathBack">
+                        <mat-radio-group name="pathBackRadioGroup" name="PathBack"><!--[(ngModel)]="pathBack"-->
                             <mat-radio-button value="True">Oui</mat-radio-button>
                             <mat-radio-button value="False">Non</mat-radio-button>
                         </mat-radio-group>
                     </div>
-            </form>
+                    <div fxLayout="row" fxLayoutAlign="center">
+                        <button mat-button class="button-add-path-" type="submit">Ajouter</button>
+                    </div>
+                </form>
+            </div>
+
         </div>
-</div>
-<div fxLayout="row" fxLayoutAlign="center">
-    <button mat-button class="button-add-path-" (click)="add()">Ajouter</button>
-</div>
-</mat-card>
+    </mat-card>
 </div>

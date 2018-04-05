@@ -15,6 +15,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.google.maps.model.DirectionsResult;
+
 @Entity
 @Table(name = "TRAJET")
 public class Trajet {
@@ -36,15 +38,6 @@ public class Trajet {
 	  //@Column(name = "passengers_id")
 	  //private List<Long> passenger_id;
 	  
-	  @Column(name = "is_smoke")
-	  private boolean isSmoke;
-
-	  @Column(name = "is_talk")
-	  private boolean isTalk;
-	  
-	  @Column(name = "is_music")
-	  private boolean isMusic;
-	  
 	  @Column(name = "is_completed")
 	  private boolean isCompleted;
 	  
@@ -55,7 +48,21 @@ public class Trajet {
 	  private long pointArrival;
 	  
 	  @Column(name = "date_departure")
-	  private Date date_departure;
+	  private Date dateDeparture;
+	  
+	  @Column(name = "max_places")
+	  private int maxPlaces;
+	  
+	  @Column(name = "direction_results")
+	  private DirectionsResult directionResults;
+	  
+	public DirectionsResult getDirectionResults() {
+		return directionResults;
+	}
+
+	public void setDirectionResults(DirectionsResult directionResults) {
+		this.directionResults = directionResults;
+	}
 
 	public Long getId() {
 		return id;
@@ -96,29 +103,7 @@ public class Trajet {
 		this.passengers_id = passengers_id;
 	}
 
-	public boolean isSmoke() {
-		return isSmoke;
-	}
 
-	public void setSmoke(boolean isSmoke) {
-		this.isSmoke = isSmoke;
-	}
-
-	public boolean isTalk() {
-		return isTalk;
-	}
-
-	public void setTalk(boolean isTalk) {
-		this.isTalk = isTalk;
-	}
-
-	public boolean isMusic() {
-		return isMusic;
-	}
-
-	public void setMusic(boolean isMusic) {
-		this.isMusic = isMusic;
-	}
 
 	public boolean isCompleted() {
 		return isCompleted;
@@ -144,12 +129,20 @@ public class Trajet {
 		this.pointArrival = pointArrival;
 	}
 
-	public Date getDate_departure() {
-		return date_departure;
+	public Date getDateDeparture() {
+		return dateDeparture;
 	}
 
-	public void setDate_departure(Date date_departure) {
-		this.date_departure = date_departure;
+	public void setDateDeparture(Date dateDeparture) {
+		this.dateDeparture = dateDeparture;
+	}
+
+	public int getMaxPlaces() {
+		return maxPlaces;
+	}
+
+	public void setMaxPlaces(int maxPlaces) {
+		this.maxPlaces = maxPlaces;
 	}
 
 	  
