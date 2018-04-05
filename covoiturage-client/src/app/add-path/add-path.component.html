@@ -24,7 +24,7 @@
                             <mat-radio-button name="PathRegularNo" value="Non" (click)="setradio('pathRegularFalse')">Non</mat-radio-button>
                         </mat-radio-group>
                     </div>
-                    <div *ngIf="isSelected('pathRegularTrue')">
+                    <div *ngIf="isSelected('pathRegularTrue')" class="mat-select-regular-path">
                         <mat-select placeholder="Sur quels jours pouvez-vous covoiturer ?" [formControl]="toppings" multiple>
                             <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
                         </mat-select>
