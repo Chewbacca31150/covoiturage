@@ -19,7 +19,7 @@ public class Step {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@Column(name = "order")
+	@Column(name = "current_order")
 	private int order;
 	
 	@Column(name = "meters")

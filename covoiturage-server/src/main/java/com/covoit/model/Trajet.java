@@ -79,7 +79,7 @@ public class Trajet {
 	// @Column(name = "passengers_id")
 	// private List<Long> passenger_id;
 
-    @OneToMany(mappedBy="trajet")
+    @OneToMany(mappedBy = "trajet")
     private Set<Step> steps = new HashSet<Step>();
    
 	public Long getId() {

@@ -66,7 +66,9 @@ public class TrajetController {
 
 	@RequestMapping(method = RequestMethod.GET, value = "/trajet")
 	public ResponseEntity<List<Trajet>> trajets() {
+		System.out.println("hola");
 		List<Trajet> trajets = trajetService.findAll();
+		System.out.println(trajets.size());
 		return new ResponseEntity<List<Trajet>>(trajets, HttpStatus.OK);
 	}
 }
