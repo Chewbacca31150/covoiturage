@@ -7,11 +7,65 @@ public class UserGeneral {
 
 	  private String email;
 	  
-	  private boolean isSmoke;
+	  private boolean isSmokeDriver;
 
-	  private boolean isTalk;
+	  public boolean isSmokeDriver() {
+		return isSmokeDriver;
+	}
 
-	  private boolean isMusic;
+	public void setSmokeDriver(boolean isSmokeDriver) {
+		this.isSmokeDriver = isSmokeDriver;
+	}
+
+	public boolean isTalkDriver() {
+		return isTalkDriver;
+	}
+
+	public void setTalkDriver(boolean isTalkDriver) {
+		this.isTalkDriver = isTalkDriver;
+	}
+
+	public boolean isMusicDriver() {
+		return isMusicDriver;
+	}
+
+	public void setMusicDriver(boolean isMusicDriver) {
+		this.isMusicDriver = isMusicDriver;
+	}
+
+	public boolean isSmokePassenger() {
+		return isSmokePassenger;
+	}
+
+	public void setSmokePassenger(boolean isSmokePassenger) {
+		this.isSmokePassenger = isSmokePassenger;
+	}
+
+	public boolean isTalkPassenger() {
+		return isTalkPassenger;
+	}
+
+	public void setTalkPassenger(boolean isTalkPassenger) {
+		this.isTalkPassenger = isTalkPassenger;
+	}
+
+	public boolean isMusicPassenger() {
+		return isMusicPassenger;
+	}
+
+	public void setMusicPassenger(boolean isMusicPassenger) {
+		this.isMusicPassenger = isMusicPassenger;
+	}
+
+	private boolean isTalkDriver;
+
+	  private boolean isMusicDriver;
+	  
+	  private boolean isSmokePassenger;
+
+	  private boolean isTalkPassenger;
+
+	  private boolean isMusicPassenger;
 
 	public Long getId() {
 		return id;
@@ -35,29 +89,5 @@ public class UserGeneral {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public boolean getIsSmoke() {
-		return isSmoke;
-	}
-
-	public void setIsSmoke(boolean isSmoke) {
-		this.isSmoke = isSmoke;
-	}
-
-	public boolean getIsTalk() {
-		return isTalk;
-	}
-
-	public void setIsTalk(boolean isTalk) {
-		this.isTalk = isTalk;
-	}
-
-	public boolean getIsMusic() {
-		return isMusic;
-	}
-
-	public void setIsMusic(boolean isMusic) {
-		this.isMusic = isMusic;
 	}
 }

@@ -41,10 +41,10 @@ export class PathConditionsComponent implements OnInit {
     this.thumbLabel = true;
     this.value = 0;
     console.log('path', this.user);
-    this.music = (this.user.isMusic) ? true : false;
-    this.smoke = this.user.isSmoke != null ? this.user.isSmoke ? true : false : false;
-    this.noSmoke = this.user.isSmoke != null ? this.user.isSmoke !== false ? true : false : false;
-    this.talk = this.user.isTalk;
+    this.music = (this.user.isMusicDriver) ? true : false;
+    this.smoke = this.user.isSmokeDriver != null ? this.user.isSmokeDriver ? true : false : false;
+    this.noSmoke = this.user.isSmokeDriver != null ? this.user.isSmokeDriver !== false ? true : false : false;
+    this.talk = this.user.isTalkDriver;
   }
 
   reverseSmokeCheckbox() {
@@ -76,9 +76,10 @@ export class PathConditionsComponent implements OnInit {
   }
 
   update() {
-    this.user.isMusic = this.music;
-    this.user.isSmoke = (this.smoke) ? true : this.noSmoke ? false : null;
-    this.user.isTalk = this.talk;
+    // TODO mettre driver et passenger @adrien
+    this.user.isMusicDriver = this.music;
+    this.user.isSmokeDriver = (this.smoke) ? true : this.noSmoke ? false : null;
+    this.user.isTalkDriver = this.talk;
     console.log(this.user);
     this.userService.saveUser(this.user).subscribe();
   }

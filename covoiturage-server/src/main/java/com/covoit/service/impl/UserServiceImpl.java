@@ -75,6 +75,12 @@ public class UserServiceImpl implements UserService {
     user.setUsername(userRequest.getUsername());
     user.setPassword(passwordEncoder.encode(userRequest.getPassword()));
     user.setEmail(userRequest.getEmail());
+    user.setMusicDriver(false);
+    user.setMusicPassenger(false);
+    user.setTalkDriver(false);
+    user.setTalkPassenger(false);
+    user.setSmokeDriver(false);
+    user.setSmokePassenger(false);
     List<Authority> auth = authService.findByname("ROLE_USER");
     user.setAuthorities(auth);
     this.userRepository.save(user);
@@ -84,9 +90,12 @@ public class UserServiceImpl implements UserService {
   @Override
   public User save(UserGeneral userGeneral) {
 	  User user = userRepository.findOne(userGeneral.getId());
-	  user.setMusic(userGeneral.getIsMusic());
-	  user.setTalk(userGeneral.getIsTalk());
-	  user.setSmoke(userGeneral.getIsSmoke());
+	  user.setMusicDriver(userGeneral.isMusicDriver());
+	  user.setTalkDriver(userGeneral.isTalkDriver());
+	  user.setSmokeDriver(userGeneral.isSmokeDriver());
+	  user.setSmokePassenger(userGeneral.isSmokePassenger());
+	  user.setTalkPassenger(userGeneral.isTalkPassenger());
+	  user.setMusicPassenger(userGeneral.isMusicPassenger());
 	  return this.userRepository.save(user);
   }
   

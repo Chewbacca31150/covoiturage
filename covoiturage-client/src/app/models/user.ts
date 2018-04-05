@@ -5,7 +5,10 @@ export interface User {
     email: string;
     id: number;
     username: string;
-    isSmoke: boolean;
-    isTalk: boolean;
-    isMusic: boolean;
+    isSmokeDriver: boolean;
+    isTalkDriver: boolean;
+    isMusicDriver: boolean;
+    isSmokePassenger: boolean;
+    isTalkPassenger: boolean;
+    isMusicPassenger: boolean;
 }

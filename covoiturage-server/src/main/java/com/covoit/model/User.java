@@ -42,17 +42,24 @@ public class User implements UserDetails, Serializable {
   @Column(name = "email")
   private String email;
   
-  @Column(name = "is_smoke", nullable = true)
-  private boolean isSmoke;
+  @Column(name = "is_smoke_driver", nullable = true)
+  private boolean isSmokeDriver;
 
-  @Column(name = "is_talk", nullable = true)
-  private boolean isTalk;
+  @Column(name = "is_talk_driver", nullable = true)
+  private boolean isTalkDriver;
 
-  @Column(name = "is_music", nullable = true)
-  private boolean isMusic;
-
-
-
+  @Column(name = "is_music_driver", nullable = true)
+  private boolean isMusicDriver;
+  
+  @Column(name = "is_smoke_passenger", nullable = true)
+  private boolean isSmokePassenger;
+  
+  @Column(name = "is_talk_passenger", nullable = true)
+  private boolean isTalkPassenger;
+  
+  @Column(name = "is_music_passenger")
+  private boolean isMusicPassenger;
+  
   @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
   @JoinTable(name = "user_authority",
       joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
@@ -129,28 +136,52 @@ public class User implements UserDetails, Serializable {
     return true;
   }
 
-public boolean isSmoke() {
-	return isSmoke;
+public boolean isSmokeDriver() {
+	return isSmokeDriver;
 }
 
-public void setSmoke(boolean isSmoke) {
-	this.isSmoke = isSmoke;
+public void setSmokeDriver(boolean isSmokeDriver) {
+	this.isSmokeDriver = isSmokeDriver;
 }
 
-public boolean isTalk() {
-	return isTalk;
+public boolean isTalkDriver() {
+	return isTalkDriver;
 }
 
-public void setTalk(boolean isTalk) {
-	this.isTalk = isTalk;
+public void setTalkDriver(boolean isTalkDriver) {
+	this.isTalkDriver = isTalkDriver;
 }
 
-public boolean isMusic() {
-	return isMusic;
+public boolean isMusicDriver() {
+	return isMusicDriver;
 }
 
-public void setMusic(boolean isMusic) {
-	this.isMusic = isMusic;
+public void setMusicDriver(boolean isMusicDriver) {
+	this.isMusicDriver = isMusicDriver;
+}
+
+public boolean isSmokePassenger() {
+	return isSmokePassenger;
+}
+
+public void setSmokePassenger(boolean isSmokePassenger) {
+	this.isSmokePassenger = isSmokePassenger;
+}
+
+public boolean isTalkPassenger() {
+	return isTalkPassenger;
+}
+
+public void setTalkPassenger(boolean isTalkPassenger) {
+	this.isTalkPassenger = isTalkPassenger;
+}
+
+public boolean isMusicPassenger() {
+	return isMusicPassenger;
+}
+
+public void setMusicPassenger(boolean isMusicPassenger) {
+	this.isMusicPassenger = isMusicPassenger;
 }
 
 
