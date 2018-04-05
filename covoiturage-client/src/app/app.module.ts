@@ -8,7 +8,7 @@ import { AgmCoreModule } from '@agm/core';
 
 import { AppModuleMaterial } from './app.module-material';
 
-import 'hammerjs'; // Laisse ca là, sinon l'animation du slider foire... Bisous ;*
+import 'hammerjs'; // Laisse ca là, sinon l'animation du slider foire... Bisous ;* ... Bisous ???? :o
 
 import { appRoutes } from './appRoutes';
 import { AppComponent } from './app.component';
@@ -64,7 +64,8 @@ import { TrajetService } from './services/trajet.service';
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDi9cqC_wA23bDv4G8l5EgRAHSmPg7UfV4'
+      apiKey: 'AIzaSyDi9cqC_wA23bDv4G8l5EgRAHSmPg7UfV4',
+      libraries: ["places"]
     })
   ],
   entryComponents: [

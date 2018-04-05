@@ -8,11 +8,11 @@
             <div>
                 <form class="example-form" fxLayout="column" fxLayoutAlign="center stretch" name="form" [formGroup]="myForm" (ngSubmit)="onSubmit($event)">
                     <mat-form-field class="example-full-width">
-                        <input matInput placeholder="Adresse de depart" value="" formControlName="startAddress">
+                        <input  matInput placeholder="Adresse de depart" value="" #startAddress formControlName="startAddress">
                     </mat-form-field>
 
                     <mat-form-field class="example-full-width">
-                        <input matInput placeholder="Adresse d'arrive" formControlName="stopAddress">
+                        <input matInput placeholder="Adresse d'arrive" #stopAddress formControlName="stopAddress">
                     </mat-form-field>
                     <mat-form-field class="example-full-width">
                         <input matInput placeholder="Nombre de place ?" type="number" max="10" formControlName="numberPlaces">
