@@ -3,11 +3,16 @@ package com.covoit.model;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,7 +24,13 @@ public class Trajet {
 	  private Long id;
 	  
 	  @Column(name = "driver_id")
-	  private Long driver_id;
+	  private Long driver_id; 
+
+	  @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
+	  @JoinTable(name = "user_authority",
+	      joinColumns = @JoinColumn(name = "passengers_id", referencedColumnName = "id"),
+	      inverseJoinColumns = @JoinColumn(name = "passenger_id", referencedColumnName = "id"))
+	  private List<String> passengers_id;
 	  
 	  //@Column(name = "passengers_id")
 	  //private List<Long> passenger_id;
