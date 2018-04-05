@@ -13,6 +13,8 @@
     <button class="toolbar-other-button" mat-button *ngIf="user != null" (click)="logout()">Logout</button>
     <button class="toolbar-other-button" mat-button *ngIf="user" [matMenuTriggerFor]="menu">{{user.username}}</button>
     <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/my-messages">Mes messages</button>
+      <button mat-menu-item routerLink="/my-trajets">Mes trajets</button>
       <button mat-menu-item routerLink="/path-conditions">Condition</button>
       <button mat-menu-item (click)="openDialog()">Remove user</button>
     </mat-menu>

@@ -36,6 +36,10 @@ import { PathResultsComponent } from './path-results/path-results.component';
 import { MapAuthGuard } from './guard/map.auth.guard';
 import { TrajetService } from './services/trajet.service';
 import { PathInformationDetailsComponent } from './path-information-details/path-information-details.component';
+import { ContactComponent } from './contact/contact.component';
+import { ContactService } from './services/contact.service';
+import { MyMessagesComponent } from './my-messages/my-messages.component';
+import { MyTrajetsComponent } from './my-trajets/my-trajets.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +56,9 @@ import { PathInformationDetailsComponent } from './path-information-details/path
     PathInformationComponent,
     PathResultsComponent,
     PathInformationDetailsComponent,
+    ContactComponent,
+    MyMessagesComponent,
+    MyTrajetsComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,13 +72,13 @@ import { PathInformationDetailsComponent } from './path-information-details/path
     RouterModule.forRoot(appRoutes),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDi9cqC_wA23bDv4G8l5EgRAHSmPg7UfV4',
-      libraries: ["places"]
+      libraries: ['places']
     })
   ],
   entryComponents: [
     DialogOverviewComponent
   ],
-  providers: [AuthGuard, MapAuthGuard, ApiService, AuthService, ConfigService, UserService, TrajetService,
+  providers: [AuthGuard, MapAuthGuard, ApiService, AuthService, ConfigService, UserService, TrajetService, ContactService,
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } }],
   bootstrap: [AppComponent]
 })

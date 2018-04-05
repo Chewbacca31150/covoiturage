@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Trajet } from '../models/trajet';
 import { TrajetService } from '../services/trajet.service';
 
@@ -10,13 +10,17 @@ import { TrajetService } from '../services/trajet.service';
 })
 export class PathInformationDetailsComponent implements OnInit {
   trajet: Trajet;
-  constructor(private route: ActivatedRoute, private trajetService: TrajetService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private trajetService: TrajetService) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       const id = +params['id'];
       this.trajetService.getOne(id).subscribe(trajet => this.trajet = trajet);
     });
+  }
+
+  contact() {
+    this.router.navigate(['message', this.trajet.id]);
   }
 
 }

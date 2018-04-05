@@ -11,6 +11,12 @@ spring:
     mongodb:
       host: localhost
       port: 27017
+  mail:
+      port: 25
+      username: test
+      password: test
+      protocol: smtp
+      defaultEncoding: UTF-8
 
 
 jwt:
@@ -23,3 +29,4 @@ logging:
   level:
     org.springframework.web: ERROR
     com.bfwg: DEBUG
+  

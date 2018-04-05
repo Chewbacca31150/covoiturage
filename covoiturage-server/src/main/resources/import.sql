@@ -9,6 +9,16 @@ INSERT INTO authority (id, name) VALUES (2, 'ROLE_ADMIN');
 INSERT INTO user_authority (user_id, authority_id) VALUES (1, 1);
 INSERT INTO user_authority (user_id, authority_id) VALUES (2, 1);
 INSERT INTO user_authority (user_id, authority_id) VALUES (2, 2);
+
+INSERT INTO location (address, lat, lng) VALUES('6 Rue des Pruniers, 31150 Gratentour, France', 1.437371999999982,43.72221150000001);
+INSERT INTO location (address, lat, lng) VALUES('1 Rue du Bois Fleuri, 44200 Nantes, France', -1.5144333000000643, 47.1884331);
+INSERT INTO location (address, lat, lng) VALUES('6 Rue des Pruniers, 31150 Gratentour, France', 1.437371999999982,43.72221150000001);
+INSERT INTO location (address, lat, lng) VALUES('1 Rue du Bois Fleuri, 44200 Nantes, France', 1.437371999999982,43.72221150000001);
+
 	  
-INSERT INTO trajet (driver_id, passengers_id, is_completed, point_departure, point_arrival, date_departure, max_places) VALUES (1, '1', true, '1212.0', '111.0', CURRENT_TIMESTAMP, 4);
-INSERT INTO trajet (driver_id, passengers_id, is_completed, point_departure, point_arrival, date_departure, max_places) VALUES (2, '1', true, '1212.0', '111.0', CURRENT_TIMESTAMP, 4);
+INSERT INTO trajet (driver_id, passengers_id, is_completed, date_departure, max_places, start_location_id, stop_location_id) VALUES (1, '1', true, CURRENT_TIMESTAMP, 4, 1, 2);
+INSERT INTO trajet (driver_id, passengers_id, is_completed, date_departure, max_places, start_location_id, stop_location_id) VALUES (2, '1', true, CURRENT_TIMESTAMP, 4, 3, 4);
+
+INSERT INTO contact (trajet_id, receiver_id, sender_id, message, date_sent) VALUES (1, 2, 1, 'bonjour', SYSDATE);
+INSERT INTO contact (trajet_id, receiver_id, sender_id, message, date_sent) VALUES (2, 1, 2, 'bonjour', SYSDATE);
+

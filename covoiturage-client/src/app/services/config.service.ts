@@ -34,7 +34,25 @@ export class ConfigService {
 
     private _trajet_one_url = this._trajet_url + '/one';
 
-    private _trajet_search_url = this.trajet_url + '/find';
+    private _trajet_search_url = this._trajet_url + '/find';
+
+    private _contact_send_url = this._api_url + '/contact';
+
+    private _contact_get_mine_url = this._contact_send_url;
+
+    private _my_trajets_url = this._trajet_url + '/my-trajets';
+
+    get contact_get_mine_url(): string {
+        return this._contact_get_mine_url;
+    }
+
+    get my_trajets_url(): string {
+        return this._my_trajets_url;
+    }
+
+    get contact_send_url(): string {
+        return this._contact_send_url;
+    }
 
     get trajet_search_url(): string {
         return this._trajet_search_url;

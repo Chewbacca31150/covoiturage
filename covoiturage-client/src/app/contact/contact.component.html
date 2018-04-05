@@ -1,0 +1,6 @@
+<form (ngSubmit)="onSubmit(signinForm.value)" [formGroup]="signinForm">
+  <textarea matInput formControlName="message" name="message" placeholder="Envoyer une demande" matTextareaAutosize matAutosizeMinRows="2"
+    matAutosizeMaxRows="5"></textarea>
+  <button mat-button type="submit"></button>
+
+</form>

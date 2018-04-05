@@ -33,28 +33,14 @@ public class Trajet {
 	@Column(name = "driver_id")
 	private Long driverId;
 
-	/*
-	 * @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch =
-	 * FetchType.EAGER)
-	 * 
-	 * @JoinTable(name = "user_authority", joinColumns = @JoinColumn(name =
-	 * "passengers_id", referencedColumnName = "id"), inverseJoinColumns
-	 * = @JoinColumn(name = "passenger_id", referencedColumnName = "id"))
-	 */
 	@Column(name = "passengers_id")
 	private String passengersId;// List<String> passengers_id;
 
-	// @Column(name = "passengers_id")
-	// private List<Long> passenger_id;
+	@OneToMany(mappedBy = "trajets", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Set<User> passengers;
 
 	@Column(name = "is_completed")
 	private boolean isCompleted;
-
-	@Column(name = "point_departure")
-	private String pointDeparture;
-
-	@Column(name = "point_arrival")
-	private String pointArrival;
 
 	@Column(name = "date_departure")
 	private Date dateDeparture;
@@ -68,19 +54,7 @@ public class Trajet {
 	@Column(name = "max_places")
 	private int maxPlaces;
 
-	/*
-	 * @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch =
-	 * FetchType.EAGER)
-	 * 
-	 * @JoinTable(name = "user_authority", joinColumns = @JoinColumn(name =
-	 * "passengers_id", referencedColumnName = "id"), inverseJoinColumns
-	 * = @JoinColumn(name = "passenger_id", referencedColumnName = "id"))
-	 */
-
-	// @Column(name = "passengers_id")
-	// private List<Long> passenger_id;
-
-    @OneToMany(mappedBy = "trajet")
+    @OneToMany(mappedBy = "trajet", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Step> steps = new HashSet<Step>();
    
 	public Long getId() {
@@ -150,22 +124,6 @@ public class Trajet {
 		this.passengersId = passengersId;
 	}
 
-	public String getPointDeparture() {
-		return pointDeparture;
-	}
-
-	public void setPointDeparture(String pointDeparture) {
-		this.pointDeparture = pointDeparture;
-	}
-
-	public String getPointArrival() {
-		return pointArrival;
-	}
-
-	public void setPointArrival(String pointArrival) {
-		this.pointArrival = pointArrival;
-	}
-
 	public Location getStartLocation() {
 		return startLocation;
 	}
@@ -180,6 +138,14 @@ public class Trajet {
 
 	public void setStopLocation(Location stopLocation) {
 		this.stopLocation = stopLocation;
+	}
+
+	public Set<User> getPassengers() {
+		return passengers;
+	}
+
+	public void setPassengers(Set<User> passengers) {
+		this.passengers = passengers;
 	}
 
 }

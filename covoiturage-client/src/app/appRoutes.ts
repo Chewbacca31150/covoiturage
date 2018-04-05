@@ -10,6 +10,9 @@ import { PathInformationComponent } from './path-information/path-information.co
 import { PathResultsComponent } from './path-results/path-results.component';
 import { MapAuthGuard } from './guard/map.auth.guard';
 import { PathInformationDetailsComponent } from './path-information-details/path-information-details.component';
+import { ContactComponent } from './contact/contact.component';
+import { MyTrajetsComponent } from './my-trajets/my-trajets.component';
+import { MyMessagesComponent } from './my-messages/my-messages.component';
 
 export const appRoutes: Routes = [
     { path: '', component: AccueilComponent, canActivate: [MapAuthGuard] },
@@ -21,5 +24,8 @@ export const appRoutes: Routes = [
     { path: 'path-information-details/:id', component: PathInformationDetailsComponent },
     { path: 'path-results', component: PathResultsComponent },
     { path: 'add-path', component: AddPathComponent },
+    { path: 'contact/:id', component: ContactComponent },
+    { path: 'my-trajets', component: MyTrajetsComponent, canActivate: [AuthGuard] },
+    { path: 'my-messages', component: MyMessagesComponent, canActivate: [AuthGuard] },
     { path: '**', redirectTo: '/not-found' }
 ];

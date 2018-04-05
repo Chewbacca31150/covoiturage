@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.covoit.model.Trajet;
+import com.covoit.model.User;
 import com.covoit.repository.TrajetRepository;
 import com.covoit.service.TrajetService;
 
@@ -38,6 +39,18 @@ public class TrajetServiceImpl implements TrajetService {
 	public List<Trajet> findByStopLocationAddressContaining(String address) {
 		return trajetRepository.findByStopLocationAddressContaining(address);
 	}
+
+	@Override
+	public List<Trajet> findByPassengers(User passenger) {
+		return trajetRepository.findByPassengers(passenger);
+	}
+
+	@Override
+	public List<Trajet> findByDriverId(long driverId) {
+		return trajetRepository.findByDriverId(driverId);
+	}
+	
+	
 
 
 }

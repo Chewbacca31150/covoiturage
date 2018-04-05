@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -88,4 +89,31 @@ public class TrajetController {
 		Trajet trajet = trajetService.findById(id);
 		return new ResponseEntity<Trajet>(trajet, HttpStatus.OK);
 	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/trajet/one")
+	public ResponseEntity<?> addUserTrajet(@RequestParam(value = "trajetId") long trajetId) {
+		Trajet trajet = trajetService.findById(trajetId);
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		if(trajet == null || trajet.getPassengers() == null) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		if(trajet.getPassengers().size() <= trajet.getMaxPlaces()) return new ResponseEntity<>("Voiture pleine", HttpStatus.BAD_REQUEST);
+		if(trajet.getPassengers().contains(user)) return new ResponseEntity<>("User déjà ajouté", HttpStatus.BAD_REQUEST);
+		trajet.getPassengers().add(user);
+		return new ResponseEntity<Trajet>(trajet, HttpStatus.OK);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "trajet/my-trajets")
+	public ResponseEntity<List<Trajet>> getMyTrajetsDriver() {
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		List<Trajet> trajets = trajetService.findByDriverId(user.getId());
+		return new ResponseEntity<List<Trajet>>(trajets, HttpStatus.OK);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "trajet/my-trajets/passenger")
+	public ResponseEntity<List<Trajet>> getMyTrajetsPassenger() {
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		List<Trajet> trajets = trajetService.findByPassengers(user);
+		return new ResponseEntity<List<Trajet>>(trajets, HttpStatus.OK);
+	}
+	
+	
 }
