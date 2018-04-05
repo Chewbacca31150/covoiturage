@@ -42,13 +42,13 @@ public class User implements UserDetails, Serializable {
   @Column(name = "email")
   private String email;
   
-  @Column(name = "is_smoke")
+  @Column(name = "is_smoke", nullable = true)
   private boolean isSmoke;
 
-  @Column(name = "is_talk")
+  @Column(name = "is_talk", nullable = true)
   private boolean isTalk;
 
-  @Column(name = "is_music")
+  @Column(name = "is_music", nullable = true)
   private boolean isMusic;
 
 

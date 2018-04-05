@@ -35,6 +35,7 @@ import { AddPathComponent } from './add-path/add-path.component';
 import { PathInformationComponent } from './path-information/path-information.component';
 import { PathResultsComponent } from './path-results/path-results.component';
 import { MapAuthGuard } from './guard/map.auth.guard';
+import { TrajetService } from './services/trajet.service';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,7 @@ import { MapAuthGuard } from './guard/map.auth.guard';
   entryComponents: [
     DialogOverviewComponent
   ],
-  providers: [AuthGuard, MapAuthGuard, ApiService, AuthService, ConfigService, UserService,
+  providers: [AuthGuard, MapAuthGuard, ApiService, AuthService, ConfigService, UserService, TrajetService,
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } }],
   bootstrap: [AppComponent]
 })
