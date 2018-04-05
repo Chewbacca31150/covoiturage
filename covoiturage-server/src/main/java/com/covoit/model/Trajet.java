@@ -7,6 +7,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -16,6 +17,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.google.maps.model.DirectionsResult;
@@ -56,16 +58,15 @@ public class Trajet {
 
 	@Column(name = "date_departure")
 	private Date dateDeparture;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	private Location startLocation;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	private Location stopLocation;
 
 	@Column(name = "max_places")
 	private int maxPlaces;
-
-	@Column(name = "direction_results", nullable = true)
-	private DirectionsResult directionResults;
-
-	public DirectionsResult getDirectionResults() {
-		return directionResults;
-	}
 
 	/*
 	 * @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch =
@@ -165,8 +166,20 @@ public class Trajet {
 		this.pointArrival = pointArrival;
 	}
 
-	public void setDirectionResults(DirectionsResult directionResults) {
-		this.directionResults = directionResults;
+	public Location getStartLocation() {
+		return startLocation;
+	}
+
+	public void setStartLocation(Location startLocation) {
+		this.startLocation = startLocation;
+	}
+
+	public Location getStopLocation() {
+		return stopLocation;
+	}
+
+	public void setStopLocation(Location stopLocation) {
+		this.stopLocation = stopLocation;
 	}
 
 }

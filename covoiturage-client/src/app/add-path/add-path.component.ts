@@ -4,7 +4,8 @@ import { TrajetService } from '../services/trajet.service';
 import { Trajet } from '../models/trajet';
 import { AuthService } from '../services/auth.service';
 import { MapsAPILoader } from '@agm/core';
-import {} from '@types/googlemaps';
+import { } from '@types/googlemaps';
+import { LocationGoogle } from '../models/location.google';
 @Component({
     selector: 'app-add-path',
     templateUrl: './add-path.component.html',
@@ -12,7 +13,7 @@ import {} from '@types/googlemaps';
 })
 export class AddPathComponent implements OnInit {
 
-    hourList = ['6:00','6:30','7:00','7:30','8:00','8:30','9:00','9:30','10:00','10:30','11:00','11:30'];
+    hourList = ['6:00', '6:30', '7:00', '7:30', '8:00', '8:30', '9:00', '9:30', '10:00', '10:30', '11:00', '11:30'];
     pathRegular: string;
     pathBack: boolean;
     regularPath: string;
@@ -24,12 +25,12 @@ export class AddPathComponent implements OnInit {
     @ViewChild('stopAddress')
     public stopAddress: ElementRef;
 
-    startLocation: { lat: number, lng: number, address: string } = {
+    startLocation: LocationGoogle = {
         lat: null,
         lng: null,
         address: null
     };
-    stopLocation: { lat: number, lng: number, address: string } = {
+    stopLocation: LocationGoogle = {
         lat: null,
         lng: null,
         address: null
@@ -39,16 +40,16 @@ export class AddPathComponent implements OnInit {
         private formBuilder: FormBuilder, private mapsAPILoader: MapsAPILoader) {
     }
 
-  ngOnInit() {
-    this.form = this.formBuilder.group({
-        startAddress: [''],
-        stopAddress: [''],
-        numberPlaces: [''],
-        pathDepartureDate: [''],
-        pathDepartureHour: [''],
-        pathRegularDays: [''],
-        pathBackFormControl: ['']
-    });
+    ngOnInit() {
+        this.form = this.formBuilder.group({
+            startAddress: [''],
+            stopAddress: [''],
+            numberPlaces: [''],
+            pathDepartureDate: [''],
+            pathDepartureHour: [''],
+            pathRegularDays: [''],
+            pathBackFormControl: ['']
+        });
 
         this.mapsAPILoader.load().then(() => {
             const startAddressAutocomplete = new google.maps.places.Autocomplete(this.startAddress.nativeElement, {
@@ -81,17 +82,17 @@ export class AddPathComponent implements OnInit {
                     return;
                 }
 
-        this.stopLocation = {
-          lat: place.geometry.location.lat(),
-          lng: place.geometry.location.lng(),
-          address: place.formatted_address
-        };
-      });
-    })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
+                this.stopLocation = {
+                    lat: place.geometry.location.lat(),
+                    lng: place.geometry.location.lng(),
+                    address: place.formatted_address
+                };
+            });
+        })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
 
     setradio(e: string): void {
         this.regularPath = e;
@@ -105,30 +106,28 @@ export class AddPathComponent implements OnInit {
         return (this.regularPath === name); // if current radio button is selected, return true, else return false
     }
 
-  onSubmit(event: Event) {
-    event.preventDefault();
-    if(this.regularPath == 'pathRegularTrue'){
-        this.form.controls['pathDepartureDate'].setValue('');
+    onSubmit(event: Event) {
+        event.preventDefault();
+        if (this.regularPath === 'pathRegularTrue') {
+            this.form.controls['pathDepartureDate'].setValue('');
+        } else if (this.regularPath === 'pathRegularFalse') {
+            this.form.controls['pathRegularDays'].setValue('');
+        }
+        const form = this.form.value;
+        const trajet: Trajet = {
+            dateDeparture: form.pathDepartureDate,
+            hourDeparture: form.pathDepartureHour,
+            driverId: this.authService.currentUser.id,
+            completed: false,
+            passengersId: '',
+            maxPlaces: form.numberPlaces,
+            regularDays: form.pathRegularDays,
+            pathBack: form.pathBackFormControl,
+            id: 0,
+            directionResults: '',
+            startLocation: this.startLocation,
+            stopLocation: this.stopLocation
+        };
+        this.trajetService.saveTrajet(trajet).subscribe((a) => console.log(a));
     }
-    else if(this.regularPath == 'pathRegularFalse'){
-        this.form.controls['pathRegularDays'].setValue('');
-    }
-    const form = this.form.value;
-    const trajet: Trajet = {
-        dateDeparture: form.pathDepartureDate,
-        hourDeparture: form.pathDepartureHour,
-        driverId: this.authService.currentUser.id,
-        completed: false,
-        passengersId: '',
-        maxPlaces: form.numberPlaces,
-        regularDays: form.pathRegularDays,
-        pathBack: form.pathBackFormControl,
-        id:0,
-        directionResults:'',
-        startLocation: this.startLocation, 
-        stopLocation: this.stopLocation 
-    };
-    console.log(trajet)
-    this.trajetService.saveTrajet(trajet).subscribe((a) => console.log(a));
-  }
 }

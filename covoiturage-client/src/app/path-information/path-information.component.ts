@@ -24,16 +24,10 @@ export class PathInformationComponent implements OnInit {
     this.trajetService.getTrajets().subscribe((trajets) => {
       this.trajets = trajets;
     });
-    this.filteredStates = this.trajetsCtrl.valueChanges
-      .pipe(
-        startWith(''),
-        map(trajet => trajet ? this.filterTrajets(trajet) : this.trajets.slice())
-      );
   }
-  filterTrajets(name: string) {
-    console.log(name, this.trajets);
-    return this.trajets.filter(trajet =>
-      trajet.passengersId.toLowerCase().indexOf(name.toLowerCase()) === 0);
+
+  find(search: string) {
+    this.trajetService.find(search).subscribe(trajets => this.trajets = trajets);
   }
 
   goTo(id: number) {

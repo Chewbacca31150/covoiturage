@@ -1,13 +1,8 @@
 <form class="example-form">
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Trajets" aria-label="Trajets" [matAutocomplete]="auto" [formControl]="trajetsCtrl">
-    <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let trajet of filteredTrajets | async" [value]="trajet.passengersId">
-        <span>{{ trajet.passengersId }}</span> |
-      </mat-option>
-    </mat-autocomplete>
+    <input matInput placeholder="Trajets" aria-label="Trajets" (input)="find($event.target.value)">
   </mat-form-field>
   <mat-card *ngFor="let trajet of trajets" (click)="goTo(trajet.id)">
-    <p>From {{trajet.pointDeparture}} to {{trajet.pointArrival}}</p>
-    <p>Date: {{trajet.dateDeparture}}</p>
+    <p>From {{trajet?.startLocation?.address}} to {{trajet?.stopLocation?.address}}</p>
+    <p>Date: {{trajet.dateDeparture | date: 'short'}}</p>
   </mat-card>

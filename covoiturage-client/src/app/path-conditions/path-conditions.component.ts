@@ -29,20 +29,18 @@ export class PathConditionsComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.authService.currentUser;
-    console.log("user");
-    console.log(this.user)
     this.driverForm = this._fb.group({
       smoke: this.user.smokeDriver != null ? this.user.smokeDriver ? true : false : false,
-      noSmoke: this.user.smokeDriver != null ? !this.user.smokeDriver  ? true : false : true,
+      noSmoke: this.user.smokeDriver != null ? !this.user.smokeDriver ? true : false : true,
       music: this.user.musicDriver,
       talk: this.user.talkDriver
-  }, {});
-  this.passengerForm = this._fb.group({
+    }, {});
+    this.passengerForm = this._fb.group({
       smoke: this.user.smokePassenger != null ? this.user.smokePassenger ? true : false : false,
-      noSmoke: this.user.smokePassenger != null ? !this.user.smokePassenger  ? true : false : true,
+      noSmoke: this.user.smokePassenger != null ? !this.user.smokePassenger ? true : false : true,
       music: this.user.musicPassenger,
       talk: this.user.talkPassenger
-  });
+    });
     this.autoTicks = true;
     this.max = 10;
     this.min = 0;
@@ -67,16 +65,15 @@ export class PathConditionsComponent implements OnInit {
 
   update() {
     // TODO mettre driver et passenger @adrien
-    let driverForm = this.driverForm.value;
-    let passengerForm = this.passengerForm.value;
+    const driverForm = this.driverForm.value;
+    const passengerForm = this.passengerForm.value;
     this.user.smokeDriver = (driverForm.smoke) ? true : driverForm.noSmoke ? false : null;
     this.user.musicDriver = driverForm.music;
     this.user.talkDriver = driverForm.talk;
     this.user.smokePassenger = (passengerForm.smokeDriver) ? true : passengerForm.noSmokeDriver ? false : null;
     this.user.musicPassenger = passengerForm.music;
     this.user.talkPassenger = passengerForm.talk;
-    console.log(this.user);
     this.userService.saveUser(this.user).subscribe();
-    
+
   }
 }

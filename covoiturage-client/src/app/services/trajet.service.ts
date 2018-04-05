@@ -24,8 +24,12 @@ export class TrajetService {
     });
   }
 
+  find(search: string): Observable<Trajet[]> {
+    return this.apiService.get(this.config.trajet_search_url + '?search=' + search).map(response => response);
+  }
+
   getOne(id: number): Observable<Trajet> {
-    return this.apiService.get(this.config.trajet_one_url).map((response) => {
+    return this.apiService.get(this.config.trajet_one_url + '?id=' + id).map((response) => {
       return response;
     });
   }

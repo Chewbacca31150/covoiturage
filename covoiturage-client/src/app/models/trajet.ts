@@ -1,3 +1,5 @@
+import { LocationGoogle } from './location.google';
+
 export interface Trajet {
     driverId: number;
     passengersId: string;
@@ -9,6 +11,6 @@ export interface Trajet {
     maxPlaces: number;
     regularDays: [string];
     pathBack: boolean;
-    startLocation: { lat: number, lng: number, address: string };
-    stopLocation: { lat: number, lng: number, address: string };
+    startLocation: LocationGoogle;
+    stopLocation: LocationGoogle;
 }

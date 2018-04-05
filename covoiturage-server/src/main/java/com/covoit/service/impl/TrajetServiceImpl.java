@@ -29,4 +29,15 @@ public class TrajetServiceImpl implements TrajetService {
 		return trajetRepository.findAll();
 	}
 
+	@Override
+	public List<Trajet> findByStartLocationAddressContaining(String address) {
+		return trajetRepository.findByStartLocationAddressContaining(address);
+	}
+	
+	@Override
+	public List<Trajet> findByStopLocationAddressContaining(String address) {
+		return trajetRepository.findByStopLocationAddressContaining(address);
+	}
+
+
 }

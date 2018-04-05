@@ -72,6 +72,17 @@ public class TrajetController {
 		return new ResponseEntity<List<Trajet>>(trajets, HttpStatus.OK);
 	}
 	
+	@RequestMapping(method = RequestMethod.GET, value = "/trajet/find")
+	public ResponseEntity<List<Trajet>> searchTrajets(@RequestParam(value="search") String search) {
+		List<Trajet> trajetsStart = trajetService.findByStartLocationAddressContaining(search);
+		List<Trajet> trajetsStop = trajetService.findByStopLocationAddressContaining(search);
+		List<Trajet> trajets = trajetsStart;
+		for(Trajet trajet: trajetsStop) {
+			if(!trajets.contains(trajet))trajets.add(trajet);
+		}
+		return new ResponseEntity<List<Trajet>>(trajets, HttpStatus.OK);
+	}
+	
 	@RequestMapping(method = RequestMethod.GET, value = "/trajet/one")
 	public ResponseEntity<Trajet> getOneTrajet(@RequestParam(value = "id") long id) {
 		Trajet trajet = trajetService.findById(id);
