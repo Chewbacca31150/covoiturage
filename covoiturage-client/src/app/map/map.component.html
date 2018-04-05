@@ -1,3 +1,7 @@
+  <div fxLayout fxLayoutAlign="center top" style="position:absolute; z-index: 2; width:100%;">
+    <button>Ajouter trajet</button>
+    <button>Chercher trajet</button>
+  </div>
 <agm-map [zoom]="zoom" [latitude]="userPosition.lat" [longitude]="userPosition.lng">
   <agm-marker *ngFor="let marker of markers" [latitude]="marker.lat" [longitude]="marker.lng" [title]="marker.title"></agm-marker>
 </agm-map>

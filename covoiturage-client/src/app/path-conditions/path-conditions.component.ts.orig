@@ -29,6 +29,8 @@ export class PathConditionsComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.authService.currentUser;
+<<<<<<< e6fb25df4372af7b3b0d2aec3d7902474bad2ce3
+=======
     console.log("user");
     console.log(this.user)
     this.driverForm = this._fb.group({
@@ -43,6 +45,8 @@ export class PathConditionsComponent implements OnInit {
       music: this.user.musicPassenger,
       talk: this.user.talkPassenger
   });
+
+>>>>>>> j'ai failli tuer Quentin
     this.autoTicks = true;
     this.max = 10;
     this.min = 0;
