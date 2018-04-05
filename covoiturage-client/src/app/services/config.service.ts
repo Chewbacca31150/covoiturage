@@ -30,14 +30,14 @@ export class ConfigService {
 
     private _save_user_url = this._api_url + '/user/save';
 
-    private _save_trajet_url = this._api_url + '/trajet';
+    private _trajet_url = this._api_url + '/trajet';
 
     get save_user_url(): string {
         return this._save_user_url;
     }
 
-    get save_trajet_url(): string {
-        return this._save_trajet_url;
+    get trajet_url(): string {
+        return this._trajet_url;
     }
 
     get all_number_url(): string {

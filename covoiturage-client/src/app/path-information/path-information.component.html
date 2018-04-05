@@ -1,65 +1,10 @@
-<div class="" fxLayout="row" fxLayoutAlign="center center">
-    <mat-card class="mat-card-path-condition" style="width:50%;">
-        <div style="width:100%;" fxLayout="column" fxLayoutAlign="center">
-            <div class="text-description" fxLayout="row" fxLayoutAlign="center center">
-                <h1>Trajet >> path.name</h1>
-            </div>
-            <div fxLayout="column" fxLayoutAlign="center center">
-                <div fxLayout="column" fxLayoutAlign="center center">
-                    <h2>Itineraire</h2>
-                    <img src="" alt="Image du trajet">
-                </div>
-                <div fxLayout="column" fxLayoutAlign="center center">
-                    <h2>Informations sur le conducteur :</h2>
-                    <div fxLayout="row" fxLayoutAlign="center center">
-                        <p>Conducteur :
-                            <b>path.driver.name</b>
-                        </p>
-                    </div>
-                </div>
-                <div fxLayout="column" fxLayoutAlign="center center">
-                    <h2>Informations sur le depart</h2>
-                    <div fxLayout="row" fxLayoutAlign="center center">
-                        <p>Depart :
-                            <b>path.startpoint.address</b>
-                        </p>
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="center center">
-                        <p>Heure:
-                            <b>path.startpoint.hour</b>
-                        </p>
-                        <p>Jour:
-                            <b>path.startpoint.day</b>
-                        </p>
-                    </div>
-                </div>
-                <div fxLayout="column" fxLayoutAlign="center center">
-                    <h2>Informations sur les repetions du trajet</h2>
-                    <div fxLayout="row" fxLayoutAlign="center center">
-                        <p>Retour le soir ? :
-                            <b>path.BackEndDay.isPossible</b>
-                        </p>
-                        <p>Repetitions dans le semaine ? :
-                            <b>path.repetition.isPossible</b>
-                        </p>
-                        <p>Jours :
-                            <b>path.Repetition.[days]</b>
-                        </p>
-                    </div>
-                </div>
-                <div fxLayout="column" fxLayoutAlign="center center">
-                    <h2>Informations sur les conditions du passager</h2>
-                    <div fxLayout="row" fxLayoutAlign="center center">
-                        <p>Conditions de trajets :
-                            <b>path.driver.name</b>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div fxLayout="row" fxLayoutAlign="center">
-            <button mat-button class="button-contact-driver" (click)="add()">Contacter le conducteur</button>
-            <button mat-button class="button-select-path" (click)="add()">Choisir ce trajet</button>
-        </div>
-    </mat-card>
-</div>
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Trajets" aria-label="Trajets" [matAutocomplete]="auto" [formControl]="trajetsCtrl">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let trajet of filteredTrajets | async" [value]="trajet.passengersId">
+        <span>{{ trajet.passengersId }}</span> |
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <mat-card *ngFor="let trajet of trajets">{{trajet.id}}</mat-card>

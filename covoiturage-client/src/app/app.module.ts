@@ -35,6 +35,7 @@ import { PathInformationComponent } from './path-information/path-information.co
 import { PathResultsComponent } from './path-results/path-results.component';
 import { MapAuthGuard } from './guard/map.auth.guard';
 import { TrajetService } from './services/trajet.service';
+import { PathInformationDetailsComponent } from './path-information-details/path-information-details.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { TrajetService } from './services/trajet.service';
     AddPathComponent,
     PathInformationComponent,
     PathResultsComponent,
+    PathInformationDetailsComponent,
   ],
   imports: [
     BrowserModule,

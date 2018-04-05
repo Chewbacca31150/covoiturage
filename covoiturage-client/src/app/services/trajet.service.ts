@@ -4,6 +4,7 @@ import { AuthService } from './auth.service';
 import { ConfigService } from './config.service';
 import { HttpHeaders } from '@angular/common/http';
 import { Trajet } from '../models/trajet';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class TrajetService {
@@ -12,9 +13,14 @@ export class TrajetService {
   }
 
   saveTrajet(trajet: Trajet) {
-    return this.apiService.post(this.config.save_trajet_url, JSON.stringify(trajet)).map((response) => {
+    return this.apiService.post(this.config.trajet_url, JSON.stringify(trajet)).map((response) => {
       console.log('done');
     });
   }
 
+  getTrajets(): Observable<Trajet[]> {
+    return this.apiService.get(this.config.trajet_url).map((response) => {
+      return response;
+    });
+  }
 }

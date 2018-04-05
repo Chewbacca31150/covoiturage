@@ -1,9 +1,11 @@
 export interface Trajet {
-    driver_id: string;
-    passengers_id: string;
-    number_passenger: number;
-    is_completed: boolean;
-    point_departure: number;
-    point_arrival: number;
-    date_departure: Date;
+    driverId: number;
+    passengersId: string;
+    completed: boolean;
+    pointDeparture: number;
+    pointArrival: number;
+    dateDeparture: Date;
+    directionResults: any;
+    id: number;
+    maxPlaces: number;
 }

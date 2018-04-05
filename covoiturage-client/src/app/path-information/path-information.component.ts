@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { TrajetService } from '../services/trajet.service';
+import { Trajet } from '../models/trajet';
+import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
+import { startWith } from 'rxjs/operators/startWith';
+import { map } from 'rxjs/operators/map';
 
 @Component({
   selector: 'app-path-information',
@@ -7,9 +13,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PathInformationComponent implements OnInit {
 
-  constructor() { }
+  trajets: Trajet[] = [];
+  trajetsCtrl: FormControl;
+  filteredStates: Observable<any[]>;
+  constructor(private trajetService: TrajetService) { }
 
   ngOnInit() {
+    this.trajetsCtrl = new FormControl();
+    this.trajetService.getTrajets().subscribe((trajets) => {
+      this.trajets = trajets;
+    });
+    this.filteredStates = this.trajetsCtrl.valueChanges
+      .pipe(
+        startWith(''),
+        map(trajet => trajet ? this.filterTrajets(trajet) : this.trajets.slice())
+      );
   }
-
+  filterTrajets(name: string) {
+    console.log(name, this.trajets);
+    return this.trajets.filter(trajet =>
+      trajet.passengersId.toLowerCase().indexOf(name.toLowerCase()) === 0);
+  }
 }

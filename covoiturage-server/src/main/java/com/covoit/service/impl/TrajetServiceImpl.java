@@ -1,5 +1,7 @@
 package com.covoit.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,17 +11,22 @@ import com.covoit.service.TrajetService;
 
 @Service
 public class TrajetServiceImpl implements TrajetService {
-	@Autowired 
+	@Autowired
 	TrajetRepository trajetRepository;
-	
+
 	@Override
 	public Trajet findById(Long id) {
-		return trajetRepository.findById(id);//trajetRepository;
+		return trajetRepository.findById(id);// trajetRepository;
 	}
 
 	@Override
 	public Trajet save(Trajet trajet) {
 		return trajetRepository.save(trajet);
+	}
+
+	@Override
+	public List<Trajet> findAll() {
+		return trajetRepository.findAll();
 	}
 
 }
