@@ -2,8 +2,6 @@ export interface Trajet {
     driverId: number;
     passengersId: string;
     completed: boolean;
-    pointDeparture: number;
-    pointArrival: number;
     dateDeparture: Date;
     hourDeparture: string;
     directionResults: any;
@@ -11,4 +9,6 @@ export interface Trajet {
     maxPlaces: number;
     regularDays: [string];
     pathBack: boolean;
+    startLocation: { lat: number, lng: number, address: string };
+    stopLocation: { lat: number, lng: number, address: string };
 }
