@@ -49,10 +49,10 @@ public class Trajet {
 	private boolean isCompleted;
 
 	@Column(name = "point_departure")
-	private long pointDeparture;
+	private String pointDeparture;
 
 	@Column(name = "point_arrival")
-	private long pointArrival;
+	private String pointArrival;
 
 	@Column(name = "date_departure")
 	private Date dateDeparture;
@@ -149,19 +149,19 @@ public class Trajet {
 		this.passengersId = passengersId;
 	}
 
-	public long getPointDeparture() {
+	public String getPointDeparture() {
 		return pointDeparture;
 	}
 
-	public void setPointDeparture(long pointDeparture) {
+	public void setPointDeparture(String pointDeparture) {
 		this.pointDeparture = pointDeparture;
 	}
 
-	public long getPointArrival() {
+	public String getPointArrival() {
 		return pointArrival;
 	}
 
-	public void setPointArrival(long pointArrival) {
+	public void setPointArrival(String pointArrival) {
 		this.pointArrival = pointArrival;
 	}
 

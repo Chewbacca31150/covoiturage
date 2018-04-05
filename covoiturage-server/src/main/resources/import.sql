@@ -10,5 +10,5 @@ INSERT INTO user_authority (user_id, authority_id) VALUES (1, 1);
 INSERT INTO user_authority (user_id, authority_id) VALUES (2, 1);
 INSERT INTO user_authority (user_id, authority_id) VALUES (2, 2);
 	  
-INSERT INTO trajet (driver_id, passengers_id, is_completed, point_departure, point_arrival, date_departure, max_places) VALUES (1, '1', true, 1212.0, 111.0, CURRENT_TIMESTAMP, 4);
-INSERT INTO trajet (driver_id, passengers_id, is_completed, point_departure, point_arrival, date_departure, max_places) VALUES (2, '1', true, 1212.0, 111.0, CURRENT_TIMESTAMP, 4);
+INSERT INTO trajet (driver_id, passengers_id, is_completed, point_departure, point_arrival, date_departure, max_places) VALUES (1, '1', true, "1212.0", "111.0", CURRENT_TIMESTAMP, 4);
+INSERT INTO trajet (driver_id, passengers_id, is_completed, point_departure, point_arrival, date_departure, max_places) VALUES (2, '1', true, "1212.0", "111.0", CURRENT_TIMESTAMP, 4);
