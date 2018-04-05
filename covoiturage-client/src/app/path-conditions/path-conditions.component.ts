@@ -4,6 +4,7 @@ import { AuthService } from '../services/auth.service';
 import { TrajetService } from '../services/trajet.service';
 import { User } from '../models/user';
 import { UserService } from '../services/user.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-path-conditions',
@@ -20,18 +21,28 @@ export class PathConditionsComponent implements OnInit {
   thumbLabel: boolean;
   value: number;
   tickInterval = 1;
-  smoke: boolean;
-  noSmoke: boolean;
-  smokePassenger: boolean;
-  noSmokePassenger: boolean;
-  music: boolean;
-  talk: boolean;
   user: User;
-  constructor(private authService: AuthService, private userService: UserService) { }
+  driverForm: FormGroup;
+  passengerForm: FormGroup;
+  constructor(private _fb: FormBuilder, private authService: AuthService, private userService: UserService) { }
 
 
   ngOnInit() {
     this.user = this.authService.currentUser;
+    console.log("user");
+    console.log(this.user)
+    this.driverForm = this._fb.group({
+      smoke: this.user.smokeDriver != null ? this.user.smokeDriver ? true : false : false,
+      noSmoke: this.user.smokeDriver != null ? !this.user.smokeDriver  ? true : false : true,
+      music: this.user.musicDriver,
+      talk: this.user.talkDriver
+  }, {});
+  this.passengerForm = this._fb.group({
+      smoke: this.user.smokePassenger != null ? this.user.smokePassenger ? true : false : false,
+      noSmoke: this.user.smokePassenger != null ? !this.user.smokePassenger  ? true : false : true,
+      music: this.user.musicPassenger,
+      talk: this.user.talkPassenger
+  });
     this.autoTicks = true;
     this.max = 10;
     this.min = 0;
@@ -39,50 +50,33 @@ export class PathConditionsComponent implements OnInit {
     this.step = 1;
     this.thumbLabel = true;
     this.value = 0;
-    console.log('path', this.user);
-    this.music = (this.user.isMusicDriver) ? true : false;
-    this.smoke = this.user.isSmokeDriver != null ? this.user.isSmokeDriver ? true : false : false;
-    this.noSmoke = this.user.isSmokeDriver != null ? this.user.isSmokeDriver !== false ? true : false : false;
-    this.talk = this.user.isTalkDriver;
   }
 
-  reverseSmokeCheckbox() {
-    this.smoke = !this.smoke;
-    this.noSmoke = false;
+  reverseSmokeCheckboxDriver() {
+    this.driverForm.controls['noSmoke'].setValue(false);
   }
-
-  reverseNoSmokeCheckbox() {
-    this.noSmoke = !this.noSmoke;
-    this.smoke = false;
+  reverseNoSmokeCheckboxDriver() {
+    this.driverForm.controls['smoke'].setValue(false);
   }
-
   reverseSmokeCheckboxPassenger() {
-    this.smokePassenger = !this.smokePassenger;
-    this.noSmokePassenger = false;
+    this.passengerForm.controls['noSmoke'].setValue(false);
   }
-
   reverseNoSmokeCheckboxPassenger() {
-    this.noSmokePassenger = !this.noSmokePassenger;
-    this.smokePassenger = false;
-  }
-
-  reverseMusic() {
-    this.music = !this.music;
-  }
-
-  reverseTalk() {
-    this.talk = !this.talk;
+    this.passengerForm.controls['smoke'].setValue(false);
   }
 
   update() {
     // TODO mettre driver et passenger @adrien
-    this.user.isMusicDriver = this.music;
-    this.user.isSmokeDriver = (this.smoke) ? true : this.noSmoke ? false : null;
-    this.user.isTalkDriver = this.talk;
+    let driverForm = this.driverForm.value;
+    let passengerForm = this.passengerForm.value;
+    this.user.smokeDriver = (driverForm.smoke) ? true : driverForm.noSmoke ? false : null;
+    this.user.musicDriver = driverForm.music;
+    this.user.talkDriver = driverForm.talk;
+    this.user.smokePassenger = (passengerForm.smokeDriver) ? true : passengerForm.noSmokeDriver ? false : null;
+    this.user.musicPassenger = passengerForm.music;
+    this.user.talkPassenger = passengerForm.talk;
     console.log(this.user);
     this.userService.saveUser(this.user).subscribe();
+    
   }
-
-
-
 }
