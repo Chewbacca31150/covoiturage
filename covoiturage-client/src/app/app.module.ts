@@ -26,7 +26,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { MapComponent } from './map/map.component';
 import { AuthGuard } from './guard/auth.guard';
 import { PathConditionsComponent } from './path-conditions/path-conditions.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { DialogOverviewComponent } from './dialog/dialog-overview.component';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 
@@ -47,7 +46,6 @@ import { TrajetService } from './services/trajet.service';
     FooterComponent,
     MapComponent,
     PathConditionsComponent,
-    DashboardComponent,
     DialogOverviewComponent,
     AddPathComponent,
     PathInformationComponent,

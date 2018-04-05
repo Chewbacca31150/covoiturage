@@ -5,7 +5,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { MapComponent } from './map/map.component';
 import { AuthGuard } from './guard/auth.guard';
 import { PathConditionsComponent } from './path-conditions/path-conditions.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddPathComponent } from './add-path/add-path.component';
 import { PathInformationComponent } from "./path-information/path-information.component";
 import { PathResultsComponent } from "./path-results/path-results.component";
@@ -21,6 +20,5 @@ export const appRoutes: Routes = [
     { path: 'path-results', component: PathResultsComponent },
     { path: 'add-path', component: AddPathComponent },
     
-    { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
     { path: '**', redirectTo: '/not-found' }
 ];

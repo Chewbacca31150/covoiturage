@@ -2,15 +2,20 @@
   <mat-toolbar color="primary">
     <span class="toolbar-fill-remaining-space">
       <button mat-button routerLink="/" class="toolbar-home-button">
-        <a href="/" class="title">VroumVroum</a>
+        <a routerLink="/" class="title">VroumVroum</a>
       </button>
-      <button *ngIf="user" class="toolbar-other-button" mat-button routerLink="/path-conditions">Cond.</button>
+      <!--<button *ngIf="user" class="toolbar-other-button" mat-button routerLink="/path-conditions">Cond.</button>-->
       <button class="toolbar-other-button" mat-button routerLink="/add-path">Add-P</button>
       <button class="toolbar-other-button" mat-button routerLink="/path-results">Resu</button>
       <button class="toolbar-other-button" mat-button routerLink="/path-information">Info</button>
     </span>
     <button class="toolbar-other-button" mat-button routerLink="/login" *ngIf="user == null">Login</button>
     <button class="toolbar-other-button" mat-button *ngIf="user != null" (click)="logout()">Logout</button>
-    <button class="toolbar-other-button" mat-button routerLink="/dashboard" *ngIf="user">{{user.username}}</button>
+    <button class="toolbar-other-button" mat-button *ngIf="user" [matMenuTriggerFor]="menu">{{user.username}}</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/path-conditions">Cond.</button>
+      <button mat-menu-item (click)="openDialog()">Remove user</button>
+    </mat-menu>
+
   </mat-toolbar>
 </div>

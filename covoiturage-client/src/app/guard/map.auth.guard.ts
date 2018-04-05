@@ -15,5 +15,6 @@ export class MapAuthGuard implements CanActivate {
             return false; 
         }
         return true;
+        
     }
 }
