@@ -39,12 +39,16 @@ export class AddPathComponent implements OnInit {
         private formBuilder: FormBuilder, private mapsAPILoader: MapsAPILoader) {
     }
 
-    ngOnInit() {
-        this.form = this.formBuilder.group({
-            startAddress: [''],
-            stopAddress: [''],
-            numberPlaces: ['']
-        });
+  ngOnInit() {
+    this.form = this.formBuilder.group({
+        startAddress: [''],
+        stopAddress: [''],
+        numberPlaces: [''],
+        pathDepartureDate: [''],
+        pathDepartureHour: [''],
+        pathRegularDays: [''],
+        pathBackFormControl: ['']
+    });
 
         this.mapsAPILoader.load().then(() => {
             const startAddressAutocomplete = new google.maps.places.Autocomplete(this.startAddress.nativeElement, {
@@ -77,17 +81,17 @@ export class AddPathComponent implements OnInit {
                     return;
                 }
 
-                this.startLocation = {
-                    lat: place.geometry.location.lat(),
-                    lng: place.geometry.location.lng(),
-                    address: place.formatted_address
-                };
-            });
-        })
-            .catch((error) => {
-                console.error(error);
-            });
-    }
+        this.stopLocation = {
+          lat: place.geometry.location.lat(),
+          lng: place.geometry.location.lng(),
+          address: place.formatted_address
+        };
+      });
+    })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 
     setradio(e: string): void {
         this.regularPath = e;
@@ -101,21 +105,30 @@ export class AddPathComponent implements OnInit {
         return (this.regularPath === name); // if current radio button is selected, return true, else return false
     }
 
-    onSubmit(event: Event) {
-        event.preventDefault();
-        const form = this.form.value;
-        const trajet: Trajet = {
-            dateDeparture: new Date(),
-            driverId: this.authService.currentUser.id,
-            completed: false,
-            passengersId: '',
-            pointArrival: form.stopAddress,
-            pointDeparture: form.startAddress,
-            maxPlaces: form.numberPlaces,
-            directionResults: this.startLocation,
-            id: 155
-            // stopLocation: this.stopLocation
-        };
-        this.trajetService.saveTrajet(trajet).subscribe((a) => console.log(a));
+  onSubmit(event: Event) {
+    event.preventDefault();
+    if(this.regularPath == 'pathRegularTrue'){
+        this.form.controls['pathDepartureDate'].setValue('');
     }
+    else if(this.regularPath == 'pathRegularFalse'){
+        this.form.controls['pathRegularDays'].setValue('');
+    }
+    const form = this.form.value;
+    const trajet: Trajet = {
+        dateDeparture: form.pathDepartureDate,
+        hourDeparture: form.pathDepartureHour,
+        driverId: this.authService.currentUser.id,
+        completed: false,
+        passengersId: '',
+        maxPlaces: form.numberPlaces,
+        regularDays: form.pathRegularDays,
+        pathBack: form.pathBackFormControl,
+        id:0,
+        directionResults:'',
+        startLocation: this.startLocation, 
+        stopLocation: this.stopLocation 
+    };
+    console.log(trajet)
+    this.trajetService.saveTrajet(trajet).subscribe((a) => console.log(a));
+  }
 }
