@@ -1,7 +1,9 @@
 package com.covoit.model;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.google.maps.model.DirectionsResult;
@@ -64,10 +67,38 @@ public class Trajet {
 		return directionResults;
 	}
 
-	public void setDirectionResults(DirectionsResult directionResults) {
-		this.directionResults = directionResults;
-	}
+	/*
+	 * @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch =
+	 * FetchType.EAGER)
+	 * 
+	 * @JoinTable(name = "user_authority", joinColumns = @JoinColumn(name =
+	 * "passengers_id", referencedColumnName = "id"), inverseJoinColumns
+	 * = @JoinColumn(name = "passenger_id", referencedColumnName = "id"))
+	 */
+	@Column(name = "passengers_id")
+	private String passengers_id;// List<String> passengers_id;
 
+	// @Column(name = "passengers_id")
+	// private List<Long> passenger_id;
+
+	@Column(name = "is_completed")
+	private boolean isCompleted;
+
+	@Column(name = "point_departure")
+	private String pointDeparture;
+
+	@Column(name = "point_arrival")
+	private String pointArrival;
+
+	@Column(name = "date_departure")
+	private Date dateDeparture;
+
+	@Column(name = "max_places")
+	private int maxPlaces;
+
+    @OneToMany(mappedBy="trajet")
+    private Set<Step> steps = new HashSet<Step>();
+   
 	public Long getId() {
 		return id;
 	}
@@ -97,19 +128,19 @@ public class Trajet {
 		this.isCompleted = isCompleted;
 	}
 
-	public long getPointDeparture() {
+	public String getPointDeparture() {
 		return pointDeparture;
 	}
 
-	public void setPointDeparture(long pointDeparture) {
+	public void setPointDeparture(String pointDeparture) {
 		this.pointDeparture = pointDeparture;
 	}
 
-	public long getPointArrival() {
+	public String getPointArrival() {
 		return pointArrival;
 	}
 
-	public void setPointArrival(long pointArrival) {
+	public void setPointArrival(String pointArrival) {
 		this.pointArrival = pointArrival;
 	}
 
@@ -129,10 +160,16 @@ public class Trajet {
 		this.maxPlaces = maxPlaces;
 	}
 
+	public Set<Step> getSteps() {
+		return steps;
+	}
 	public Long getDriverId() {
 		return driverId;
 	}
 
+	public void setSteps(Set<Step> steps) {
+		this.steps = steps;
+	}
 	public void setDriverId(Long driverId) {
 		this.driverId = driverId;
 	}

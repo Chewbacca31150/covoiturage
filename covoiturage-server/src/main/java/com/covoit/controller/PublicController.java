@@ -24,14 +24,7 @@ public class PublicController {
 
 	@Autowired
 	private UserService userService;
-	
-    @RequestMapping( method = GET, value= "/foo")
-    public Map<String, String> getFoo() {
-        Map<String, String> fooObj = new HashMap<>();
-        fooObj.put("foo", "bar");
-        return fooObj;
-    }
-    
+
     @RequestMapping(method = GET, value = "/all-users")
     public int loadAll() {
       return this.userService.findAllNumber();
