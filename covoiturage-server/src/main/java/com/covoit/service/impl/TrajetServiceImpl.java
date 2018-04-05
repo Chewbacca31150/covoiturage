@@ -5,7 +5,6 @@ import com.covoit.service.TrajetService;
 
 public class TrajetServiceImpl implements TrajetService {
 	//@Autowired
-	
 	@Override
 	public Trajet findById(Long id) {
 		return null;//trajetRepository;

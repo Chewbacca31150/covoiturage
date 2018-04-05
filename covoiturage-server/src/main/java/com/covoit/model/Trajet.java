@@ -31,9 +31,10 @@ public class Trajet {
 	      joinColumns = @JoinColumn(name = "passengers_id", referencedColumnName = "id"),
 	      inverseJoinColumns = @JoinColumn(name = "passenger_id", referencedColumnName = "id"))
 	  private List<String> passengers_id;
-	  
+
 	  //@Column(name = "passengers_id")
 	  //private List<Long> passenger_id;
+
 	  
 	  @Column(name = "is_smoke")
 	  private boolean isSmoke;
@@ -79,6 +80,13 @@ public class Trajet {
 	public void setPassenger_id(List<Long> passenger_id) {
 		this.passenger_id = passenger_id;
 	}*/
+	public List<String> getPassengers_id() {
+		return passengers_id;
+	}
+
+	public void setPassengers_id(List<String> passengers_id) {
+		this.passengers_id = passengers_id;
+	}
 
 	public boolean isSmoke() {
 		return isSmoke;
