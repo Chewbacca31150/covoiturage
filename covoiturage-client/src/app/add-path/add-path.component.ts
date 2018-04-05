@@ -12,12 +12,12 @@ import {MapsAPILoader} from '@agm/core';
 })
 export class AddPathComponent implements OnInit {
 
-  pathRegular: string;
-  pathBack: boolean;
-  regularPath: string;
-  form: FormGroup;
-  toppings = new FormControl();
-  toppingList = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
+    hourList = ['6:00','6:30','7:00','7:30','8:00','8:30','9:00','9:30','10:00','10:30','11:00','11:30'];
+    pathRegular: string;
+    pathBack: boolean;
+    regularPath: string;
+    form: FormGroup;
+    toppingList = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
 
   @ViewChild("startAddress")
   public startAddress: ElementRef;

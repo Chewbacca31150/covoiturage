@@ -6,45 +6,72 @@
                 <p>En ajoutant votre trajet, vous permettez a vos collegues de vous contacter pour voyager avec vous.</p>
             </div>
             <div>
-                <form class="example-form" fxLayout="column" fxLayoutAlign="center stretch" name="form" [formGroup]="myForm" (ngSubmit)="onSubmit($event)">
+                <form class="example-form" fxLayout="column" fxLayoutAlign="center stretch" name="form" [formGroup]="form" (ngSubmit)="onSubmit($event)">
+
+                    <!-- Adress depart -->
                     <mat-form-field class="example-full-width">
-                        <input  matInput placeholder="Adresse de depart" value="" #startAddress formControlName="startAddress">
+                        <input name="startAddress" formControlName="startAddress" matInput placeholder="Adresse de depart" value="" #startAddress>
                     </mat-form-field>
 
+                    <!-- Adress entreprise -->
                     <mat-form-field class="example-full-width">
-                        <input matInput placeholder="Adresse d'arrive" #stopAddress formControlName="stopAddress">
+                        <input name="stopAddress" formControlName="stopAddress" matInput placeholder="Adresse d'arrive" #stopAddress>
                     </mat-form-field>
+
+                    <!-- Nombre place dispo -->
                     <mat-form-field class="example-full-width">
-                        <input matInput placeholder="Nombre de place ?" type="number" max="10" formControlName="numberPlaces">
+                        <input name="numberPlaces" formControlName="numberPlaces" matInput placeholder="Nombre de place ?" type="number" max="10"
+                            formControlName="numberPlaces">
                     </mat-form-field>
+
+                    <!-- Regularite du trajet -->
                     <p>Effectuerez vous le trajet regulierement ?</p>
                     <div fxLayout="row" fxLayoutAlign="center">
-                        <mat-radio-group name="PathRegular">
-                            <mat-radio-button name="PathRegularYes" value="Oui" (click)="setradio('pathRegularTrue')">Oui</mat-radio-button>
-                            <mat-radio-button name="PathRegularNo" value="Non" (click)="setradio('pathRegularFalse')">Non</mat-radio-button>
+                        <mat-radio-group>
+                            <mat-radio-button value="Oui" (click)="setradio('pathRegularTrue')">Oui</mat-radio-button>
+                            <mat-radio-button value="Non" (click)="setradio('pathRegularFalse')">Non</mat-radio-button>
                         </mat-radio-group>
                     </div>
+
+                    <!-- Si oui... -->
                     <div *ngIf="isSelected('pathRegularTrue')" class="mat-select-regular-path">
-                        <mat-select placeholder="Sur quels jours pouvez-vous covoiturer ?" [formControl]="toppings" multiple>
+                        <mat-select name="pathRegularDays" formControlName="pathRegularDays" placeholder="Sur quels jours pouvez-vous covoiturer ?"
+                            multiple>
                             <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
                         </mat-select>
                     </div>
+
+                    <!-- Si non... -->
                     <div *ngIf="isSelected('pathRegularFalse')">
                         <mat-form-field>
-                            <input matInput [matDatepicker]="picker" placeholder="Choisissez une date" name="DatePonctualPath">
+                            <input name="pathDepartureDate" formControlName="pathDepartureDate" matInput [matDatepicker]="picker" placeholder="Choisissez une date"
+                                name="DatePonctualPath">
                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                             <mat-datepicker #picker></mat-datepicker>
                         </mat-form-field>
                     </div>
+
+                    <!-- Heure du depart -->
+                    <div fxLayout="row">
+                        <p>A quelle heure effecturez vous le trajet ? </p>
+                        <mat-form-field style="margin: 0px 20px;">
+                            <mat-select name="pathDepartureHour" formControlName="pathDepartureHour" placeholder="Heure...">
+                                <mat-option *ngFor="let hour of hourList" [value]="hour">{{hour}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <!-- Trajet retour le soir -->
                     <p>Effecturez vous le trajet retour en covoiturage le soir ?</p>
                     <div fxLayout="row" fxLayoutAlign="center">
-                        <mat-radio-group name="pathBackRadioGroup" name="PathBack"><!--[(ngModel)]="pathBack"-->
+                        <mat-radio-group name="pathBackRadioGroup" formControlName="pathBackFormControl">
+                            <!--[(ngModel)]="pathBack"-->
                             <mat-radio-button value="True">Oui</mat-radio-button>
                             <mat-radio-button value="False">Non</mat-radio-button>
                         </mat-radio-group>
                     </div>
                     <div fxLayout="row" fxLayoutAlign="center">
-                        <button mat-button class="button-add-path-" type="submit">Ajouter</button>
+                        <button mat-button class="button-add-path-" type="submit" (click)="onSubmit($event)" style="margin:20px 20px;">Ajouter</button>
                     </div>
                 </form>
             </div>

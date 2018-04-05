@@ -5,7 +5,10 @@ export interface Trajet {
     pointDeparture: number;
     pointArrival: number;
     dateDeparture: Date;
+    hourDeparture: string;
     directionResults: any;
     id: number;
     maxPlaces: number;
+    regularDays: [string];
+    pathBack: boolean;
 }
