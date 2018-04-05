@@ -69,12 +69,4 @@ public class TrajetController {
 		List<Trajet> trajets = trajetService.findAll();
 		return new ResponseEntity<List<Trajet>>(trajets, HttpStatus.OK);
 	}
-
-	@RequestMapping(method = GET, value = "/trajet/test")
-	public DirectionsResult loadById() throws IOException, ApiException, InterruptedException {
-		DirectionsResult restult = DirectionsApi
-				.getDirections(this.context, "43.624928, 1.432223", "43.623711, 1.449761").await();
-
-		return restult;
-	}
 }

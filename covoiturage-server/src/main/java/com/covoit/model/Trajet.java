@@ -75,26 +75,9 @@ public class Trajet {
 	 * "passengers_id", referencedColumnName = "id"), inverseJoinColumns
 	 * = @JoinColumn(name = "passenger_id", referencedColumnName = "id"))
 	 */
-	@Column(name = "passengers_id")
-	private String passengers_id;// List<String> passengers_id;
 
 	// @Column(name = "passengers_id")
 	// private List<Long> passenger_id;
-
-	@Column(name = "is_completed")
-	private boolean isCompleted;
-
-	@Column(name = "point_departure")
-	private String pointDeparture;
-
-	@Column(name = "point_arrival")
-	private String pointArrival;
-
-	@Column(name = "date_departure")
-	private Date dateDeparture;
-
-	@Column(name = "max_places")
-	private int maxPlaces;
 
     @OneToMany(mappedBy="trajet")
     private Set<Step> steps = new HashSet<Step>();
@@ -126,22 +109,6 @@ public class Trajet {
 
 	public void setCompleted(boolean isCompleted) {
 		this.isCompleted = isCompleted;
-	}
-
-	public String getPointDeparture() {
-		return pointDeparture;
-	}
-
-	public void setPointDeparture(String pointDeparture) {
-		this.pointDeparture = pointDeparture;
-	}
-
-	public String getPointArrival() {
-		return pointArrival;
-	}
-
-	public void setPointArrival(String pointArrival) {
-		this.pointArrival = pointArrival;
 	}
 
 	public Date getDateDeparture() {
@@ -180,6 +147,26 @@ public class Trajet {
 
 	public void setPassengersId(String passengersId) {
 		this.passengersId = passengersId;
+	}
+
+	public long getPointDeparture() {
+		return pointDeparture;
+	}
+
+	public void setPointDeparture(long pointDeparture) {
+		this.pointDeparture = pointDeparture;
+	}
+
+	public long getPointArrival() {
+		return pointArrival;
+	}
+
+	public void setPointArrival(long pointArrival) {
+		this.pointArrival = pointArrival;
+	}
+
+	public void setDirectionResults(DirectionsResult directionResults) {
+		this.directionResults = directionResults;
 	}
 
 }
