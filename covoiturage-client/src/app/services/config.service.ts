@@ -42,6 +42,12 @@ export class ConfigService {
 
     private _my_trajets_url = this._trajet_url + '/my-trajets';
 
+    private _trajet_from_users_url = this._trajet_url + '/from-users';
+
+    get trajet_from_users_url(): string {
+        return this._trajet_from_users_url;
+    }
+
     get contact_get_mine_url(): string {
         return this._contact_get_mine_url;
     }
@@ -78,7 +84,7 @@ export class ConfigService {
         return this._delete_user_url;
     }
 
-    get user_url(): string{
+    get user_url(): string {
         return this._user_url;
     }
 

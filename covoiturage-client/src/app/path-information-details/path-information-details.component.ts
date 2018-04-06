@@ -14,11 +14,12 @@ import { not } from '@angular/compiler/src/output/output_ast';
 export class PathInformationDetailsComponent implements OnInit {
   trajet: Trajet;
   user: User;
-  smoke: string = 'non';
-  music: string = 'non';
-  speak: string = 'non';
+  smoke = 'non';
+  music = 'non';
+  speak = 'non';
 
-  constructor(private route: ActivatedRoute, private router: Router, private trajetService: TrajetService, private userService: UserService) { }
+  constructor(private route: ActivatedRoute, private router: Router,
+    private trajetService: TrajetService, private userService: UserService) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -37,10 +38,9 @@ export class PathInformationDetailsComponent implements OnInit {
             this.speak = 'Oui';
           }
         });
-        
       });
     });
-    
+
   }
 
   contact() {

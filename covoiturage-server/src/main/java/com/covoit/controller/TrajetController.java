@@ -21,10 +21,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.covoit.dto.Search;
+import com.covoit.model.RegularDays;
 import com.covoit.model.Step;
 import com.covoit.model.Trajet;
 import com.covoit.model.User;
 import com.covoit.service.TrajetService;
+import com.covoit.service.UserService;
 import com.covoit.service.impl.TrajetServiceImpl;
 import com.google.maps.DirectionsApi;
 import com.google.maps.GeoApiContext;
@@ -37,7 +39,10 @@ import com.google.maps.model.DirectionsStep;
 public class TrajetController {
 
 	@Autowired
-	TrajetServiceImpl trajetService;
+	TrajetService trajetService;
+	
+	@Autowired
+	UserService userService;
 
 	private GeoApiContext context;
 
@@ -58,8 +63,10 @@ public class TrajetController {
 		  
 		  
 		  DirectionsStep[] steps = result.routes[0].legs[0].steps;
-		  List<Step> list = new ArrayList<Step>();
 		  Set<Step> stepSet = new HashSet<Step>();
+		  /*trajet.getRegularDays().forEach(regularDay ->  {
+			  regularDay.setTrajet(trajet);
+		  });*/
 		  int order = 1;
 		  for(DirectionsStep step : steps) {
 			  Step item = Step.ToEntity(step);
@@ -67,7 +74,6 @@ public class TrajetController {
 			  item.setTrajet(trajet);
 			  stepSet.add(item);
 			  trajet.setSteps(stepSet);
-			  list.add(item);
 			  ++order;
 		  }
 		  
@@ -122,6 +128,27 @@ public class TrajetController {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		List<Trajet> trajets = trajetService.findByPassengers(user);
 		return new ResponseEntity<List<Trajet>>(trajets, HttpStatus.OK);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "trajet/from-users")
+	public ResponseEntity<List<Trajet>> getTrajetsFromUser() {
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		List<Trajet> listTrajets = trajetService.findAll();
+		List<Trajet> trajetsToReturn = new ArrayList();
+		
+		listTrajets.forEach(trajet -> {
+			if(trajet.getDriverId() != user.getId()) {
+				User driver = userService.findById(trajet.getDriverId());
+				if(trajet.getMaxPlaces() >= trajet.getPassengers().size()
+						&& driver.isMusicDriver() == user.isMusicPassenger() 
+						&& driver.isSmokeDriver() == user.isSmokePassenger()
+						&& driver.isTalkDriver() == user.isTalkPassenger()
+						&& !trajet.isCompleted())
+					trajetsToReturn.add(trajet);
+			}
+		});
+		return  new ResponseEntity<List<Trajet>>(trajetsToReturn, HttpStatus.OK);
+		
 	}
 	
 	

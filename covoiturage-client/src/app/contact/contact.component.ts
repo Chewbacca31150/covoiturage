@@ -23,7 +23,7 @@ export class ContactComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.trajetService.getOne(params['id']).subscribe(trajet => {
         this.trajet = trajet;
-        //this.userService
+        // this.userService
       });
     });
     this.messageForm = this.fb.group({

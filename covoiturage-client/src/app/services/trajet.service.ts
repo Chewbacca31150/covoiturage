@@ -39,4 +39,8 @@ export class TrajetService {
   postOne(trajet: Trajet): Observable<Trajet> {
     return this.apiService.post(this.config.trajet_one_url, trajet).map(response => response);
   }
+
+  findTrajetsSpecific(): Observable<Trajet[]> {
+    return this.apiService.get(this.config.trajet_from_users_url).map(response => response);
+  }
 }

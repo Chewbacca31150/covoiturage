@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "REGULAR_DAYS")
 public class RegularDays {
@@ -17,9 +19,6 @@ public class RegularDays {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@ManyToOne
-	@JoinColumn(name="trajet_id", nullable=false)
-    private Trajet trajet;
 	
 	@Column(name = "message")
 	private String message;
@@ -32,11 +31,4 @@ public class RegularDays {
 		this.id = id;
 	}
 
-	public Trajet getTrajet() {
-		return trajet;
-	}
-
-	public void setTrajet(Trajet trajet) {
-		this.trajet = trajet;
-	}
 }
