@@ -57,8 +57,8 @@ public class Trajet {
 	@Column(name = "path_back")
 	private boolean pathBack;
 		
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER , mappedBy="trajet")
-	private Set<RegularDays> regularDays;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER , mappedBy="id")
+	private List<RegularDays> regularDays;
 
     @OneToMany(mappedBy = "trajet", cascade = CascadeType.ALL)
     private Set<Step> steps;
@@ -162,11 +162,11 @@ public class Trajet {
 		this.pathBack = pathBack;
 	}
 
-	public Set<RegularDays> getRegularDays() {
+	public List<RegularDays> getRegularDays() {
 		return regularDays;
 	}
 
-	public void setRegularDays(Set<RegularDays> regularDays) {
+	public void setRegularDays(List<RegularDays> regularDays) {
 		this.regularDays = regularDays;
 	}
 

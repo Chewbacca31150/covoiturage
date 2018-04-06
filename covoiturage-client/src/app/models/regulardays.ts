@@ -1,3 +1,5 @@
-export interface RegularDays{
-    message: string;
+import { Trajet } from './trajet';
+
+export interface RegularDays {
+    message: String;
 }

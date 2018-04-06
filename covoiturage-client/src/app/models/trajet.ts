@@ -10,7 +10,7 @@ export interface Trajet {
     directionResults: any;
     id: number;
     maxPlaces: number;
-    regularDays: RegularDays;
+    regularDays: RegularDays[];
     pathBack: boolean;
     startLocation: LocationGoogle;
     stopLocation: LocationGoogle;

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.covoit.model.RegularDays;
 import com.covoit.model.Step;
 import com.covoit.model.Trajet;
 import com.covoit.model.User;
@@ -51,8 +52,10 @@ public class TrajetController {
 		  
 		  
 		  DirectionsStep[] steps = result.routes[0].legs[0].steps;
-		  List<Step> list = new ArrayList<Step>();
 		  Set<Step> stepSet = new HashSet<Step>();
+		  /*trajet.getRegularDays().forEach(regularDay ->  {
+			  regularDay.setTrajet(trajet);
+		  });*/
 		  int order = 1;
 		  for(DirectionsStep step : steps) {
 			  Step item = Step.ToEntity(step);
@@ -60,7 +63,6 @@ public class TrajetController {
 			  item.setTrajet(trajet);
 			  stepSet.add(item);
 			  trajet.setSteps(stepSet);
-			  list.add(item);
 			  ++order;
 		  }
 		  

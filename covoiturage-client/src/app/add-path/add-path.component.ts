@@ -9,6 +9,7 @@ import { LocationGoogle } from '../models/location.google';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import { AddPathSnackComponent } from '../add-path-snack/add-path-snack.component';
+import { RegularDays } from '../models/regulardays';
 
 @Component({
     selector: 'app-add-path',
@@ -122,7 +123,20 @@ export class AddPathComponent implements OnInit {
         } else if (this.regularPath === 'pathRegularFalse') {
             this.form.controls['pathRegularDays'].setValue('');
         }
+
         const form = this.form.value;
+        let pathRegularDays: RegularDays[] = [];
+        if (form.pathRegularDays === '') {
+            pathRegularDays = null;
+        } else {
+            const arry: String[] = form.pathRegularDays;
+            arry.forEach(str => {
+                pathRegularDays.push({ message: str });
+            });
+            console.log(pathRegularDays);
+        }
+
+
         const trajet: Trajet = {
             dateDeparture: form.pathDepartureDate,
             hourDeparture: form.pathDepartureHour,
@@ -130,7 +144,7 @@ export class AddPathComponent implements OnInit {
             completed: false,
             passengersId: '',
             maxPlaces: form.numberPlaces,
-            regularDays: form.pathRegularDays,
+            regularDays: pathRegularDays,
             pathBack: form.pathBackFormControl,
             id: 0,
             directionResults: '',
