@@ -9,6 +9,9 @@ npm start
 
 ## SERVER
 
+
+java -jar covoit-0.1.1.jar
+
 mvn install -DskipTests
 mvn package
 
