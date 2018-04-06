@@ -75,7 +75,7 @@ export class MapComponent implements OnInit {
       this.addPath(path);
     })
 
-  }
+  } 
   updateTrajet() {
     this.trajetsCtrl = new FormControl();
     this.pathService.getTrajets().subscribe((trajets) => {
