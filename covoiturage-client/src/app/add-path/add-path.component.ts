@@ -1,14 +1,14 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
-import {TrajetService} from '../services/trajet.service';
-import {Trajet} from '../models/trajet';
-import {AuthService} from '../services/auth.service';
-import {MapsAPILoader} from '@agm/core';
-import {LocationGoogle} from '../models/location.google';
-import {Router} from '@angular/router';
-import {MatSnackBar} from '@angular/material';
-import {AddPathSnackComponent} from '../add-path-snack/add-path-snack.component';
-import {RegularDays} from '../models/regulardays';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { TrajetService } from '../services/trajet.service';
+import { Trajet } from '../models/trajet';
+import { AuthService } from '../services/auth.service';
+import { MapsAPILoader } from '@agm/core';
+import { } from '@types/googlemaps';
+import { LocationGoogle } from '../models/location.google';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
+import { RegularDays } from '../models/regulardays';
 
 @Component({
   selector: 'app-add-path',
@@ -136,26 +136,37 @@ export class AddPathComponent implements OnInit {
     }
 
 
-    const trajet: Trajet = {
-      dateDeparture: form.pathDepartureDate,
-      hourDeparture: form.pathDepartureHour,
-      driverId: this.authService.currentUser.id,
-      completed: false,
-      passengersId: '',
-      maxPlaces: form.numberPlaces,
-      regularDays: pathRegularDays,
-      pathBack: form.pathBackFormControl,
-      id: 0,
-      directionResults: '',
-      startLocation: this.startLocation,
-      stopLocation: this.stopLocation
-    };
-    this.trajetService.saveTrajet(trajet).subscribe((a) => console.log(a));
-    this.snackBar.openFromComponent(AddPathSnackComponent, {
-      duration: 1000,
-      horizontalPosition: 'right',
-      verticalPosition: 'top'
-    });
-    this.route.navigate(['/map']);
-  }
+        const form = this.form.value;
+        let pathRegularDays;
+        if (form.pathRegularDays === '') {
+            pathRegularDays = null;
+        } else {
+            const arry: String[] = form.pathRegularDays;
+            pathRegularDays = arry.join(',');
+
+        }
+
+
+        const trajet: Trajet = {
+            dateDeparture: form.pathDepartureDate,
+            hourDeparture: form.pathDepartureHour,
+            driverId: this.authService.currentUser.id,
+            completed: false,
+            passengersId: '',
+            maxPlaces: form.numberPlaces,
+            regularDays: pathRegularDays,
+            pathBack: form.pathBackFormControl,
+            id: 0,
+            directionResults: '',
+            startLocation: this.startLocation,
+            stopLocation: this.stopLocation
+        };
+        this.trajetService.saveTrajet(trajet).subscribe((a) => console.log(a));
+        this.snackBar.open("Trajet ajoute.","", {
+            duration: 3500,
+            horizontalPosition: 'right',
+            verticalPosition: 'top'
+        });
+        this.route.navigate(['/map']);
+    }
 }

@@ -21,7 +21,7 @@ export class PathInformationComponent implements OnInit {
 
   ngOnInit() {
     this.trajetsCtrl = new FormControl();
-    this.trajetService.getTrajets().subscribe((trajets) => {
+    this.trajetService.findTrajetsSpecific().subscribe((trajets) => {
       this.trajets = trajets;
     });
   }

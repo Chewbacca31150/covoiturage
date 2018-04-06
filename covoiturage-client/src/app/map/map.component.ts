@@ -1,5 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {TrajetService} from "../services/trajet.service";
+import { TrajetService } from '../services/trajet.service';
+import { Trajet } from '../models/trajet';
+import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-map',
@@ -11,15 +13,17 @@ export class MapComponent implements OnInit {
   public userPosition: { lat: number; lng: number };
   private googleMap: any = null;
   private driverMarker: any = null;
-  public zoom: number = 15;
   public markers: { lat: number; lng: number, title: string }[] = [];
   private showDirection: boolean;
   private path: { origin: { lat: number; lng: number }, destination: { lat: number; lng: number } };
+  trajets: Trajet[] = [];
+  trajetsCtrl: FormControl;
+  public zoom: number = 15;
   // lat: number = 43.574681;
   // lng: number = 1.380402;
 
 
-  constructor(private pathService: TrajetService) {
+  constructor(private route: Router, private trajetService: TrajetService) {
     // this.workPosition = {lat: 43.574681, lng: 1.380402};
     this.userPosition = {lat: 43.624866, lng: 1.432042};
     this.driverMarker = null;
@@ -39,6 +43,10 @@ export class MapComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.trajetsCtrl = new FormControl();
+    this.trajetService.getTrajets().subscribe((trajets) => {
+      this.trajets = trajets;
+    });
     navigator.geolocation.getCurrentPosition((position) => {
 
       this.userPosition = {
@@ -69,6 +77,9 @@ export class MapComponent implements OnInit {
       this.addPath(path);
     })
 
+  }
+  goTo(id: number) {
+    this.route.navigate(['/path-information-details', id]);
   }
 
   addPath(path) {

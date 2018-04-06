@@ -3,7 +3,21 @@ button{
     color:white; 
     margin: 20px;
 }
-
+.example-form
+{
+    font-size:12px;
+    margin-top:-658px;
+    width:19%;
+    display:inline-block;
+    float:right;
+}
+.example-form h1
+{
+    text-align:right;
+    margin-right:5px;
+}
 agm-map {
-    height: 657px;
+    height: 658px;
+    width:90%;
+    display:inline-block;
 }
