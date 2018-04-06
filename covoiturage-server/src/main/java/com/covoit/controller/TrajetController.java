@@ -4,7 +4,9 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -50,13 +52,14 @@ public class TrajetController {
 		  
 		  DirectionsStep[] steps = result.routes[0].legs[0].steps;
 		  List<Step> list = new ArrayList<Step>();
-		  
+		  Set<Step> stepSet = new HashSet<Step>();
 		  int order = 1;
 		  for(DirectionsStep step : steps) {
 			  Step item = Step.ToEntity(step);
 			  item.setOrder(order);
 			  item.setTrajet(trajet);
-			  trajet.getSteps().add(item);
+			  stepSet.add(item);
+			  trajet.setSteps(stepSet);
 			  list.add(item);
 			  ++order;
 		  }

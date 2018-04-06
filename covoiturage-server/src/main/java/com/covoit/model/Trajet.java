@@ -36,7 +36,7 @@ public class Trajet {
 	@Column(name = "passengers_id")
 	private String passengersId;
 
-	@OneToMany(mappedBy = "trajets", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "trajets", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<User> passengers;
 
 	@Column(name = "is_completed")
@@ -50,15 +50,15 @@ public class Trajet {
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private Location stopLocation;
-
+		
 	@Column(name = "max_places")
 	private int maxPlaces;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy="trajet")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER , mappedBy="trajet")
 	private Set<RegularDays> regularDays;
 
-    @OneToMany(mappedBy = "trajet", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Step> steps = new HashSet<Step>();
+    @OneToMany(mappedBy = "trajet", cascade = CascadeType.ALL)
+    private Set<Step> steps;
    
 	public Long getId() {
 		return id;

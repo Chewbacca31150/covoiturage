@@ -1,4 +1,4 @@
-import { Trajet } from "./trajet";
+import { Trajet } from './trajet';
 
 export interface Contact {
     message: string;

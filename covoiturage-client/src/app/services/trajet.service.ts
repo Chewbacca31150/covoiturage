@@ -19,9 +19,7 @@ export class TrajetService {
   }
 
   getTrajets(): Observable<Trajet[]> {
-    return this.apiService.get(this.config.trajet_url).map((response) => {
-      return response;
-    });
+    return this.apiService.get(this.config.trajet_url);
   }
 
   find(search: string): Observable<Trajet[]> {
