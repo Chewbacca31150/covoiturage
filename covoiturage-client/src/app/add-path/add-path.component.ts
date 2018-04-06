@@ -7,6 +7,8 @@ import { MapsAPILoader } from '@agm/core';
 import { } from '@types/googlemaps';
 import { LocationGoogle } from '../models/location.google';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
+import { AddPathSnackComponent } from '../add-path-snack/add-path-snack.component';
 
 @Component({
     selector: 'app-add-path',
@@ -39,7 +41,7 @@ export class AddPathComponent implements OnInit {
     };
 
     constructor(private trajetService: TrajetService, private authService: AuthService,
-        private formBuilder: FormBuilder, private mapsAPILoader: MapsAPILoader, private route: Router) {
+        private formBuilder: FormBuilder, private mapsAPILoader: MapsAPILoader, private route: Router, private snackBar: MatSnackBar) {
     }
 
     ngOnInit() {
@@ -109,6 +111,10 @@ export class AddPathComponent implements OnInit {
     }
 
     onSubmit(event: Event) {
+        if(this.form.value.startAddress == "" || this.form.value.stopAddress == "" || this.form.value.numberPlaces == "" || (this.form.value.pathDepartureDate == "" && this.form.value.pathRegularDays == ""))
+        {
+            return;
+        }
         event.preventDefault();
         if (this.regularPath === 'pathRegularTrue') {
             this.form.controls['pathDepartureDate'].setValue('');
@@ -131,6 +137,11 @@ export class AddPathComponent implements OnInit {
             stopLocation: this.stopLocation
         };
         this.trajetService.saveTrajet(trajet).subscribe((a) => console.log(a));
+        this.snackBar.openFromComponent(AddPathSnackComponent, {
+            duration: 1000,
+            horizontalPosition: 'right',
+            verticalPosition: 'top'
+          });
         this.route.navigate(['/map']);
     }
 }

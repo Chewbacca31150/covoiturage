@@ -27,6 +27,9 @@ import { MapComponent } from './map/map.component';
 import { AuthGuard } from './guard/auth.guard';
 import { PathConditionsComponent } from './path-conditions/path-conditions.component';
 import { DialogOverviewComponent } from './dialog/dialog-overview.component';
+import { MyMessagesComponent } from './my-messages/my-messages.component';
+import { MyTrajetsComponent } from './my-trajets/my-trajets.component';
+import { AddPathSnackComponent } from './add-path-snack/add-path-snack.component';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 
 
@@ -38,8 +41,6 @@ import { TrajetService } from './services/trajet.service';
 import { PathInformationDetailsComponent } from './path-information-details/path-information-details.component';
 import { ContactComponent } from './contact/contact.component';
 import { ContactService } from './services/contact.service';
-import { MyMessagesComponent } from './my-messages/my-messages.component';
-import { MyTrajetsComponent } from './my-trajets/my-trajets.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { MyTrajetsComponent } from './my-trajets/my-trajets.component';
     ContactComponent,
     MyMessagesComponent,
     MyTrajetsComponent,
+    AddPathSnackComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +78,8 @@ import { MyTrajetsComponent } from './my-trajets/my-trajets.component';
     })
   ],
   entryComponents: [
-    DialogOverviewComponent
+    DialogOverviewComponent,
+    AddPathSnackComponent
   ],
   providers: [AuthGuard, MapAuthGuard, ApiService, AuthService, ConfigService, UserService, TrajetService, ContactService,
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } }],
