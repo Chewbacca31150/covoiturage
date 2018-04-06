@@ -15,8 +15,8 @@ INSERT INTO location (address, lat, lng) VALUES('Barrière de Paris, 31200 Toulo
 INSERT INTO location (address, lat, lng) VALUES('Barrière de Paris, 31200 Toulouse, France',43.63342919999999,1.428973400000018);
 INSERT INTO location (address, lat, lng) VALUES('Place du Capitole, 31000 Toulouse, France', 43.6044292,1.4438121000000592);
 	  
-INSERT INTO trajet (driver_id, passengers_id, is_completed, date_departure, max_places, start_location_id, stop_location_id, path_back) VALUES (1, '1', true, CURRENT_TIMESTAMP, 4, 1, 2, false);
-INSERT INTO trajet (driver_id, passengers_id, is_completed, date_departure, max_places, start_location_id, stop_location_id, path_back) VALUES (2, '1', true, CURRENT_TIMESTAMP, 4, 3, 4, false);
+INSERT INTO trajet (driver_id, passengers_id, is_completed, date_departure, max_places, start_location_id, stop_location_id, path_back, hour_departure) VALUES (1, '1', true, CURRENT_TIMESTAMP, 4, 1, 2, false, '8:00');
+INSERT INTO trajet (driver_id, passengers_id, is_completed, date_departure, max_places, start_location_id, stop_location_id, path_back, hour_departure) VALUES (2, '1', true, CURRENT_TIMESTAMP, 4, 3, 4, false, '8:00');
 
 INSERT INTO contact (trajet_id, receiver_id, sender_id, message, date_sent) VALUES (1, 2, 1, 'bonjour', SYSDATE);
 INSERT INTO contact (trajet_id, receiver_id, sender_id, message, date_sent) VALUES (2, 1, 2, 'bonjour', SYSDATE);

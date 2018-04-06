@@ -59,6 +59,9 @@ public class Trajet {
 		
 	@Column(name = "regulard_days")
 	private String regularDays;
+	
+	@Column(name = "hour_departure")
+	private String hourDeparture;
 
     @OneToMany(mappedBy = "trajet", cascade = CascadeType.ALL)
     private Set<Step> steps;
@@ -168,6 +171,14 @@ public class Trajet {
 
 	public void setRegularDays(String regularDays) {
 		this.regularDays = regularDays;
+	}
+
+	public String getHourDeparture() {
+		return hourDeparture;
+	}
+
+	public void setHourDeparture(String hourDeparture) {
+		this.hourDeparture = hourDeparture;
 	}
 
 }
