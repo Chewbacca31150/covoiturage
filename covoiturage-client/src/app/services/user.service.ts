@@ -28,6 +28,12 @@ export class UserService {
         return this.apiService.post(this.config.save_user_url, JSON.stringify(user)).map(response => console.log(response));
     }
 
+    getOne(id: number): Observable<User> {
+        return this.apiService.get(this.config.user_url + '/' + id).map((response) => {
+          return response;
+        });
+    }
+
     resetCredentials() {
         return this.apiService.get(this.config.reset_credentials_url);
     }

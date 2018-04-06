@@ -3,6 +3,11 @@
     <input matInput placeholder="Trajets" aria-label="Trajets" (input)="find($event.target.value)">
   </mat-form-field>
   <mat-card *ngFor="let trajet of trajets" (click)="goTo(trajet.id)">
-    <p>From {{trajet?.startLocation?.address}} to {{trajet?.stopLocation?.address}}</p>
+    <p>Conducteur : {{trajet?.driverId?.name}} </p>
+    <div>
+        <p>From : {{trajet?.startLocation?.address}}</p> 
+        <p>To : {{trajet?.stopLocation?.address}}</p>
+    </div>
     <p>Date: {{trajet.dateDeparture | date: 'short'}}</p>
+    <p>Hour: {{trajet?.hourDeparture}}</p>
   </mat-card>

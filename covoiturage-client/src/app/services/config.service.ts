@@ -78,6 +78,10 @@ export class ConfigService {
         return this._delete_user_url;
     }
 
+    get user_url(): string{
+        return this._user_url;
+    }
+
     get reset_credentials_url(): string {
         return this._reset_credentials_url;
     }
