@@ -2,7 +2,7 @@
     <mat-card class="mat-card-path-condition" style="width:50%;">
         <div style="width:100%;" fxLayout="column" fxLayoutAlign="center">
             <div class="text-description" fxLayout="row" fxLayoutAlign="center center">
-                <h1>Trajet {{trajet?.id}}</h1>
+                <h1>Trajet</h1>
             </div>
             <div fxLayout="column" fxLayoutAlign="center center">
                 <div fxLayout="column" fxLayoutAlign="center center">
@@ -29,30 +29,32 @@
                     </div>
                     <div fxLayout="row" fxLayoutAlign="center center">
                         <p>Heure:
-                            <b>{{trajet?.dateDeparture | date: 'shortTime'}}</b>
+                            <b>{{trajet?.hourDeparture}}</b>
                         </p>
-                        <p>Jour:
-                            <b>{{trajet?.dateDeparture | date: 'fullDate'}} </b>
-                        </p>
+                        <div *ngIf="trajet?.dateDeparture!= null">
+                            <p>Jour:
+                                <b>{{trajet?.dateDeparture | date: 'fullDate'}} </b>
+                            </p>
+                        </div>
                     </div>
                 </div>
                 <div fxLayout="column" fxLayoutAlign="center center">
-                    <h2>Informations sur les repetions du trajet</h2>
+                    <h2>Informations sur les repetitions du trajet</h2>
                     <div fxLayout="row" fxLayoutAlign="center center">
                         <p>Retour le soir ? :
-                            <b>path.BackEndDay.isPossible</b>
+                            <b>{{back}}</b>
                         </p>
-                        <p>Repetitions dans le semaine :
-                            <b>{{trajet?.regularDays?.message}}</b>
-                        </p>
+                        <div *ngIf="trajet?.regularDays != null">
+                            <p>Repetitions dans le semaine :
+                                <b>{{trajet?.regularDays}}</b>
+                            </p>
+                        </div>
                     </div>
                 </div>
                 <div fxLayout="column" fxLayoutAlign="center center">
-                    <h2>Informations sur les conditions du passager</h2>
-                    <div fxLayout="row" fxLayoutAlign="center center">
-                        <p>Conditions de trajets :
-                        </p>
-                        <div>
+                    <h2>Preferences</h2>
+                    <div fxLayout="column" fxLayoutAlign="center center">
+                        <div fxLayout="row" fxLayout.xs="column">
                             <p>Fumeur:
                                 <b>{{smoke}}</b>
                             </p>

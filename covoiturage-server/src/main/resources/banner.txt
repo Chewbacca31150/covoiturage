@@ -17,7 +17,7 @@ C:::::C              o::::o     o::::o    v:::::v:::::v    o::::o     o::::o i::
      CCC::::::::::::C oo:::::::::::oo         v:::v         oo:::::::::::oo i::::::i       tt:::::::::::tt
         CCCCCCCCCCCCC   ooooooooooo            vvv            ooooooooooo   iiiiiiii         ttttttttttt  
                                                                                                           
-                                                                                                          
+                                                                                                        
 ${AnsiColor.BRIGHT_RED}Spring Boot Version : ${spring-boot.version} ${spring-boot.formatted-version}
                                                                                                           
                                                                                                           

@@ -14,9 +14,10 @@ import { not } from '@angular/compiler/src/output/output_ast';
 export class PathInformationDetailsComponent implements OnInit {
   trajet: Trajet;
   user: User;
-  smoke = 'non';
-  music = 'non';
-  speak = 'non';
+  smoke = 'Non';
+  music = 'Non';
+  speak = 'Non';
+  back = 'Non';
 
   constructor(private route: ActivatedRoute, private router: Router,
     private trajetService: TrajetService, private userService: UserService) { }
@@ -37,6 +38,9 @@ export class PathInformationDetailsComponent implements OnInit {
           if (user.talkDriver) {
             this.speak = 'Oui';
           }
+          if (trajet.pathBack) {
+            this.back = 'Oui';
+          } 
         });
       });
     });

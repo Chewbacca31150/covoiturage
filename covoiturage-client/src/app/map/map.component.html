@@ -1,7 +1,7 @@
-  <div fxLayout fxLayoutAlign="center top" style="position:absolute; z-index: 2; width:100%;">
-    <button mat-button routerLink="/add-path">Ajouter trajet</button>
-    <button mat-button routerLink="/path-information">Chercher trajet</button>
-  </div>
+<div fxLayout fxLayoutAlign="center top" style="position:absolute; z-index: 2; width:100%;">
+  <button mat-button routerLink="/add-path">Ajouter trajet</button>
+  <button mat-button routerLink="/path-information">Chercher trajet</button>
+</div>
 <agm-map [zoom]="zoom" [latitude]="userPosition.lat" [longitude]="userPosition.lng">
   <agm-marker *ngFor="let marker of markers" [latitude]="marker.lat" [longitude]="marker.lng" [title]="marker.title"></agm-marker>
   <agm-direction *ngIf="path" [visible]="showDirection" [origin]="path.origin" [destination]="path.destination"></agm-direction>
@@ -9,10 +9,17 @@
 <div class="example-form">
   <button mat-button (click)="updateTrajet()">Update</button>
   <h1>Trajets</h1>
-  <mat-card *ngFor="let trajet of trajets" (click)="changeTrajet(trajet.id)">
-    <p>From : {{trajet?.startLocation?.address}}<br/> 
-    To : {{trajet?.stopLocation?.address}}<br/> 
-    Date: {{trajet.dateDeparture | date: 'short'}}<br/> 
-    Hour: {{trajet?.hourDeparture}}</p>
+  <mat-card *ngFor="let trajet of trajets" (click)="goTo(trajet.id)">
+    <p>From : {{trajet?.startLocation?.address}}</p>
+    <p>To : {{trajet?.stopLocation?.address}}</p>
+    <div *ngIf="trajet?.dateDeparture != null">
+        <p>Date: {{trajet.dateDeparture | date: 'shortDate'}}</p>
+
+    </div>
+    <div *ngIf="trajet?.regularDays != null">
+        <p>Jours: {{trajet?.regularDays}}</p>
+
+    </div>
+    <p>Hour: {{trajet?.hourDeparture}}</p>
   </mat-card>
 </div>
