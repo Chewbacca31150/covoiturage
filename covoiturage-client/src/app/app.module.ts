@@ -29,7 +29,6 @@ import { PathConditionsComponent } from './path-conditions/path-conditions.compo
 import { DialogOverviewComponent } from './dialog/dialog-overview.component';
 import { MyMessagesComponent } from './my-messages/my-messages.component';
 import { MyTrajetsComponent } from './my-trajets/my-trajets.component';
-import { AddPathSnackComponent } from './add-path-snack/add-path-snack.component';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 
 
@@ -59,8 +58,7 @@ import { ContactService } from './services/contact.service';
     PathInformationDetailsComponent,
     ContactComponent,
     MyMessagesComponent,
-    MyTrajetsComponent,
-    AddPathSnackComponent
+    MyTrajetsComponent
   ],
   imports: [
     BrowserModule,
@@ -78,8 +76,7 @@ import { ContactService } from './services/contact.service';
     })
   ],
   entryComponents: [
-    DialogOverviewComponent,
-    AddPathSnackComponent
+    DialogOverviewComponent
   ],
   providers: [AuthGuard, MapAuthGuard, ApiService, AuthService, ConfigService, UserService, TrajetService, ContactService,
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } }],

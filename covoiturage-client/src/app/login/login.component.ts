@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from '../services/user.service';
 import { AuthService } from '../services/auth.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
     selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit {
         private _fb: FormBuilder,
         private _router: Router,
         private _userService: UserService,
-        private _authService: AuthService
+        private _authService: AuthService,
+        private _snackBar: MatSnackBar
     ) { }
 
     ngOnInit(): void {
@@ -48,6 +50,11 @@ export class LoginComponent implements OnInit {
                     });
                 });
             });
+            this._snackBar.open("Utilisateur cree avec succes.","", {
+                duration: 3500,
+                horizontalPosition: 'right',
+                verticalPosition: 'top'
+            });
     }
 
     onLoginSubmit(form) {
@@ -58,7 +65,11 @@ export class LoginComponent implements OnInit {
                 });
             });
         this.error = null;
-
+        this._snackBar.open("Bonjour " + this.loginForm.value.username + ".","", {
+            duration: 3500,
+            horizontalPosition: 'right',
+            verticalPosition: 'top'
+        });
     }
 
     debug(signInForm) {

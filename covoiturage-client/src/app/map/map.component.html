@@ -5,3 +5,12 @@
 <agm-map [zoom]="zoom" [latitude]="userPosition.lat" [longitude]="userPosition.lng">
   <agm-marker *ngFor="let marker of markers" [latitude]="marker.lat" [longitude]="marker.lng" [title]="marker.title"></agm-marker>
 </agm-map>
+<form class="example-form">
+  <h1>Trajets</h1>
+  <mat-card *ngFor="let trajet of trajets" (click)="goTo(trajet.id)">
+    <p>From : {{trajet?.startLocation?.address}}<br/> 
+    To : {{trajet?.stopLocation?.address}}<br/> 
+    Date: {{trajet.dateDeparture | date: 'short'}}<br/> 
+    Hour: {{trajet?.hourDeparture}}</p>
+  </mat-card>
+</form>

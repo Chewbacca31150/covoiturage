@@ -8,7 +8,6 @@ import { } from '@types/googlemaps';
 import { LocationGoogle } from '../models/location.google';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
-import { AddPathSnackComponent } from '../add-path-snack/add-path-snack.component';
 import { RegularDays } from '../models/regulardays';
 
 @Component({
@@ -150,8 +149,8 @@ export class AddPathComponent implements OnInit {
             stopLocation: this.stopLocation
         };
         this.trajetService.saveTrajet(trajet).subscribe((a) => console.log(a));
-        this.snackBar.openFromComponent(AddPathSnackComponent, {
-            duration: 1000,
+        this.snackBar.open("Trajet ajoute.","", {
+            duration: 3500,
             horizontalPosition: 'right',
             verticalPosition: 'top'
         });
