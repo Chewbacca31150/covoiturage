@@ -8,7 +8,6 @@ import { } from '@types/googlemaps';
 import { LocationGoogle } from '../models/location.google';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
-import { AddPathSnackComponent } from '../add-path-snack/add-path-snack.component';
 import { RegularDays } from '../models/regulardays';
 
 @Component({
