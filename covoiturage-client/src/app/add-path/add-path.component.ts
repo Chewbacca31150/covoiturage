@@ -125,15 +125,13 @@ export class AddPathComponent implements OnInit {
         }
 
         const form = this.form.value;
-        let pathRegularDays: RegularDays[] = [];
+        let pathRegularDays;
         if (form.pathRegularDays === '') {
             pathRegularDays = null;
         } else {
             const arry: String[] = form.pathRegularDays;
-            arry.forEach(str => {
-                pathRegularDays.push({ message: str });
-            });
-            console.log(pathRegularDays);
+            pathRegularDays = arry.join(',');
+
         }
 
 
