@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -33,10 +34,12 @@ public class Step {
 	private long seconds;
 
 	@Column(name = "start")
-	private String startPoint;
+	@OneToOne(cascade = CascadeType.ALL)
+	private Location startPoint;
 
 	@Column(name = "end")
-	private String endPoint;
+	@OneToOne(cascade = CascadeType.ALL)
+	private Location endPoint;
 
 	@ManyToOne(fetch= FetchType.LAZY)
     @JoinColumn(name="trajet_id", nullable=false)
@@ -45,8 +48,8 @@ public class Step {
 	
 	public static Step ToEntity(DirectionsStep source) {
 		Step item = new Step();
-		item.setStartPoint(source.startLocation.toString());
-		item.setEndPoint(source.endLocation.toString());
+		item.setStartPoint(Location.ToEntity(source.startLocation));
+		item.setEndPoint(Location.ToEntity(source.endLocation));
 		item.setMeters(source.distance.inMeters);
 		item.setSeconds(source.duration.inSeconds);
 		return item;
@@ -84,19 +87,19 @@ public class Step {
 		this.seconds = seconds;
 	}
 
-	public String getStartPoint() {
+	public Location getStartPoint() {
 		return startPoint;
 	}
 
-	public void setStartPoint(String startPoint) {
+	public void setStartPoint(Location startPoint) {
 		this.startPoint = startPoint;
 	}
 
-	public String getEndPoint() {
+	public Location getEndPoint() {
 		return endPoint;
 	}
 
-	public void setEndPoint(String endPoint) {
+	public void setEndPoint(Location endPoint) {
 		this.endPoint = endPoint;
 	}
 

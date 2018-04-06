@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.google.maps.model.LatLng;
+
 @Entity
 @Table(name = "LOCATION")
 public class Location {
@@ -41,5 +43,12 @@ public class Location {
 	}
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	
+	public static Location ToEntity(LatLng location) {
+		Location result = new Location();
+		result.setLat(location.lat);
+		result.setLng(location.lng);
+		return result;
 	}
 }
