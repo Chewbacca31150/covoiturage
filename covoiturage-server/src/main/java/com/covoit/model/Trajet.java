@@ -53,6 +53,9 @@ public class Trajet {
 
 	@Column(name = "max_places")
 	private int maxPlaces;
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy="trajet")
+	private Set<RegularDays> regularDays;
 
     @OneToMany(mappedBy = "trajet", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Step> steps = new HashSet<Step>();
