@@ -4,6 +4,7 @@
             <button mat-button routerLink="/" class="toolbar-home-button">
                 <a routerLink="/" class="title">VroumVroum</a>
             </button>
+            <button class="toolbar-other-button" mat-button routerLink="/map" *ngIf="user != null">Map</button>
         </span>
         <button class="toolbar-other-button" mat-button routerLink="/login" *ngIf="user == null">Login</button>
         <button class="toolbar-other-button" mat-button *ngIf="user != null" (click)="logout()">Logout</button>
