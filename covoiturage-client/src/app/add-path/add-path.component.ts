@@ -150,8 +150,8 @@ export class AddPathComponent implements OnInit {
             stopLocation: this.stopLocation
         };
         this.trajetService.saveTrajet(trajet).subscribe((a) => console.log(a));
-        this.snackBar.openFromComponent(AddPathSnackComponent, {
-            duration: 1000,
+        this.snackBar.open("Trajet ajoute.","", {
+            duration: 3500,
             horizontalPosition: 'right',
             verticalPosition: 'top'
         });

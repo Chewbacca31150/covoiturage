@@ -38,7 +38,6 @@ export class PathInformationDetailsComponent implements OnInit {
             this.speak = 'Oui';
           }
         });
-
       });
     });
 

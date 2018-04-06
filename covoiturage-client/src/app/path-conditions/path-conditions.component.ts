@@ -5,6 +5,7 @@ import { TrajetService } from '../services/trajet.service';
 import { User } from '../models/user';
 import { UserService } from '../services/user.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-path-conditions',
@@ -24,7 +25,7 @@ export class PathConditionsComponent implements OnInit {
   user: User;
   driverForm: FormGroup;
   passengerForm: FormGroup;
-  constructor(private _fb: FormBuilder, private authService: AuthService, private userService: UserService) { }
+  constructor(private _fb: FormBuilder, private authService: AuthService, private userService: UserService, private snackBar: MatSnackBar ) { }
 
 
   ngOnInit() {
@@ -74,6 +75,11 @@ export class PathConditionsComponent implements OnInit {
     this.user.musicPassenger = passengerForm.music;
     this.user.talkPassenger = passengerForm.talk;
     this.userService.saveUser(this.user).subscribe();
+    this.snackBar.open("Preferences mises a jour.","", {
+      duration: 3500,
+      horizontalPosition: 'right',
+      verticalPosition: 'top'
+  });
 
   }
 }
