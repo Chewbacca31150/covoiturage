@@ -79,11 +79,12 @@ public class TrajetServiceImpl implements TrajetService {
 			//found start position
 			int index = 0;
 			boolean found = false;
+			double distance = 1000.0;
 			for(int i = index; i < steps.size(); i++) {
-				if(!found && Distance.distance(steps.get(i).getStartPoint(), search.getStart()) < 1000.0) {//in meters
+				if(!found && Distance.distance(steps.get(i).getStartPoint(), search.getStart()) < distance) {//in meters
 					found = true;
 				}
-				else if(found && Distance.distance(steps.get(i).getEndPoint(), search.getEnd()) < 1000.0) {//user.getDistanceMax() in meters
+				else if(found && Distance.distance(steps.get(i).getEndPoint(), search.getEnd()) < distance) {//user.getDistanceMax() in meters
 					results.add(trajet);
 					continue primary;
 				}

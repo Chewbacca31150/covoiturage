@@ -1,6 +1,10 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { LocationGoogle } from '../models/location.google';
 import { MapsAPILoader } from '@agm/core';
+import { Search } from '../models/search';
+import { Trajet } from '../models/trajet';
+import { TrajetService } from '../services/trajet.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -27,7 +31,9 @@ export class PathInformationDistanceComponent implements AfterViewInit {
     address: null
   };
 
-  constructor(private mapsAPILoader: MapsAPILoader) { }
+  trajetsDist: Trajet[];
+
+  constructor(private mapsAPILoader: MapsAPILoader, private trajetService: TrajetService, private route: Router) { }
 
 
   ngAfterViewInit() {
@@ -72,6 +78,20 @@ export class PathInformationDistanceComponent implements AfterViewInit {
       .catch((error) => {
         console.error(error);
       });
+  }
+
+  search() {
+    const search: Search = {
+      end: this.stopLocation,
+      start: this.startLocation
+    };
+    this.trajetService.findTrajetsDist(search).subscribe((trajets) => {
+      this.trajetsDist = trajets;
+    });
+  }
+
+  goTo(id: number) {
+    this.route.navigate(['/path-information-details', id]);
   }
 
 }

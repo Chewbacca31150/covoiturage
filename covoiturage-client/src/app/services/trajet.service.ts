@@ -15,7 +15,6 @@ export class TrajetService {
 
   saveTrajet(trajet: Trajet) {
     return this.apiService.post(this.config.trajet_url, JSON.stringify(trajet)).map((response) => {
-      console.log('done');
     });
   }
 

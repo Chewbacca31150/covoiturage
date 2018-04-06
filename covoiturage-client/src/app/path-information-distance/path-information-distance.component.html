@@ -1,14 +1,18 @@
-<mat-card *ngFor="let trajet of trajetsDist" (click)="goTo(trajet.id)">
-  <!-- Adress depart -->
-  <mat-form-field class="example-full-width">
-    <input name="startAddressSearch" matInput placeholder="Adresse de depart" value="" #startAddressSearch>
-  </mat-form-field>
+<p>Permet de chercher des trajets autour du trajet que vous allez effectuer</p>
 
-  <!-- Adress entreprise -->
-  <mat-form-field class="example-full-width">
-    <input name="stopAddressSearch" matInput placeholder="Adresse d'arrive" #stopAddressSearch>
-  </mat-form-field>
-  <p>Conducteur : {{trajet?.driverId?.name}} </p>
+<!-- Adress depart -->
+<mat-form-field class="example-full-width">
+  <input name="startAddressSearch" matInput placeholder="Adresse de depart" value="" #startAddressSearch>
+</mat-form-field>
+<!-- Adress entreprise -->
+<mat-form-field class="example-full-width">
+  <input name="stopAddressSearch" matInput placeholder="Adresse d'arrivee" #stopAddressSearch>
+</mat-form-field>
+
+<button mat-button (click)="search()">Chercher</button>
+
+<mat-card *ngFor="let trajet of trajetsDist" (click)="goTo(trajet.id)">
+  <p>Conducteur : {{trajet?.driverId}} </p>
   <div>
     <p>From : {{trajet?.startLocation?.address}}</p>
     <p>To : {{trajet?.stopLocation?.address}}</p>

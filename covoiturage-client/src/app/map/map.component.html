@@ -11,20 +11,30 @@
     <button mat-button (click)="updateTrajet()" class="update-button">Update</button>
     <h1>Trajets</h1>
   </div>
-  <mat-card *ngFor="let trajet of trajets" (click)="goTo(trajet.id)" fxLayout="column" fxLayoutAlign="space-around center">
-    <div fxLayout="column" fxLayoutAlign="space-around start" >
-      <p>From : <b>{{trajet?.startLocation?.address}}</b></p>
-      <p>To : <b>{{trajet?.stopLocation?.address}}</b></p>
+  <mat-card *ngFor="let trajet of trajets" (click)="changeTrajet(trajet.id)" fxLayout="column" fxLayoutAlign="space-around center">
+    <div fxLayout="column" fxLayoutAlign="space-around start">
+      <p>From :
+        <b>{{trajet?.startLocation?.address}}</b>
+      </p>
+      <p>To :
+        <b>{{trajet?.stopLocation?.address}}</b>
+      </p>
       <div *ngIf="trajet?.dateDeparture != null">
-          <p>Date: <b>{{trajet.dateDeparture | date: 'shortDate'}}</b></p>
-  
+        <p>Date:
+          <b>{{trajet.dateDeparture | date: 'shortDate'}}</b>
+        </p>
+
       </div>
       <div *ngIf="trajet?.regularDays != null">
-          <p>Jours: <b>{{trajet?.regularDays}}</b></p>
-  
+        <p>Jours:
+          <b>{{trajet?.regularDays}}</b>
+        </p>
+
       </div>
-      <p>Hour: <b>{{trajet?.hourDeparture}}</b></p>
+      <p>Hour:
+        <b>{{trajet?.hourDeparture}}</b>
+      </p>
     </div>
-    <button mat-button class="details-button">Details</button>
+    <button (click)="goTo(trajet.id)" mat-button class="details-button">Details</button>
   </mat-card>
 </div>

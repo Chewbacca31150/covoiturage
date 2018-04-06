@@ -23,7 +23,6 @@ export class FooterComponent implements OnInit {
         });
 
         this._authService.eventUser.subscribe((user: User) => {
-            console.log(user);
             this.user = user;
         });
         this.copyrightYear = new Date().getFullYear().toString();

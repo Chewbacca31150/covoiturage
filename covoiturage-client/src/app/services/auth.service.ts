@@ -47,8 +47,6 @@ export class AuthService {
 
         return this.apiService.post(this.config.login_url, body, loginHeaders).map((result: AuthResult) => {
             if (result && result.access_token && result.expires_in) {
-                console.log('Login success');
-
                 // add cookie auth
                 const d = new Date();
                 d.setTime(d.getTime() + (7 * 24 * 60 * 60 * 1000));
@@ -66,9 +64,6 @@ export class AuthService {
         });
 
         return this.apiService.post(this.config.signup_url, JSON.stringify(user), signupHeaders).map((response) => {
-            console.log(response);
-
-            console.log('Sign up success');
         });
     }
 
@@ -77,7 +72,6 @@ export class AuthService {
             .map(() => {
                 this.currentUser = null;
                 document.cookie = 'username=; expires=Fri, 01 Jan 2010 00:0:00 UTC;';
-                console.log('Logout success');
                 this.getMyInfo().subscribe();
             });
     }
@@ -99,7 +93,6 @@ export class AuthService {
         return this.apiService.get(this.config.whoami_url).map((user: User) => {
             return this.sendEvent(user);
         }).catch<User, User>((e) => {
-            // console.log('err');
             this.sendEvent(null);
             return Observable.of<User>(null);
         });

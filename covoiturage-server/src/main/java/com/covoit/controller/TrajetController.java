@@ -40,7 +40,7 @@ public class TrajetController {
 
 	@Autowired
 	TrajetService trajetService;
-	
+
 	@Autowired
 	UserService userService;
 
@@ -51,105 +51,108 @@ public class TrajetController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/trajet/search")
-	public ResponseEntity<List<Trajet>> searchsTrajets(@RequestBody Search search)
-	{
-		return new ResponseEntity<List<Trajet>>( trajetService.searchsTrajets(search), HttpStatus.OK);
+	public ResponseEntity<List<Trajet>> searchsTrajets(@RequestBody Search search) {
+		return new ResponseEntity<List<Trajet>>(trajetService.searchsTrajets(search), HttpStatus.OK);
 	}
-	
-	@RequestMapping(method = RequestMethod.POST, value = "/trajet")
-	public ResponseEntity<Trajet> trajet(@RequestBody Trajet trajet) throws ApiException, InterruptedException, IOException {
 
-		  DirectionsResult result = DirectionsApi.getDirections(this.context, "43.624928, 1.432223", "43.623711, 1.549761").await();
-		  
-		  
-		  DirectionsStep[] steps = result.routes[0].legs[0].steps;
-		  Set<Step> stepSet = new HashSet<Step>();
-		  /*trajet.getRegularDays().forEach(regularDay ->  {
-			  regularDay.setTrajet(trajet);
-		  });*/
-		  int order = 1;
-		  for(DirectionsStep step : steps) {
-			  Step item = Step.ToEntity(step);
-			  item.setOrder(order);
-			  item.setTrajet(trajet);
-			  stepSet.add(item);
-			  trajet.setSteps(stepSet);
-			  ++order;
-		  }
-		  
-		  trajetService.save(trajet);
-		  
-		  return new ResponseEntity<Trajet>(trajet, HttpStatus.OK);
+	@RequestMapping(method = RequestMethod.POST, value = "/trajet")
+	public ResponseEntity<Trajet> trajet(@RequestBody Trajet trajet)
+			throws ApiException, InterruptedException, IOException {
+
+		DirectionsResult result = DirectionsApi
+				.getDirections(this.context, trajet.getStartLocation().toString(), trajet.getStopLocation().toString())
+				.await();
+
+		DirectionsStep[] steps = result.routes[0].legs[0].steps;
+		Set<Step> stepSet = new HashSet<Step>();
+		/*
+		 * trajet.getRegularDays().forEach(regularDay -> { regularDay.setTrajet(trajet);
+		 * });
+		 */
+		int order = 1;
+		for (DirectionsStep step : steps) {
+			Step item = Step.ToEntity(step);
+			item.setOrder(order);
+			item.setTrajet(trajet);
+			stepSet.add(item);
+			trajet.setSteps(stepSet);
+			++order;
+		}
+
+		trajetService.save(trajet);
+
+		return new ResponseEntity<Trajet>(trajet, HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/trajet")
 	public ResponseEntity<List<Trajet>> trajets() {
 		List<Trajet> trajets = trajetService.findAll();
-		System.out.println(trajets.size());
 		return new ResponseEntity<List<Trajet>>(trajets, HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.GET, value = "/trajet/find")
-	public ResponseEntity<List<Trajet>> searchTrajets(@RequestParam(value="search") String search) {
+	public ResponseEntity<List<Trajet>> searchTrajets(@RequestParam(value = "search") String search) {
 		List<Trajet> trajetsStart = trajetService.findByStartLocationAddressContaining(search);
 		List<Trajet> trajetsStop = trajetService.findByStopLocationAddressContaining(search);
 		List<Trajet> trajets = trajetsStart;
-		for(Trajet trajet: trajetsStop) {
-			if(!trajets.contains(trajet))trajets.add(trajet);
+		for (Trajet trajet : trajetsStop) {
+			if (!trajets.contains(trajet))
+				trajets.add(trajet);
 		}
 		return new ResponseEntity<List<Trajet>>(trajets, HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.GET, value = "/trajet/one")
 	public ResponseEntity<Trajet> getOneTrajet(@RequestParam(value = "id") long id) {
 		Trajet trajet = trajetService.findById(id);
 		return new ResponseEntity<Trajet>(trajet, HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST, value = "/trajet/one")
 	public ResponseEntity<?> addUserTrajet(@RequestBody Trajet trajet) {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		if(trajet == null || trajet.getPassengers() == null) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		if(trajet.getPassengers().size() <= trajet.getMaxPlaces()) return new ResponseEntity<>("Voiture pleine", HttpStatus.BAD_REQUEST);
-		if(trajet.getPassengers().contains(user)) return new ResponseEntity<>("User déjà ajouté", HttpStatus.BAD_REQUEST);
+		if (trajet == null || trajet.getPassengers() == null)
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		if (trajet.getPassengers().size() <= trajet.getMaxPlaces())
+			return new ResponseEntity<>("Voiture pleine", HttpStatus.BAD_REQUEST);
+		if (trajet.getPassengers().contains(user))
+			return new ResponseEntity<>("User déjà ajouté", HttpStatus.BAD_REQUEST);
 		trajet.getPassengers().add(user);
 		return new ResponseEntity<Trajet>(trajet, HttpStatus.OK);
 	}
-		
+
 	@RequestMapping(method = RequestMethod.GET, value = "trajet/my-trajets")
 	public ResponseEntity<List<Trajet>> getMyTrajetsDriver() {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		List<Trajet> trajets = trajetService.findByDriverId(user.getId());
 		return new ResponseEntity<List<Trajet>>(trajets, HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.GET, value = "trajet/my-trajets/passenger")
 	public ResponseEntity<List<Trajet>> getMyTrajetsPassenger() {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		List<Trajet> trajets = trajetService.findByPassengers(user);
 		return new ResponseEntity<List<Trajet>>(trajets, HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.GET, value = "trajet/from-users")
 	public ResponseEntity<List<Trajet>> getTrajetsFromUser() {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		List<Trajet> listTrajets = trajetService.findAll();
 		List<Trajet> trajetsToReturn = new ArrayList();
-		
+
 		listTrajets.forEach(trajet -> {
-			if(trajet.getDriverId() != user.getId()) {
+			if (trajet.getDriverId() != user.getId()) {
 				User driver = userService.findById(trajet.getDriverId());
-				if(trajet.getMaxPlaces() >= trajet.getPassengers().size()
-						&& driver.isMusicDriver() == user.isMusicPassenger() 
+				if (trajet.getMaxPlaces() >= trajet.getPassengers().size()
+						&& driver.isMusicDriver() == user.isMusicPassenger()
 						&& driver.isSmokeDriver() == user.isSmokePassenger()
-						&& driver.isTalkDriver() == user.isTalkPassenger()
-						&& !trajet.isCompleted())
+						&& driver.isTalkDriver() == user.isTalkPassenger() && !trajet.isCompleted())
 					trajetsToReturn.add(trajet);
 			}
 		});
-		return  new ResponseEntity<List<Trajet>>(trajetsToReturn, HttpStatus.OK);
-		
+		return new ResponseEntity<List<Trajet>>(trajetsToReturn, HttpStatus.OK);
+
 	}
-	
-	
+
 }

@@ -51,4 +51,8 @@ public class Location {
 		result.setLng(location.lng);
 		return result;
 	}
+	@Override 
+	public String toString() {
+		return this.getLat().toString() + "," + this.getLng().toString();
+	}
 }

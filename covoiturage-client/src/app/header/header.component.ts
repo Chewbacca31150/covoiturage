@@ -25,7 +25,6 @@ export class HeaderComponent implements OnInit {
         });
 
         this._authService.eventUser.subscribe((user: User) => {
-            console.log(user);
             this.user = user;
         });
     }
@@ -38,7 +37,7 @@ export class HeaderComponent implements OnInit {
     }
     openDialog(): void {
         const dialogRef = this.dialog.open(DialogOverviewComponent, {
-        width: '800px',
+            width: '800px',
         });
     }
 }

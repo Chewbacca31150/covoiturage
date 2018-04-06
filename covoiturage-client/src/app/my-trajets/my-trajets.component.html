@@ -2,13 +2,13 @@
   <mat-tab label="Conducteur" style="width:50%;">
     <mat-card *ngFor="let trajet of trajets" (click)="goTo(trajet.id)">
       <p>From {{trajet?.startLocation?.address}} to {{trajet?.stopLocation?.address}}</p>
-      <p>Date: {{trajet.dateDeparture | date: 'short'}}</p>
+      <!-- <p>Date: {{trajet.dateDeparture | date: 'short'}}</p> -->
     </mat-card>
   </mat-tab>
   <mat-tab label="Passager" style="width:50%;">
     <mat-card *ngFor="let trajet of trajets" (click)="goTo(trajet.id)">
       <p>From {{trajet?.startLocation?.address}} to {{trajet?.stopLocation?.address}}</p>
-      <p>Date: {{trajet.dateDeparture | date: 'short'}}</p>
+      <!-- <p>Date: {{trajet.dateDeparture | date: 'short'}}</p> -->
     </mat-card>
   </mat-tab>
 </mat-tab-group>

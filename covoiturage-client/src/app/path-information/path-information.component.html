@@ -5,7 +5,7 @@
         <input matInput placeholder="Trajets" aria-label="Trajets" (input)="find($event.target.value)">
       </mat-form-field>
       <mat-card *ngFor="let trajet of trajets" (click)="goTo(trajet.id)">
-        <p>Conducteur : {{trajet?.driverId?.name}} </p>
+        <p>Conducteur : {{trajet?.driverId}} </p>
         <div>
           <p>From : {{trajet?.startLocation?.address}}</p>
           <p>To : {{trajet?.stopLocation?.address}}</p>
@@ -16,7 +16,7 @@
     </mat-tab>
     <mat-tab label="Trajets selon préférence">
       <mat-card *ngFor="let trajet of trajetsPrefs" (click)="goTo(trajet.id)">
-        <p>Conducteur : {{trajet?.driverId?.name}} </p>
+        <p>Conducteur : {{trajet?.driverId}} </p>
         <div>
           <p>From : {{trajet?.startLocation?.address}}</p>
           <p>To : {{trajet?.stopLocation?.address}}</p>
@@ -26,7 +26,6 @@
       </mat-card>
     </mat-tab>
     <mat-tab label="Trajets selon distance">
-      Algo fait mais front non fonctionnel
       <app-path-information-distance></app-path-information-distance>
     </mat-tab>
   </mat-tab-group>

@@ -44,28 +44,28 @@ public class Trajet {
 
 	@Column(name = "date_departure")
 	private Date dateDeparture;
-	
+
 	@OneToOne(cascade = CascadeType.ALL)
 	private Location startLocation;
-	
+
 	@OneToOne(cascade = CascadeType.ALL)
 	private Location stopLocation;
-		
+
 	@Column(name = "max_places")
 	private int maxPlaces;
-	
+
 	@Column(name = "path_back")
 	private boolean pathBack;
-		
+
 	@Column(name = "regulard_days")
 	private String regularDays;
-	
+
 	@Column(name = "hour_departure")
 	private String hourDeparture;
 
-    @OneToMany(mappedBy = "trajet", cascade = CascadeType.ALL)
-    private Set<Step> steps;
-   
+	@OneToMany(mappedBy = "trajet", cascade = CascadeType.ALL)
+	private Set<Step> steps;
+
 	public Long getId() {
 		return id;
 	}
@@ -114,6 +114,7 @@ public class Trajet {
 	public Set<Step> getSteps() {
 		return steps;
 	}
+
 	public Long getDriverId() {
 		return driverId;
 	}
@@ -121,6 +122,7 @@ public class Trajet {
 	public void setSteps(Set<Step> steps) {
 		this.steps = steps;
 	}
+
 	public void setDriverId(Long driverId) {
 		this.driverId = driverId;
 	}
@@ -180,5 +182,4 @@ public class Trajet {
 	public void setHourDeparture(String hourDeparture) {
 		this.hourDeparture = hourDeparture;
 	}
-
 }

@@ -36,21 +36,6 @@ export class PathInformationComponent implements OnInit {
     this.trajetService.findTrajetsSpecific().subscribe((trajets) => {
       this.trajetsPrefs = trajets;
     });
-    const search: Search = {
-      start: {
-        lat: 5646,
-        lng: 5554,
-        address: null
-      },
-      end: {
-        lat: 454,
-        lng: 5656,
-        address: null
-      },
-    };
-    this.trajetService.findTrajetsDist(search).subscribe((trajets) => {
-      this.trajetsDist = trajets;
-    });
   }
 
   find(search: string) {

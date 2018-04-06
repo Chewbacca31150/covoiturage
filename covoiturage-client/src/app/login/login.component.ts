@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
                 });
             });
         this.error = null;
-        this._snackBar.open("Bonjour " + this.loginForm.value.username + ".","", {
+        this._snackBar.open('Bonjour ' + this.loginForm.value.username + ".","", {
             duration: 3500,
             horizontalPosition: 'right',
             verticalPosition: 'top'
@@ -73,6 +73,5 @@ export class LoginComponent implements OnInit {
     }
 
     debug(signInForm) {
-        console.log(signInForm);
     }
 }
