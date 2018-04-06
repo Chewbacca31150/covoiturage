@@ -2,6 +2,7 @@ import { TrajetService } from '../services/trajet.service';
 import { Trajet } from '../models/trajet';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import {Component, OnInit} from "@angular/core";
 
 @Component({
   selector: 'app-map',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
-  public workPosition: { lat: number; lng: number };
+  // public workPosition: { lat: number; lng: number };
   public userPosition: { lat: number; lng: number };
   private googleMap: any = null;
   private driverMarker: any = null;
@@ -23,7 +24,7 @@ export class MapComponent implements OnInit {
   // lng: number = 1.380402;
 
 
-  constructor(private route: Router, private trajetService: TrajetService) {
+  constructor(private route: Router, private pathService: TrajetService) {
     // this.workPosition = {lat: 43.574681, lng: 1.380402};
     this.userPosition = {lat: 43.624866, lng: 1.432042};
     this.driverMarker = null;
@@ -77,18 +78,16 @@ export class MapComponent implements OnInit {
   }
   updateTrajet() {
     this.trajetsCtrl = new FormControl();
-    this.trajetService.getTrajets().subscribe((trajets) => {
+    this.pathService.getTrajets().subscribe((trajets) => {
       this.trajets = trajets;
     });
-    
+
   }
   goTo(id: number) {
     this.route.navigate(['/path-information-details', id]);
   }
 
   addPath(path) {
-    console.log(path.startLocation);
-    console.log(path.stopLocation);
     this.showDirection = true;
     this.path = {
       origin : {
