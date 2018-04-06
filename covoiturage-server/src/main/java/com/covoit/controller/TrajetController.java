@@ -51,7 +51,7 @@ public class TrajetController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/trajet/search")
-	public ResponseEntity<List<Trajet>> searchsTrajets(Search search)
+	public ResponseEntity<List<Trajet>> searchsTrajets(@RequestBody Search search)
 	{
 		return new ResponseEntity<List<Trajet>>( trajetService.searchsTrajets(search), HttpStatus.OK);
 	}

@@ -2,7 +2,7 @@ import { TrajetService } from '../services/trajet.service';
 import { Trajet } from '../models/trajet';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import {Component, OnInit} from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 
 @Component({
   selector: 'app-map',
@@ -19,14 +19,14 @@ export class MapComponent implements OnInit {
   private path: { origin: { lat: number; lng: number }, destination: { lat: number; lng: number } };
   trajets: Trajet[] = [];
   trajetsCtrl: FormControl;
-  public zoom: number = 15;
+  public zoom = 15;
   // lat: number = 43.574681;
   // lng: number = 1.380402;
 
 
   constructor(private route: Router, private pathService: TrajetService) {
     // this.workPosition = {lat: 43.574681, lng: 1.380402};
-    this.userPosition = {lat: 43.624866, lng: 1.432042};
+    this.userPosition = { lat: 43.624866, lng: 1.432042 };
     this.driverMarker = null;
 
     // this.markers.push({
@@ -37,13 +37,17 @@ export class MapComponent implements OnInit {
     this.markers.push({
       lat: 43.624866,
       lng: 1.432042,
-      title: "user"
+      title: 'user'
     });
 
     // (<any>window).initMap = this.initMap;
   }
 
-  ngOnInit() {
+  changeTrajet(id: number) {
+    this.getTrajet(id);
+  }
+
+  getTrajet(id: number) {
     navigator.geolocation.getCurrentPosition((position) => {
 
       this.userPosition = {
@@ -51,19 +55,21 @@ export class MapComponent implements OnInit {
         lng: position.coords.longitude
       };
 
-      if (this.googleMap !== null)
+      if (this.googleMap !== null) {
         this.googleMap.setCenter(this.userPosition);
-      if (this.driverMarker !== null)
+      }
+      if (this.driverMarker !== null) {
         this.driverMarker.setPosition(this.userPosition);
+      }
 
     }, (positionError) => {
       switch (positionError.code) {
-        case 1: //PERMISSION_DENIED
+        case 1: // PERMISSION_DENIED
           break;
-        case 2: //POSITION_UNAVAILABLE
-        case 3: //TIMEOUT
+        case 2: // POSITION_UNAVAILABLE
+        case 3: // TIMEOUT
         default:
-          alert("Impossible de vous localiser : " + positionError.message);
+          alert('Impossible de vous localiser : ' + positionError.message);
           break;
       }
     });
@@ -71,10 +77,17 @@ export class MapComponent implements OnInit {
 
 
     this.pathService.getTrajets().subscribe((paths) => {
-      let path = paths[1];
-      this.addPath(path);
-    })
+      paths.forEach(path => {
+        if (path.id === id) {
+          this.addPath(path);
+        }
+      });
+    });
 
+  }
+
+  ngOnInit() {
+    this.getTrajet(1);
   }
   updateTrajet() {
     this.trajetsCtrl = new FormControl();
@@ -90,27 +103,27 @@ export class MapComponent implements OnInit {
   addPath(path) {
     this.showDirection = true;
     this.path = {
-      origin : {
-        lat:path.startLocation.lat,
-        lng:path.startLocation.lng
+      origin: {
+        lat: path.startLocation.lat,
+        lng: path.startLocation.lng
       },
-      destination:{
-        lat:path.stopLocation.lat,
-        lng:path.stopLocation.lng
+      destination: {
+        lat: path.stopLocation.lat,
+        lng: path.stopLocation.lng
       }
     };
   }
 
-// initMap() {
-//   let googleMap = new google.maps.Map(document.getElementById('map'), {
-//     zoom: 15,
-//     center: this.userPosition
-//   });
-//
-//   this.driverMarker = new google.maps.Marker({
-//     position: this.userPosition,
-//     map: googleMap
-//   });
-// }
+  // initMap() {
+  //   let googleMap = new google.maps.Map(document.getElementById('map'), {
+  //     zoom: 15,
+  //     center: this.userPosition
+  //   });
+  //
+  //   this.driverMarker = new google.maps.Marker({
+  //     position: this.userPosition,
+  //     map: googleMap
+  //   });
+  // }
 
 }

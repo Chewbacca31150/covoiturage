@@ -9,7 +9,7 @@
 <div class="example-form">
   <button mat-button (click)="updateTrajet()">Update</button>
   <h1>Trajets</h1>
-  <mat-card *ngFor="let trajet of trajets" (click)="goTo(trajet.id)">
+  <mat-card *ngFor="let trajet of trajets" (click)="changeTrajet(trajet.id)">
     <p>From : {{trajet?.startLocation?.address}}<br/> 
     To : {{trajet?.stopLocation?.address}}<br/> 
     Date: {{trajet.dateDeparture | date: 'short'}}<br/> 
