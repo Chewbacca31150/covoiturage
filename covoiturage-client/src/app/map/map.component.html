@@ -10,16 +10,16 @@
   <button mat-button (click)="updateTrajet()">Update</button>
   <h1>Trajets</h1>
   <mat-card *ngFor="let trajet of trajets" (click)="goTo(trajet.id)">
-    <p>From : {{trajet?.startLocation?.address}}</p>
-    <p>To : {{trajet?.stopLocation?.address}}</p>
+    <p>From : <b>{{trajet?.startLocation?.address}}</b></p>
+    <p>To : <b>{{trajet?.stopLocation?.address}}</b></p>
     <div *ngIf="trajet?.dateDeparture != null">
-        <p>Date: {{trajet.dateDeparture | date: 'shortDate'}}</p>
+        <p>Date: <b>{{trajet.dateDeparture | date: 'shortDate'}}</b></p>
 
     </div>
     <div *ngIf="trajet?.regularDays != null">
-        <p>Jours: {{trajet?.regularDays}}</p>
+        <p>Jours: <b>{{trajet?.regularDays}}</b></p>
 
     </div>
-    <p>Hour: {{trajet?.hourDeparture}}</p>
+    <p>Hour: <b>{{trajet?.hourDeparture}}</b></p>
   </mat-card>
 </div>
