@@ -37,4 +37,8 @@ export class TrajetService {
       return response;
     });
   }
+
+  postOne(trajet: Trajet): Observable<Trajet> {
+    return this.apiService.post(this.config.trajet_one_url, trajet).map(response => response);
+  }
 }

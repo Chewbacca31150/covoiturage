@@ -91,8 +91,7 @@ public class TrajetController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/trajet/one")
-	public ResponseEntity<?> addUserTrajet(@RequestParam(value = "trajetId") long trajetId) {
-		Trajet trajet = trajetService.findById(trajetId);
+	public ResponseEntity<?> addUserTrajet(@RequestBody Trajet trajet) {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		if(trajet == null || trajet.getPassengers() == null) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		if(trajet.getPassengers().size() <= trajet.getMaxPlaces()) return new ResponseEntity<>("Voiture pleine", HttpStatus.BAD_REQUEST);
@@ -100,7 +99,7 @@ public class TrajetController {
 		trajet.getPassengers().add(user);
 		return new ResponseEntity<Trajet>(trajet, HttpStatus.OK);
 	}
-	
+		
 	@RequestMapping(method = RequestMethod.GET, value = "trajet/my-trajets")
 	public ResponseEntity<List<Trajet>> getMyTrajetsDriver() {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

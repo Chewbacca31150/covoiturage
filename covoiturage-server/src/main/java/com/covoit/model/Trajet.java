@@ -34,7 +34,7 @@ public class Trajet {
 	private Long driverId;
 
 	@Column(name = "passengers_id")
-	private String passengersId;// List<String> passengers_id;
+	private String passengersId;
 
 	@OneToMany(mappedBy = "trajets", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<User> passengers;

@@ -1,7 +1,5 @@
 package com.covoit.controller;
 
-import static org.assertj.core.api.Assertions.useRepresentation;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
