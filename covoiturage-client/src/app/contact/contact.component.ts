@@ -29,15 +29,16 @@ export class ContactComponent implements OnInit {
     }, {});
   }
 
-  onSubmit() {
+  onSubmit(event: Event) {
     const message: Contact = {
       message: this.messageForm.value.message,
-      trajet: this.trajet.id,
-      receiver: this.trajet.driverId,
-      sender: this.authService.currentUser.id,
+      trajet: this.trajet,
+      receiverId: this.trajet.driverId,
+      senderId: this.authService.currentUser.id,
       dateSent: new Date()
     };
-    this.contactService.send(message);
+    this.contactService.send(message).subscribe(m => console.log(m));
+    event.preventDefault();
   }
 
 }

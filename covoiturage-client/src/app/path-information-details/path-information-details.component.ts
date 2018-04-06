@@ -20,7 +20,7 @@ export class PathInformationDetailsComponent implements OnInit {
   }
 
   contact() {
-    this.router.navigate(['message', this.trajet.id]);
+    this.router.navigate(['contact', this.trajet.id]);
   }
   add() {
     this.trajetService.postOne(this.trajet);
