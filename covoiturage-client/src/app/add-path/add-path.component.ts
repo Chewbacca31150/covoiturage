@@ -111,6 +111,10 @@ export class AddPathComponent implements OnInit {
     }
 
     onSubmit(event: Event) {
+        if(this.form.value.startAddress == "" || this.form.value.stopAddress == "" || this.form.value.numberPlaces == "" || (this.form.value.pathDepartureDate == "" && this.form.value.pathRegularDays == ""))
+        {
+            return;
+        }
         event.preventDefault();
         if (this.regularPath === 'pathRegularTrue') {
             this.form.controls['pathDepartureDate'].setValue('');
