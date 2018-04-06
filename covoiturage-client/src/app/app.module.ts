@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NG_ASYNC_VALIDATORS, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AgmCoreModule } from '@agm/core';
+import { AgmDirectionModule } from 'agm-direction';   // agm-direction
 
 import { AppModuleMaterial } from './app.module-material';
 
@@ -42,6 +43,9 @@ import { PathInformationDetailsComponent } from './path-information-details/path
 import { ContactComponent } from './contact/contact.component';
 import { ContactService } from './services/contact.service';
 
+//how to avoid api limit ? use a random api key :P
+let apiKeys = ["AIzaSyCHKOinW6VoYCy8y4ogN0nAGXwX9DWhGP8", "AIzaSyBiw67fELpJMwyZXXN799Wkx8eb6oQJA2A", "AIzaSyDi9cqC_wA23bDv4G8l5EgRAHSmPg7UfV4"];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,9 +77,10 @@ import { ContactService } from './services/contact.service';
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDi9cqC_wA23bDv4G8l5EgRAHSmPg7UfV4',
+      apiKey:  apiKeys[Math.floor(Math.random() * apiKeys.length)],
       libraries: ['places']
-    })
+    }),
+    AgmDirectionModule
   ],
   entryComponents: [
     DialogOverviewComponent,

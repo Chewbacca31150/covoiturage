@@ -4,4 +4,5 @@
   </div>
 <agm-map [zoom]="zoom" [latitude]="userPosition.lat" [longitude]="userPosition.lng">
   <agm-marker *ngFor="let marker of markers" [latitude]="marker.lat" [longitude]="marker.lng" [title]="marker.title"></agm-marker>
+  <agm-direction *ngIf="path" [visible]="showDirection" [origin]="path.origin" [destination]="path.destination"></agm-direction>
 </agm-map>

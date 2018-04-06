@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { AgmCoreModule } from '@agm/core';
+import {Component, OnInit} from '@angular/core';
+import {TrajetService} from "../services/trajet.service";
 
 @Component({
   selector: 'app-map',
@@ -11,30 +11,33 @@ export class MapComponent implements OnInit {
   public userPosition: { lat: number; lng: number };
   private googleMap: any = null;
   private driverMarker: any = null;
-  public zoom : number = 15;
-  public markers: {lat:number; lng:number, title:string}[] = [];
+  public zoom: number = 15;
+  public markers: { lat: number; lng: number, title: string }[] = [];
+  private showDirection: boolean;
+  private path: { origin: { lat: number; lng: number }, destination: { lat: number; lng: number } };
   // lat: number = 43.574681;
   // lng: number = 1.380402;
 
 
-  constructor() {
-    this.workPosition = {lat:43.574681,lng:1.380402};
-    this.userPosition = {lat:43.624866, lng:1.432042};
+  constructor(private pathService: TrajetService) {
+    // this.workPosition = {lat: 43.574681, lng: 1.380402};
+    this.userPosition = {lat: 43.624866, lng: 1.432042};
     this.driverMarker = null;
 
+    // this.markers.push({
+    //   lat: 43.574681,
+    //   lng: 1.380402,
+    //   title: "EDF"
+    // });
     this.markers.push({
-      lat : 43.574681,
-      lng:1.380402,
-      title: "EDF"
-    });
-    this.markers.push({
-      lat : 43.624866,
-      lng:1.432042,
+      lat: 43.624866,
+      lng: 1.432042,
       title: "user"
     });
 
     // (<any>window).initMap = this.initMap;
   }
+
   ngOnInit() {
     navigator.geolocation.getCurrentPosition((position) => {
 
@@ -43,35 +46,57 @@ export class MapComponent implements OnInit {
         lng: position.coords.longitude
       };
 
-      if(this.googleMap !== null)
+      if (this.googleMap !== null)
         this.googleMap.setCenter(this.userPosition);
-      if(this.driverMarker !== null)
+      if (this.driverMarker !== null)
         this.driverMarker.setPosition(this.userPosition);
 
     }, (positionError) => {
-      switch(positionError.code){
+      switch (positionError.code) {
         case 1: //PERMISSION_DENIED
           break;
         case 2: //POSITION_UNAVAILABLE
         case 3: //TIMEOUT
         default:
-          alert("Impossible de vous localiser : "+positionError.message);
+          alert("Impossible de vous localiser : " + positionError.message);
           break;
       }
     });
 
+
+    this.pathService.getTrajets().subscribe((paths) => {
+      let path = paths[3];
+      this.addPath(path);
+    })
+
   }
 
-  // initMap() {
-  //   let googleMap = new google.maps.Map(document.getElementById('map'), {
-  //     zoom: 15,
-  //     center: this.userPosition
-  //   });
-  //
-  //   this.driverMarker = new google.maps.Marker({
-  //     position: this.userPosition,
-  //     map: googleMap
-  //   });
-  // }
+  addPath(path) {
+    console.log(path.startLocation);
+    console.log(path.stopLocation);
+    this.showDirection = true;
+    this.path = {
+      origin : {
+        lat:path.startLocation.lat,
+        lng:path.startLocation.lng
+      },
+      destination:{
+        lat:path.stopLocation.lat,
+        lng:path.stopLocation.lng
+      }
+    };
+  }
+
+// initMap() {
+//   let googleMap = new google.maps.Map(document.getElementById('map'), {
+//     zoom: 15,
+//     center: this.userPosition
+//   });
+//
+//   this.driverMarker = new google.maps.Marker({
+//     position: this.userPosition,
+//     map: googleMap
+//   });
+// }
 
 }
