@@ -1,8 +1,12 @@
 button{
     background-color:#3F51B5; 
     color:white; 
+}
+
+.map-button{
     margin: 20px;
 }
+
 .example-form
 {
     font-size:12px;

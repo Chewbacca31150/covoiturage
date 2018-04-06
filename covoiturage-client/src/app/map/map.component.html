@@ -1,25 +1,31 @@
 <div fxLayout fxLayoutAlign="center top" style="position:absolute; z-index: 2; width:100%;">
-  <button mat-button routerLink="/add-path">Ajouter trajet</button>
-  <button mat-button routerLink="/path-information">Chercher trajet</button>
+  <button mat-button routerLink="/add-path" class="map-button">Ajouter trajet</button>
+  <button mat-button routerLink="/path-information" class="map-button">Chercher trajet</button>
 </div>
 <agm-map [zoom]="zoom" [latitude]="userPosition.lat" [longitude]="userPosition.lng">
   <agm-marker *ngFor="let marker of markers" [latitude]="marker.lat" [longitude]="marker.lng" [title]="marker.title"></agm-marker>
   <agm-direction *ngIf="path" [visible]="showDirection" [origin]="path.origin" [destination]="path.destination"></agm-direction>
 </agm-map>
-<div class="example-form">
-  <button mat-button (click)="updateTrajet()">Update</button>
-  <h1>Trajets</h1>
-  <mat-card *ngFor="let trajet of trajets" (click)="goTo(trajet.id)">
-    <p>From : <b>{{trajet?.startLocation?.address}}</b></p>
-    <p>To : <b>{{trajet?.stopLocation?.address}}</b></p>
-    <div *ngIf="trajet?.dateDeparture != null">
-        <p>Date: <b>{{trajet.dateDeparture | date: 'shortDate'}}</b></p>
-
+<div class="example-form" fxLayout="column">
+  <div fxLayout="row" fxLayoutAlign="space-evenly center">
+    <button mat-button (click)="updateTrajet()" class="update-button">Update</button>
+    <h1>Trajets</h1>
+  </div>
+  <mat-card *ngFor="let trajet of trajets" (click)="goTo(trajet.id)" fxLayout="column" fxLayoutAlign="space-around center">
+    <div fxLayout="column" fxLayoutAlign="space-around start" >
+      <p>From : <b>{{trajet?.startLocation?.address}}</b></p>
+      <p>To : <b>{{trajet?.stopLocation?.address}}</b></p>
+      <div *ngIf="trajet?.dateDeparture != null">
+          <p>Date: <b>{{trajet.dateDeparture | date: 'shortDate'}}</b></p>
+  
+      </div>
+      <div *ngIf="trajet?.regularDays != null">
+          <p>Jours: <b>{{trajet?.regularDays}}</b></p>
+  
+      </div>
+      <p>Hour: <b>{{trajet?.hourDeparture}}</b></p>
+      <p>Place(s) restante(s) : <b>{{trajets.maxPlaces}}</b></p>
     </div>
-    <div *ngIf="trajet?.regularDays != null">
-        <p>Jours: <b>{{trajet?.regularDays}}</b></p>
-
-    </div>
-    <p>Hour: <b>{{trajet?.hourDeparture}}</b></p>
+    <button mat-button class="details-button">Details</button>
   </mat-card>
 </div>
