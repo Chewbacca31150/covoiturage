@@ -10,10 +10,10 @@ INSERT INTO user_authority (user_id, authority_id) VALUES (1, 1);
 INSERT INTO user_authority (user_id, authority_id) VALUES (2, 1);
 INSERT INTO user_authority (user_id, authority_id) VALUES (2, 2);
 
-INSERT INTO location (address, lat, lng) VALUES('6 Rue des Pruniers, 31150 Gratentour, France', 1.437371999999982,43.72221150000001);
-INSERT INTO location (address, lat, lng) VALUES('1 Rue du Bois Fleuri, 44200 Nantes, France', -1.5144333000000643, 47.1884331);
-INSERT INTO location (address, lat, lng) VALUES('6 Rue des Pruniers, 31150 Gratentour, France', 1.437371999999982,43.72221150000001);
-INSERT INTO location (address, lat, lng) VALUES('1 Rue du Bois Fleuri, 44200 Nantes, France', -1.5144333000000643, 47.1884331);
+INSERT INTO location (address, lat, lng) VALUES('Place du Capitole, 31000 Toulouse, France', 43.6044292,1.4438121000000592);
+INSERT INTO location (address, lat, lng) VALUES('Barrière de Paris, 31200 Toulouse, France',43.63342919999999,1.428973400000018);
+INSERT INTO location (address, lat, lng) VALUES('Barrière de Paris, 31200 Toulouse, France',43.63342919999999,1.428973400000018);
+INSERT INTO location (address, lat, lng) VALUES('Place du Capitole, 31000 Toulouse, France', 43.6044292,1.4438121000000592);
 	  
 INSERT INTO trajet (driver_id, passengers_id, is_completed, date_departure, max_places, start_location_id, stop_location_id, path_back, hour_departure) VALUES (1, '1', true, CURRENT_TIMESTAMP, 4, 1, 2, false, '8:00');
 INSERT INTO trajet (driver_id, passengers_id, is_completed, date_departure, max_places, start_location_id, stop_location_id, path_back, hour_departure) VALUES (2, '1', true, CURRENT_TIMESTAMP, 4, 3, 4, false, '8:00');
