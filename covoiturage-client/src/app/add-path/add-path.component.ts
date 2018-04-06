@@ -6,6 +6,8 @@ import { AuthService } from '../services/auth.service';
 import { MapsAPILoader } from '@agm/core';
 import { } from '@types/googlemaps';
 import { LocationGoogle } from '../models/location.google';
+import { Router } from '@angular/router';
+
 @Component({
     selector: 'app-add-path',
     templateUrl: './add-path.component.html',
@@ -37,7 +39,7 @@ export class AddPathComponent implements OnInit {
     };
 
     constructor(private trajetService: TrajetService, private authService: AuthService,
-        private formBuilder: FormBuilder, private mapsAPILoader: MapsAPILoader) {
+        private formBuilder: FormBuilder, private mapsAPILoader: MapsAPILoader, private route: Router) {
     }
 
     ngOnInit() {
@@ -129,5 +131,6 @@ export class AddPathComponent implements OnInit {
             stopLocation: this.stopLocation
         };
         this.trajetService.saveTrajet(trajet).subscribe((a) => console.log(a));
+        this.route.navigate(['/map']);
     }
 }
