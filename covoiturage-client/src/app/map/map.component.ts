@@ -71,7 +71,7 @@ export class MapComponent implements OnInit {
 
 
     this.pathService.getTrajets().subscribe((paths) => {
-      let path = paths[3];
+      let path = paths[1];
       this.addPath(path);
     })
 
