@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.covoit.dto.Search;
 import com.covoit.model.RegularDays;
 import com.covoit.model.Step;
 import com.covoit.model.Trajet;
@@ -49,6 +50,12 @@ public class TrajetController {
 		context = new GeoApiContext.Builder().apiKey("AIzaSyDi9cqC_wA23bDv4G8l5EgRAHSmPg7UfV4").build();
 	}
 
+	@RequestMapping(method = RequestMethod.POST, value = "/trajet/search")
+	public ResponseEntity<List<Trajet>> searchsTrajets(Search search)
+	{
+		return new ResponseEntity<List<Trajet>>( trajetService.searchsTrajets(search), HttpStatus.OK);
+	}
+	
 	@RequestMapping(method = RequestMethod.POST, value = "/trajet")
 	public ResponseEntity<Trajet> trajet(@RequestBody Trajet trajet) throws ApiException, InterruptedException, IOException {
 
