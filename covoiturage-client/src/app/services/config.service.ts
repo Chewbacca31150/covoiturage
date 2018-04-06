@@ -44,6 +44,12 @@ export class ConfigService {
 
     private _trajet_from_users_url = this._trajet_url + '/from-users';
 
+    private _trajet_dist_url = this._trajet_url + '/search';
+
+    get trajet_dist_url(): string {
+        return this._trajet_dist_url;
+    }
+
     get trajet_from_users_url(): string {
         return this._trajet_from_users_url;
     }

@@ -2,7 +2,7 @@ import { TrajetService } from '../services/trajet.service';
 import { Trajet } from '../models/trajet';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-map',

@@ -41,9 +41,11 @@ import { TrajetService } from './services/trajet.service';
 import { PathInformationDetailsComponent } from './path-information-details/path-information-details.component';
 import { ContactComponent } from './contact/contact.component';
 import { ContactService } from './services/contact.service';
+import { PathInformationDistanceComponent } from './path-information-distance/path-information-distance.component';
 
-//how to avoid api limit ? use a random api key :P
-let apiKeys = ["AIzaSyCHKOinW6VoYCy8y4ogN0nAGXwX9DWhGP8", "AIzaSyBiw67fELpJMwyZXXN799Wkx8eb6oQJA2A", "AIzaSyDi9cqC_wA23bDv4G8l5EgRAHSmPg7UfV4"];
+// how to avoid api limit ? use a random api key :P
+const apiKeys = ['AIzaSyCHKOinW6VoYCy8y4ogN0nAGXwX9DWhGP8',
+  'AIzaSyBiw67fELpJMwyZXXN799Wkx8eb6oQJA2A', 'AIzaSyDi9cqC_wA23bDv4G8l5EgRAHSmPg7UfV4'];
 
 @NgModule({
   declarations: [
@@ -62,7 +64,8 @@ let apiKeys = ["AIzaSyCHKOinW6VoYCy8y4ogN0nAGXwX9DWhGP8", "AIzaSyBiw67fELpJMwyZX
     PathInformationDetailsComponent,
     ContactComponent,
     MyMessagesComponent,
-    MyTrajetsComponent
+    MyTrajetsComponent,
+    PathInformationDistanceComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +78,7 @@ let apiKeys = ["AIzaSyCHKOinW6VoYCy8y4ogN0nAGXwX9DWhGP8", "AIzaSyBiw67fELpJMwyZX
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
     AgmCoreModule.forRoot({
-      apiKey:  apiKeys[Math.floor(Math.random() * apiKeys.length)],
+      apiKey: apiKeys[Math.floor(Math.random() * apiKeys.length)],
       libraries: ['places']
     }),
     AgmDirectionModule

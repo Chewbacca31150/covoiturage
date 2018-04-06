@@ -25,7 +25,8 @@ export class PathConditionsComponent implements OnInit {
   user: User;
   driverForm: FormGroup;
   passengerForm: FormGroup;
-  constructor(private _fb: FormBuilder, private authService: AuthService, private userService: UserService, private snackBar: MatSnackBar ) { }
+  constructor(private _fb: FormBuilder, private authService: AuthService,
+    private userService: UserService, private snackBar: MatSnackBar) { }
 
 
   ngOnInit() {
@@ -75,11 +76,11 @@ export class PathConditionsComponent implements OnInit {
     this.user.musicPassenger = passengerForm.music;
     this.user.talkPassenger = passengerForm.talk;
     this.userService.saveUser(this.user).subscribe();
-    this.snackBar.open('Preferences mises a jour.','', {
+    this.snackBar.open('Preferences mises a jour.', '', {
       duration: 3500,
       horizontalPosition: 'right',
       verticalPosition: 'top'
-  });
+    });
 
   }
 }

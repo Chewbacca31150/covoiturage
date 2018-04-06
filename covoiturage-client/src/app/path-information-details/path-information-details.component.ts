@@ -40,7 +40,7 @@ export class PathInformationDetailsComponent implements OnInit {
           }
           if (trajet.pathBack) {
             this.back = 'Oui';
-          } 
+          }
         });
       });
     });

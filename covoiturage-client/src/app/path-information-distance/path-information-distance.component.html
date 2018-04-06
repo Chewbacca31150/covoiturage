@@ -1,0 +1,18 @@
+<mat-card *ngFor="let trajet of trajetsDist" (click)="goTo(trajet.id)">
+  <!-- Adress depart -->
+  <mat-form-field class="example-full-width">
+    <input name="startAddressSearch" matInput placeholder="Adresse de depart" value="" #startAddressSearch>
+  </mat-form-field>
+
+  <!-- Adress entreprise -->
+  <mat-form-field class="example-full-width">
+    <input name="stopAddressSearch" matInput placeholder="Adresse d'arrive" #stopAddressSearch>
+  </mat-form-field>
+  <p>Conducteur : {{trajet?.driverId?.name}} </p>
+  <div>
+    <p>From : {{trajet?.startLocation?.address}}</p>
+    <p>To : {{trajet?.stopLocation?.address}}</p>
+  </div>
+  <p>Date: {{trajet.dateDeparture | date: 'short'}}</p>
+  <p>Hour: {{trajet?.hourDeparture}}</p>
+</mat-card>

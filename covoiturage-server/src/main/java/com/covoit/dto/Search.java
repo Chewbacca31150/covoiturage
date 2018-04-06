@@ -16,14 +16,7 @@ public class Search {
 	public void setEnd(Location end) {
 		this.end = end;
 	}
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
 
-	private User user;
 	private Location start;
 	private Location end;
 }

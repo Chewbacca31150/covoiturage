@@ -5,6 +5,7 @@ import { ConfigService } from './config.service';
 import { HttpHeaders } from '@angular/common/http';
 import { Trajet } from '../models/trajet';
 import { Observable } from 'rxjs/Observable';
+import { Search } from '../models/search';
 
 @Injectable()
 export class TrajetService {
@@ -28,6 +29,12 @@ export class TrajetService {
 
   findMyTrajets(): Observable<Trajet[]> {
     return this.apiService.get(this.config.my_trajets_url).map(response => response);
+  }
+
+  findTrajetsDist(search: Search): Observable<Trajet[]> {
+    return this.apiService.post(this.config.trajet_dist_url, search).map((response) => {
+      return response;
+    });
   }
 
   getOne(id: number): Observable<Trajet> {
