@@ -1,5 +1,9 @@
-
+button{
+    background-color:#3F51B5; 
+    color:white; 
+    margin: 20px;
+}
 
 agm-map {
-  height: 647px;
+    height: 657px;
 }

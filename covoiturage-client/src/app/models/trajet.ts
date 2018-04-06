@@ -1,4 +1,5 @@
 import { LocationGoogle } from './location.google';
+import { RegularDays } from './regulardays';
 
 export interface Trajet {
     driverId: number;
@@ -9,7 +10,7 @@ export interface Trajet {
     directionResults: any;
     id: number;
     maxPlaces: number;
-    regularDays: [string];
+    regularDays: RegularDays;
     pathBack: boolean;
     startLocation: LocationGoogle;
     stopLocation: LocationGoogle;
