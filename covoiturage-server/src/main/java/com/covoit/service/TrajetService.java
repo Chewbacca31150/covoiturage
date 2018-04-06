@@ -2,6 +2,7 @@ package com.covoit.service;
 
 import java.util.List;
 
+import com.covoit.dto.Search;
 import com.covoit.model.Trajet;
 import com.covoit.model.User;
 
@@ -19,5 +20,7 @@ public interface TrajetService {
 	List<Trajet> findByPassengers(User passenger);
 
 	List<Trajet> findByDriverId(long driverId);
+	
+	List<Trajet> searchsTrajets(Search search);
 
 }
