@@ -111,8 +111,9 @@ export class AddPathComponent implements OnInit {
     }
 
     onSubmit(event: Event) {
-        if(this.form.value.startAddress == "" || this.form.value.stopAddress == "" || this.form.value.numberPlaces == "" || (this.form.value.pathDepartureDate == "" && this.form.value.pathRegularDays == ""))
-        {
+        if (this.form.value.startAddress === '' || this.form.value.stopAddress === '' ||
+            this.form.value.numberPlaces === '' || (this.form.value.pathDepartureDate === ''
+                && this.form.value.pathRegularDays === '')) {
             return;
         }
         event.preventDefault();
@@ -141,7 +142,7 @@ export class AddPathComponent implements OnInit {
             duration: 1000,
             horizontalPosition: 'right',
             verticalPosition: 'top'
-          });
+        });
         this.route.navigate(['/map']);
     }
 }

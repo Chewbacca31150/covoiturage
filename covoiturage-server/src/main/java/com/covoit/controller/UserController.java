@@ -15,6 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -23,6 +24,7 @@ import com.covoit.model.User;
 import com.covoit.model.UserDelete;
 import com.covoit.model.UserGeneral;
 import com.covoit.model.UserRequest;
+import com.covoit.service.MailService;
 import com.covoit.service.UserService;
 
 /**
@@ -35,6 +37,9 @@ public class UserController {
 
   @Autowired
   private UserService userService;
+  
+  @Autowired
+  private MailService mailService;
 
 
   @RequestMapping(method = GET, value = "/user/{userId}")
@@ -74,6 +79,9 @@ public class UserController {
       throw new ResourceConflictException(userRequest.getId(), "Username already exists");
     }    
     User user = this.userService.save(userRequest);
+    
+    mailService.prepareAndSend(user.getEmail(), "Utilisateur créé");
+    
     HttpHeaders headers = new HttpHeaders();
     headers.setLocation(ucBuilder.path("/api/user/{userId}").buildAndExpand(user.getId()).toUri());
     return new ResponseEntity<User>(user, HttpStatus.CREATED);

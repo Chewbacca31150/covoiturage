@@ -54,6 +54,9 @@ public class Trajet {
 	@Column(name = "max_places")
 	private int maxPlaces;
 	
+	@Column(name = "path_back")
+	private boolean pathBack;
+		
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER , mappedBy="trajet")
 	private Set<RegularDays> regularDays;
 
@@ -149,6 +152,22 @@ public class Trajet {
 
 	public void setPassengers(Set<User> passengers) {
 		this.passengers = passengers;
+	}
+
+	public boolean isPathBack() {
+		return pathBack;
+	}
+
+	public void setPathBack(boolean pathBack) {
+		this.pathBack = pathBack;
+	}
+
+	public Set<RegularDays> getRegularDays() {
+		return regularDays;
+	}
+
+	public void setRegularDays(Set<RegularDays> regularDays) {
+		this.regularDays = regularDays;
 	}
 
 }

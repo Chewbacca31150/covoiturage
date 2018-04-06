@@ -55,8 +55,7 @@ public class ContactController {
 		User sender = userService.findById(contact.getSenderId());
 		if(sender == null)return new ResponseEntity<>("Error, sender not found", HttpStatus.BAD_REQUEST);
 		Contact c = contactService.save(contact);
-		// TODO contact.getUser().getEmail()
-		//mailService.prepareAndSend("chewbacca31150@gmail.com", c.getMessage());
+		mailService.prepareAndSend(receiver.getEmail(), c.getMessage());
 		return new ResponseEntity<Contact>(contact, HttpStatus.OK);
 	}
 

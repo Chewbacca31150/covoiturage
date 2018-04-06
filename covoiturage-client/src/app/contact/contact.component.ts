@@ -6,6 +6,7 @@ import { Trajet } from '../models/trajet';
 import { TrajetService } from '../services/trajet.service';
 import { Contact } from '../models/contact';
 import { AuthService } from '../services/auth.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-contact',
@@ -16,12 +17,13 @@ export class ContactComponent implements OnInit {
   messageForm: FormGroup;
   trajet: Trajet;
   constructor(private contactService: ContactService, private route: ActivatedRoute,
-    private fb: FormBuilder, private trajetService: TrajetService, private authService: AuthService) { }
+    private fb: FormBuilder, private trajetService: TrajetService, private authService: AuthService, private userService: UserService) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.trajetService.getOne(params['id']).subscribe(trajet => {
         this.trajet = trajet;
+        //this.userService
       });
     });
     this.messageForm = this.fb.group({
