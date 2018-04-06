@@ -1,7 +1,9 @@
+import { Trajet } from "./trajet";
+
 export interface Contact {
     message: string;
-    receiver: number;
-    sender: number;
-    trajet: number;
+    receiverId: number;
+    senderId: number;
+    trajet: Trajet;
     dateSent: Date;
 }

@@ -23,7 +23,7 @@ public class Contact {
 	private Long id;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "trajet_id", nullable = false)
+	@JoinColumn(name = "trajet_id")
 	private Trajet trajet;
 
 	@Column(name = "receiver_id")
