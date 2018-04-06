@@ -35,20 +35,20 @@
                             <p>Jour:
                                 <b>{{trajet?.dateDeparture | date: 'fullDate'}} </b>
                             </p>
+                            <div *ngIf="trajet?.regularDays != null">
+                                <p>Repetitions dans le semaine :
+                                    <b>{{trajet?.regularDays}}</b>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div fxLayout="column" fxLayoutAlign="center center">
-                    <h2>Informations sur les repetitions du trajet</h2>
+                    <h2>Informations sur le trajet</h2>
                     <div fxLayout="row" fxLayoutAlign="center center">
                         <p>Retour le soir ? :
                             <b>{{back}}</b>
                         </p>
-                        <div *ngIf="trajet?.regularDays != null">
-                            <p>Repetitions dans le semaine :
-                                <b>{{trajet?.regularDays}}</b>
-                            </p>
-                        </div>
                     </div>
                 </div>
                 <div fxLayout="column" fxLayoutAlign="center center">
