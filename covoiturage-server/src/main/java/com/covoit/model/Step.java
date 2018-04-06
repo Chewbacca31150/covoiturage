@@ -33,11 +33,9 @@ public class Step {
 	@Column(name = "seconds")
 	private long seconds;
 
-	@Column(name = "start")
 	@OneToOne(cascade = CascadeType.ALL)
 	private Location startPoint;
 
-	@Column(name = "end")
 	@OneToOne(cascade = CascadeType.ALL)
 	private Location endPoint;
 
