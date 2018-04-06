@@ -43,10 +43,6 @@ export class MapComponent implements OnInit {
   }
  
   ngOnInit() {
-    this.trajetsCtrl = new FormControl();
-    this.trajetService.getTrajets().subscribe((trajets) => {
-      this.trajets = trajets;
-    });
     navigator.geolocation.getCurrentPosition((position) => {
 
       this.userPosition = {
@@ -70,7 +66,15 @@ export class MapComponent implements OnInit {
           break;
       }
     });
+    this.updateTrajet();
 
+  }
+  updateTrajet() {
+    this.trajetsCtrl = new FormControl();
+    this.trajetService.getTrajets().subscribe((trajets) => {
+      this.trajets = trajets;
+    });
+    
   }
   goTo(id: number) {
     this.route.navigate(['/path-information-details', id]);
