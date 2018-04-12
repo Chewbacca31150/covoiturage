@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
 .background {
-    background-image: url("https://media3.giphy.com/media/l4pTsJiBeF7WzuApy/giphy.gif");/*url("../../assets/images/bg-vroumvroum.jpg");*/
+    background-image: url("https://i.pinimg.com/originals/fe/34/3d/fe343d184d5bd6e69905e6a101c4567c.gif");
+    /*background-image: url("https://media3.giphy.com/media/l4pTsJiBeF7WzuApy/giphy.gif");*/
+    /*url("../../assets/images/bg-vroumvroum.jpg");*/
     background-size: cover;
     color: white;
     margin:0;
