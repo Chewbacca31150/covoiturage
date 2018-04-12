@@ -63,20 +63,24 @@ public class TrajetController {
 				.getDirections(this.context, trajet.getStartLocation().toString(), trajet.getStopLocation().toString())
 				.await();
 
-		DirectionsStep[] steps = result.routes[0].legs[0].steps;
-		Set<Step> stepSet = new HashSet<Step>();
-		/*
-		 * trajet.getRegularDays().forEach(regularDay -> { regularDay.setTrajet(trajet);
-		 * });
-		 */
-		int order = 1;
-		for (DirectionsStep step : steps) {
-			Step item = Step.ToEntity(step);
-			item.setOrder(order);
-			item.setTrajet(trajet);
-			stepSet.add(item);
-			trajet.setSteps(stepSet);
-			++order;
+		if (result != null && result.routes != null && result.routes[0].legs != null
+				&& result.routes[0].legs[0].steps != null) {
+			DirectionsStep[] steps = result.routes[0].legs[0].steps;
+
+			Set<Step> stepSet = new HashSet<Step>();
+			/*
+			 * trajet.getRegularDays().forEach(regularDay -> { regularDay.setTrajet(trajet);
+			 * });
+			 */
+			int order = 1;
+			for (DirectionsStep step : steps) {
+				Step item = Step.ToEntity(step);
+				item.setOrder(order);
+				item.setTrajet(trajet);
+				stepSet.add(item);
+				trajet.setSteps(stepSet);
+				++order;
+			}
 		}
 
 		trajetService.save(trajet);
