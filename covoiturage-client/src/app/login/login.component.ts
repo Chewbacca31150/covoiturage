@@ -50,26 +50,28 @@ export class LoginComponent implements OnInit {
                     });
                 });
             });
-            this._snackBar.open("Utilisateur cree avec succes.","", {
-                duration: 3500,
-                horizontalPosition: 'right',
-                verticalPosition: 'top'
-            });
+        this._snackBar.open('Utilisateur cree avec succes.', '', {
+            duration: 3500,
+            horizontalPosition: 'right',
+            verticalPosition: 'top'
+        });
     }
 
     onLoginSubmit(form) {
         this._authService.login(form)
             .subscribe(data => {
                 this._authService.getMyInfo().subscribe(() => {
+
                     this._router.navigate(['/map']);
+                    this._snackBar.open('Bonjour ' + this.loginForm.value.username + '.', '', {
+                        duration: 3500,
+                        horizontalPosition: 'right',
+                        verticalPosition: 'top'
+                    });
                 });
             });
         this.error = null;
-        this._snackBar.open('Bonjour ' + this.loginForm.value.username + ".","", {
-            duration: 3500,
-            horizontalPosition: 'right',
-            verticalPosition: 'top'
-        });
+
     }
 
     debug(signInForm) {
