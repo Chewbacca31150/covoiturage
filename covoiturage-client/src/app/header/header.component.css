@@ -25,3 +25,8 @@ width: 100%;
 .toolbar-other-button {
   font-size: 0.8em;
 }
+
+.buttonSupress
+{
+  background-color:#fa5e5b;
+}
