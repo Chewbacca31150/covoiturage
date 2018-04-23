@@ -3,6 +3,8 @@ import { Trajet } from '../models/trajet';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { TransitionCheckState } from '@angular/material';
+import { timeout } from 'q';
 
 @Component({
   selector: 'app-map',
@@ -16,9 +18,8 @@ export class MapComponent implements OnInit {
   private driverMarker: any = null;
   public markers: { lat: number; lng: number, title: string }[] = [];
   private showDirection: boolean;
-  private path: { origin: { lat: number; lng: number }, destination: { lat: number; lng: number } };
+  path: { origin: { lat: number; lng: number }, destination: { lat: number; lng: number } };
   trajets: Trajet[] = [];
-  trajetsCtrl: FormControl;
   public zoom = 15;
   // lat: number = 43.574681;
   // lng: number = 1.380402;
@@ -73,8 +74,6 @@ export class MapComponent implements OnInit {
           break;
       }
     });
-    this.updateTrajet();
-
 
     this.pathService.getTrajets().subscribe((paths) => {
       paths.forEach(path => {
@@ -83,19 +82,18 @@ export class MapComponent implements OnInit {
         }
       });
     });
-
   }
 
   ngOnInit() {
     this.getTrajet(1);
+    this.getTrajets();
   }
-  updateTrajet() {
-    this.trajetsCtrl = new FormControl();
-    this.pathService.getTrajets().subscribe((trajets) => {
-      this.trajets = trajets;
+  getTrajets() {
+    this.pathService.getTrajets().subscribe((paths) => {
+      this.trajets = paths;
     });
-
   }
+
   goTo(id: number) {
     this.route.navigate(['/path-information-details', id]);
   }

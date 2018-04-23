@@ -146,12 +146,11 @@ export class AddPathComponent implements OnInit {
             startLocation: this.startLocation,
             stopLocation: this.stopLocation
         };
-        this.trajetService.saveTrajet(trajet).subscribe((a) => console.log(a));
+        this.trajetService.saveTrajet(trajet).subscribe((a) => this.route.navigate(['/map']));
         this.snackBar.open('Trajet ajoute.', '', {
             duration: 3500,
             horizontalPosition: 'right',
             verticalPosition: 'top'
         });
-        this.route.navigate(['/map']);
     }
 }

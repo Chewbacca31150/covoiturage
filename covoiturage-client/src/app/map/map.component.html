@@ -8,7 +8,6 @@
 </agm-map>
 <div class="example-form" fxLayout="column">
   <div fxLayout="row" fxLayoutAlign="space-evenly center">
-    <button mat-button (click)="updateTrajet()" class="update-button">Update</button>
     <h1>Trajets</h1>
   </div>
   <mat-card *ngFor="let trajet of trajets" (click)="changeTrajet(trajet.id)" fxLayout="column" fxLayoutAlign="space-around center">
