@@ -4,6 +4,11 @@
 
 https://localhost:4300
 
+Pour tester : 
+username : user
+password : user
+
+
 ## AU PREALABLE
 
 ADD CERTIF pour éviter les refresh intempestifs :
