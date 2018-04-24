@@ -12,11 +12,13 @@
                     <mat-form-field class="example-full-width">
                         <input name="startAddress" formControlName="startAddress" matInput placeholder="Adresse de depart" value="" #startAddress>
                     </mat-form-field>
+                    <mat-checkbox formControlName="posStart">Position actuelle</mat-checkbox>
 
                     <!-- Adress entreprise -->
-                    <mat-form-field class="example-full-width">
+                    <mat-form-field class="example-full-width" *ngIf="!posEnd">
                         <input name="stopAddress" formControlName="stopAddress" matInput placeholder="Adresse d'arrive" #stopAddress>
                     </mat-form-field>
+                    <mat-checkbox formControlName="posEnd">Position actuelle</mat-checkbox>
 
                     <!-- Nombre place dispo -->
                     <mat-form-field class="example-full-width">
