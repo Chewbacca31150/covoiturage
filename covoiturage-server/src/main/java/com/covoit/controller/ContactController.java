@@ -51,8 +51,6 @@ public class ContactController {
 	@RequestMapping(method = RequestMethod.POST, value = "/contact")
 	public ResponseEntity<?> contactSend(@RequestBody Contact contact)
 			throws ApiException, InterruptedException, IOException {
-		User receiver = userService.findById(contact.getReceiverId());
-		if(receiver == null)return new ResponseEntity<>("Error, receiver not found", HttpStatus.BAD_REQUEST);
 		User sender = userService.findById(contact.getSenderId());
 		if(sender == null)return new ResponseEntity<>("Error, sender not found", HttpStatus.BAD_REQUEST);
 		Contact c = contactService.save(contact);
@@ -65,10 +63,9 @@ public class ContactController {
 		List<Contact> contacts = contactService.findByTrajetId(id);
 		List<ContactDTO> contactDTOList = new ArrayList();
 		contacts.forEach(contact -> {
-			User receiver = userService.findById(contact.getReceiverId());
 			User sender = userService.findById(contact.getSenderId());
 			Trajet trajet = trajetService.findById(contact.getTrajet().getId());
-			ContactDTO contactDto = new ContactDTO(trajet, receiver, sender, contact.getMessage(), contact.getDateSent());
+			ContactDTO contactDto = new ContactDTO(trajet, sender, contact.getMessage(), contact.getDateSent());
 			contactDTOList.add(contactDto);
 		});
 		return new ResponseEntity<List<ContactDTO>>(contactDTOList, HttpStatus.OK);

@@ -42,6 +42,7 @@ import { PathInformationDetailsComponent } from './path-information-details/path
 import { ContactComponent } from './contact/contact.component';
 import { ContactService } from './services/contact.service';
 import { PathInformationDistanceComponent } from './path-information-distance/path-information-distance.component';
+import { NotificationService } from './services/notification.service';
 
 // how to avoid api limit ? use a random api key :P
 const apiKeys = ['AIzaSyCHKOinW6VoYCy8y4ogN0nAGXwX9DWhGP8',
@@ -86,7 +87,7 @@ const apiKeys = ['AIzaSyCHKOinW6VoYCy8y4ogN0nAGXwX9DWhGP8',
   entryComponents: [
     DialogOverviewComponent
   ],
-  providers: [AuthGuard, MapAuthGuard, ApiService, AuthService, ConfigService, UserService, TrajetService, ContactService,
+  providers: [AuthGuard, MapAuthGuard, ApiService, AuthService, ConfigService, UserService, TrajetService, ContactService, NotificationService,
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } }],
   bootstrap: [AppComponent]
 })

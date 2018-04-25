@@ -26,9 +26,6 @@ public class Contact {
 	@JoinColumn(name = "trajet_id")
 	private Trajet trajet;
 
-	@Column(name = "receiver_id")
-	private Long receiverId;
-
 	@Column(name = "sender_id")
 	private Long senderId;
 
@@ -68,14 +65,6 @@ public class Contact {
 
 	public void setDateSent(Date dateSent) {
 		this.dateSent = dateSent;
-	}
-
-	public Long getReceiverId() {
-		return receiverId;
-	}
-
-	public void setReceiverId(Long receiverId) {
-		this.receiverId = receiverId;
 	}
 
 	public Long getSenderId() {

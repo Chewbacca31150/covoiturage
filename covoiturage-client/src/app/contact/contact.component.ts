@@ -8,6 +8,7 @@ import { Contact } from '../models/contact';
 import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
 import { MatSnackBar } from '@angular/material';
+import { NotificationService } from '../services/notification.service';
 
 @Component({
   selector: 'app-contact',
@@ -19,7 +20,7 @@ export class ContactComponent implements OnInit {
   messages: Contact[];
   trajet: Trajet;
   constructor(private contactService: ContactService, private route: ActivatedRoute, private snackBar: MatSnackBar,
-    private fb: FormBuilder, private trajetService: TrajetService, private authService: AuthService, private userService: UserService) { }
+    private fb: FormBuilder, private trajetService: TrajetService, private authService: AuthService, private userService: UserService, private notif: NotificationService) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -46,6 +47,7 @@ export class ContactComponent implements OnInit {
       dateSent: new Date()
     };
     this.contactService.send(message).subscribe(m => {
+      this.notif.get().subscribe(e => console.log(e));
     });
     this.snackBar.open('Message envoyé', '', {
       duration: 3500,

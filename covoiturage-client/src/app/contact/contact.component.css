@@ -15,4 +15,6 @@
 .message:nth-child(2n)
 {
     float: right;
+    background: #e6fff7;
+    box-shadow: #b3ffe6 2px 2px 2px;
 }

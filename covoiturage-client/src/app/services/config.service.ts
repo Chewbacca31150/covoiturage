@@ -46,6 +46,12 @@ export class ConfigService {
 
     private _trajet_dist_url = this._trajet_url + '/search';
 
+    private _notification_dist_url = this._api_url + '/notification';
+
+    get notification_dist_url(): string {
+        return this._notification_dist_url;
+    }
+
     get trajet_dist_url(): string {
         return this._trajet_dist_url;
     }

@@ -9,12 +9,16 @@ import com.covoit.model.Contact;
 import com.covoit.model.Trajet;
 import com.covoit.repository.ContactRepository;
 import com.covoit.service.ContactService;
+import com.covoit.service.NotificationService;
 
 @Service
 public class ContactServiceImpl implements ContactService {
 
 	@Autowired
 	ContactRepository contactRepository;
+
+	@Autowired
+	NotificationService notificationService;
 	
 	@Override
 	public Contact findById(Long id) {
@@ -28,7 +32,9 @@ public class ContactServiceImpl implements ContactService {
 
 	@Override
 	public Contact save(Contact contact) {
-		return contactRepository.save(contact);
+		contact =  contactRepository.save(contact);
+		this.notificationService.createNotification(contact);
+		return contact;
 	}
 
 	@Override

@@ -20,9 +20,8 @@ public class ContactDTO {
 	private String message;
 	private Date dateSent;
 	
-	public ContactDTO(Trajet trajet, User receiver, User sender, String message, Date dateSent ) {
+	public ContactDTO(Trajet trajet, User sender, String message, Date dateSent ) {
 		this.trajet = trajet;
-		this.receiver = receiver;
 		this.sender = sender;
 		this.message = message;
 		this.dateSent = dateSent;
@@ -32,12 +31,6 @@ public class ContactDTO {
 	}
 	public void setTrajet(Trajet trajet) {
 		this.trajet = trajet;
-	}
-	public User getReceiver() {
-		return receiver;
-	}
-	public void setReceiver(User receiver) {
-		this.receiver = receiver;
 	}
 	public User getSender() {
 		return sender;

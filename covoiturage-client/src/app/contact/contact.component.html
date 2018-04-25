@@ -8,7 +8,7 @@
 </div>
 
 
-<form (ngSubmit)="onSubmit($event)" [formGroup]="messageForm">
+<form (ngSubmit)="onSubmit($event)" [formGroup]="messageForm" style="clear: both;">
   <textarea matInput formControlName="message" name="message" placeholder="Envoyer une demande" matTextareaAutosize matAutosizeMinRows="2"
     matAutosizeMaxRows="5"></textarea>
   <button mat-button type="submit">Submit</button>

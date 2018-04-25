@@ -10,7 +10,6 @@ import com.covoit.model.Trajet;
 public interface ContactRepository extends JpaRepository<Contact, Long> {
     Contact findById( Long id );
     List<Contact> findAll();
-    List<Contact> findByReceiverId(Long userId);
     List<Contact> findBySenderId(Long userId);
     List<Contact> findByTrajetId(Long trajetId);
 }
