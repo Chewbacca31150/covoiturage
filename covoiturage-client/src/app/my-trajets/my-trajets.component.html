@@ -1,14 +1,20 @@
 <mat-tab-group>
   <mat-tab label="Conducteur" style="width:50%;">
     <mat-card *ngFor="let trajet of trajets" (click)="goTo(trajet.id)">
-      <p>From {{trajet?.startLocation?.address}} to {{trajet?.stopLocation?.address}}</p>
-      <!-- <p>Date: {{trajet.dateDeparture | date: 'short'}}</p> -->
+      <p>De {{trajet?.startLocation?.address}} à {{trajet?.stopLocation?.address}}</p>
+      <div>
+        <h4>Passagers :</h4>
+        <p *ngFor="let passenger of trajet.passengers">{{passenger.username}}
+          <button mat-button (click)="addOrRefuse(trajet, passenger, true)">Accepter</button>
+          <button mat-button (click)="addOrRefuse(trajet, passenger, false)">Refuser</button>
+        </p>
+      </div>
+      <p></p>
     </mat-card>
   </mat-tab>
   <mat-tab label="Passager" style="width:50%;">
-    <mat-card *ngFor="let trajet of trajets" (click)="goTo(trajet.id)">
-      <p>From {{trajet?.startLocation?.address}} to {{trajet?.stopLocation?.address}}</p>
-      <!-- <p>Date: {{trajet.dateDeparture | date: 'short'}}</p> -->
+    <mat-card *ngFor="let trajet of trajetsPassenger" (click)="goTo(trajet.id)">
+      <p>De {{trajet?.startLocation?.address}} à {{trajet?.stopLocation?.address}}</p>
     </mat-card>
   </mat-tab>
 </mat-tab-group>

@@ -22,8 +22,8 @@ export class AddPathComponent implements OnInit {
     pathBack: boolean;
     regularPath: string;
     form: FormGroup;
-    posStart: boolean = false;
-    posEnd: boolean = false;
+    posStart = false;
+    posEnd = false;
     toppingList = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
 
     @ViewChild('startAddress')
@@ -44,7 +44,7 @@ export class AddPathComponent implements OnInit {
     actualLocation: LocationGoogle = {
         lat: null,
         lng: null,
-        address: "Position Perso"
+        address: 'Position Perso'
     };
 
     constructor(private trajetService: TrajetService, private authService: AuthService,
@@ -76,13 +76,13 @@ export class AddPathComponent implements OnInit {
                 if (place.geometry === undefined || place.geometry === null) {
                     return;
                 }
-                
+
                 this.startLocation = {
                     lat: place.geometry.location.lat(),
                     lng: place.geometry.location.lng(),
                     address: place.formatted_address
                 };
-                
+
             });
 
             const stopAddressAutocomplete = new google.maps.places.Autocomplete(this.stopAddress.nativeElement, {
@@ -111,16 +111,16 @@ export class AddPathComponent implements OnInit {
 
     /////////////////////////////////////////////////////////////////////
 
-    getLocation() : void {
+    getLocation(): void {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(this.showPosition.bind(this));
         } else {
-            console.log("Geolocation is not supported by this browser.");
+            console.log('Geolocation is not supported by this browser.');
         }
     }
-    showPosition(position) : void {
-        this.actualLocation.lat = position.coords.latitude
-        this.actualLocation.lng = position.coords.longitude
+    showPosition(position): void {
+        this.actualLocation.lat = position.coords.latitude;
+        this.actualLocation.lng = position.coords.longitude;
     }
 
     /////////////////////////////////////////////////////////////////////
@@ -138,7 +138,8 @@ export class AddPathComponent implements OnInit {
     }
 
     onSubmit(event: Event) {
-        if ((this.form.value.startAddress === '' && !this.form.value.posStart) || (this.form.value.stopAddress === '' && !this.form.value.posEnd) ||
+        if ((this.form.value.startAddress === '' && !this.form.value.posStart)
+            || (this.form.value.stopAddress === '' && !this.form.value.posEnd) ||
             this.form.value.numberPlaces === '' || (this.form.value.pathDepartureDate === ''
                 && this.form.value.pathRegularDays === '')) {
             return;
@@ -158,15 +159,13 @@ export class AddPathComponent implements OnInit {
             const arry: String[] = form.pathRegularDays;
             pathRegularDays = arry.join(',');
         }
-        if(this.form.value.posStart)
-        {
-            this.startLocation = this.actualLocation
+        if (this.form.value.posStart) {
+            this.startLocation = this.actualLocation;
         }
-        if(this.form.value.posEnd)
-        {
-            this.stopLocation = this.actualLocation
+        if (this.form.value.posEnd) {
+            this.stopLocation = this.actualLocation;
         }
-        
+
         const trajet: Trajet = {
             dateDeparture: form.pathDepartureDate,
             hourDeparture: form.pathDepartureHour,
@@ -181,12 +180,11 @@ export class AddPathComponent implements OnInit {
             startLocation: this.startLocation,
             stopLocation: this.stopLocation
         };
-        this.trajetService.saveTrajet(trajet).subscribe((a) => console.log(a));
+        this.trajetService.saveTrajet(trajet).subscribe(() => this.route.navigate(['/map']));
         this.snackBar.open('Trajet ajoute.', '', {
             duration: 3500,
             horizontalPosition: 'right',
             verticalPosition: 'top'
         });
-        this.route.navigate(['/map']);
     }
 }

@@ -62,10 +62,7 @@ public class User implements UserDetails, Serializable {
   
   @Column(name = "is_music_passenger")
   private boolean isMusicPassenger;
-  
-  @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-  private Set<Trajet> trajets = new HashSet<Trajet>();
-  
+    
   @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
   @JoinTable(name = "user_authority",
       joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
@@ -188,14 +185,6 @@ public boolean isMusicPassenger() {
 
 public void setMusicPassenger(boolean isMusicPassenger) {
 	this.isMusicPassenger = isMusicPassenger;
-}
-
-public Set<Trajet> getTrajets() {
-	return trajets;
-}
-
-public void setTrajets(Set<Trajet> trajets) {
-	this.trajets = trajets;
 }
 
 

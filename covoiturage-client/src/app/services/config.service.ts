@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Injectable()
 export class ConfigService {
@@ -42,6 +43,10 @@ export class ConfigService {
 
     private _my_trajets_url = this._trajet_url + '/my-trajets';
 
+    private _my_trajets_passengers_url = this.trajet_url + '/my-trajets/passenger';
+
+    private _trajet_accept_or_refuse_user_url = this._trajet_url + '/accept/one';
+
     private _trajet_from_users_url = this._trajet_url + '/from-users';
 
     private _trajet_dist_url = this._trajet_url + '/search';
@@ -50,6 +55,20 @@ export class ConfigService {
 
     get notification_dist_url(): string {
         return this._notification_dist_url;
+    }
+
+    private _trajet_not_driver_url = this.trajet_url + '/notdriver';
+
+    get my_trajets_passengers_url(): string {
+        return this._my_trajets_passengers_url;
+    }
+
+    get trajet_not_driver_url(): string {
+        return this._trajet_not_driver_url;
+    }
+
+    get accept_or_refuse_user(): string {
+        return this._trajet_accept_or_refuse_user_url;
     }
 
     get trajet_dist_url(): string {

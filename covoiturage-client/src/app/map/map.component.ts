@@ -75,7 +75,7 @@ export class MapComponent implements OnInit {
       }
     });
 
-    this.pathService.getTrajets().subscribe((paths) => {
+    this.pathService.getTrajetsNotDriver().subscribe((paths) => {
       paths.forEach(path => {
         if (path.id === id) {
           this.addPath(path);
@@ -89,7 +89,7 @@ export class MapComponent implements OnInit {
     this.getTrajets();
   }
   getTrajets() {
-    this.pathService.getTrajets().subscribe((paths) => {
+    this.pathService.getTrajetsNotDriver().subscribe((paths) => {
       this.trajets = paths;
     });
   }

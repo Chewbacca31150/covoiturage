@@ -51,7 +51,7 @@ export class PathInformationDetailsComponent implements OnInit {
     this.router.navigate(['contact', this.trajet.id]);
   }
   add() {
-    this.trajetService.postOne(this.trajet);
+    this.trajetService.postOne(this.trajet).subscribe(a => console.log(a));
   }
 
 }

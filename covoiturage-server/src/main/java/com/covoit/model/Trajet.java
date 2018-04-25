@@ -36,8 +36,13 @@ public class Trajet {
 	@Column(name = "passengers_id")
 	private String passengersId;
 
-	@OneToMany(mappedBy = "trajets", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private Set<User> passengers;
+	@OneToMany(cascade = {CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.LAZY)
+	@JoinTable(name = "user_trajets", joinColumns = @JoinColumn(name = "trajet_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
+	private List<User> passengers;
+
+	@OneToMany(cascade = {CascadeType.MERGE, CascadeType.REMOVE}, fetch = FetchType.EAGER)
+	@JoinTable(name = "user_trajets_accepted", joinColumns = @JoinColumn(name = "trajet_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
+	private List<User> passengersAccepted;
 
 	@Column(name = "is_completed")
 	private boolean isCompleted;
@@ -151,11 +156,11 @@ public class Trajet {
 		this.stopLocation = stopLocation;
 	}
 
-	public Set<User> getPassengers() {
+	public List<User> getPassengers() {
 		return passengers;
 	}
 
-	public void setPassengers(Set<User> passengers) {
+	public void setPassengers(List<User> passengers) {
 		this.passengers = passengers;
 	}
 
@@ -181,5 +186,13 @@ public class Trajet {
 
 	public void setHourDeparture(String hourDeparture) {
 		this.hourDeparture = hourDeparture;
+	}
+
+	public List<User> getPassengersAccepted() {
+		return passengersAccepted;
+	}
+
+	public void setPassengersAccepted(List<User> passengersAccepted) {
+		this.passengersAccepted = passengersAccepted;
 	}
 }
