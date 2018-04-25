@@ -3,6 +3,7 @@ import { ConfigService } from './config.service';
 import { ApiService } from './api.service';
 import { AuthService } from './auth.service';
 import { Contact } from '../models/contact';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class ContactService {
@@ -14,7 +15,10 @@ export class ContactService {
   }
 
   getMyMessages() {
-    return this.apiService.get(this.config.contact_get_mine_url);
+    return this.apiService.get<Contact[]>(this.config.contact_get_mine_url);
   }
 
+  getMessagesByTrajet(trajetId: any): Observable<Contact[]> {
+    return this.apiService.get<Contact[]>(`${this.config.contact_get_mine_url}?id=${trajetId}`);
+  }
 }

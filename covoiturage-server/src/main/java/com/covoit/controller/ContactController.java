@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.covoit.dto.ContactDTO;
@@ -60,9 +61,8 @@ public class ContactController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/contact")
-	public ResponseEntity<List<ContactDTO>> contactGetByUser() {
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		List<Contact> contacts = contactService.findByReceiverId(user.getId());
+	public ResponseEntity<List<ContactDTO>> contactGetByUser(@RequestParam(value = "id")long id) {
+		List<Contact> contacts = contactService.findByTrajetId(id);
 		List<ContactDTO> contactDTOList = new ArrayList();
 		contacts.forEach(contact -> {
 			User receiver = userService.findById(contact.getReceiverId());

@@ -27,7 +27,7 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  get(path: string, args?: any): Observable<any> {
+  get<T>(path: string, args?: any): Observable<T> {
     const options = {
       headers: this.headers,
       withCredentials: true
@@ -37,7 +37,7 @@ export class ApiService {
       options['params'] = serialize(args);
     }
 
-    return this.http.get(path, options)
+    return <Observable<T>>this.http.get(path, options)
       .catch(this.checkError.bind(this));
   }
 

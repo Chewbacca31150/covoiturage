@@ -29,7 +29,7 @@ export class UserService {
     }
 
     getOne(id: number): Observable<User> {
-        return this.apiService.get(this.config.user_url + '/' + id).map((response) => {
+        return this.apiService.get<User>(this.config.user_url + '/' + id).map((response) => {
           return response;
         });
     }
@@ -43,7 +43,7 @@ export class UserService {
     }
 
     getAllNumber() {
-        return this.apiService.get(this.config.all_number_url);
+        return this.apiService.get<number>(this.config.all_number_url);
     }
 
 }

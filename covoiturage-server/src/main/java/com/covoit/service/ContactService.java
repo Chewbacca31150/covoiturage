@@ -11,4 +11,5 @@ public interface ContactService {
 	Contact save(Contact contact);
 	List<Contact> findByReceiverId(Long userId);
 	List<Contact> findBySenderId(Long userId);
+	List<Contact> findByTrajetId(long trajetId);
 }

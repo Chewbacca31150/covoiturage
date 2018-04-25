@@ -40,5 +40,10 @@ public class ContactServiceImpl implements ContactService {
 	public List<Contact> findByReceiverId(Long userId) {
 		return contactRepository.findByReceiverId(userId);
 	}
+
+	@Override
+	public List<Contact> findByTrajetId(long trajetId) {
+		return contactRepository.findByTrajetId(trajetId);
+	}
 	
 }

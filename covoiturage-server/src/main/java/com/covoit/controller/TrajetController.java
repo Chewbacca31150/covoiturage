@@ -56,31 +56,38 @@ public class TrajetController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/trajet")
-	public ResponseEntity<Trajet> trajet(@RequestBody Trajet trajet)
+	public ResponseEntity<?> trajet(@RequestBody Trajet trajet)
 			throws ApiException, InterruptedException, IOException {
 
 		DirectionsResult result = DirectionsApi
 				.getDirections(this.context, trajet.getStartLocation().toString(), trajet.getStopLocation().toString())
 				.await();
 
-		if (result != null && result.routes != null && result.routes[0].legs != null
-				&& result.routes[0].legs[0].steps != null) {
-			DirectionsStep[] steps = result.routes[0].legs[0].steps;
+		try
+		{
+			if (result != null && result.routes != null && result.routes[0].legs != null
+					&& result.routes[0].legs[0].steps != null) {
+				DirectionsStep[] steps = result.routes[0].legs[0].steps;
 
-			Set<Step> stepSet = new HashSet<Step>();
-			/*
-			 * trajet.getRegularDays().forEach(regularDay -> { regularDay.setTrajet(trajet);
-			 * });
-			 */
-			int order = 1;
-			for (DirectionsStep step : steps) {
-				Step item = Step.ToEntity(step);
-				item.setOrder(order);
-				item.setTrajet(trajet);
-				stepSet.add(item);
-				trajet.setSteps(stepSet);
-				++order;
+				Set<Step> stepSet = new HashSet<Step>();
+				/*
+				 * trajet.getRegularDays().forEach(regularDay -> { regularDay.setTrajet(trajet);
+				 * });
+				 */
+				int order = 1;
+				for (DirectionsStep step : steps) {
+					Step item = Step.ToEntity(step);
+					item.setOrder(order);
+					item.setTrajet(trajet);
+					stepSet.add(item);
+					trajet.setSteps(stepSet);
+					++order;
+				}
 			}
+		}
+		catch(Exception e)
+		{
+			return new ResponseEntity<String>("lol java c'est de la merde", HttpStatus.BAD_REQUEST);
 		}
 
 		trajetService.save(trajet);

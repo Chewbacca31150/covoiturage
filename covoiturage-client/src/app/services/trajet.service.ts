@@ -15,38 +15,35 @@ export class TrajetService {
 
   saveTrajet(trajet: Trajet) {
     return this.apiService.post(this.config.trajet_url, JSON.stringify(trajet)).map((response) => {
+      console.log('lol method is empty');
     });
   }
 
   getTrajets(): Observable<Trajet[]> {
-    return this.apiService.get(this.config.trajet_url);
+    return this.apiService.get<Trajet[]>(this.config.trajet_url);
   }
 
   find(search: string): Observable<Trajet[]> {
-    return this.apiService.get(this.config.trajet_search_url + '?search=' + search).map(response => response);
+    return this.apiService.get<Trajet[]>(this.config.trajet_search_url + '?search=' + search);
   }
 
   findMyTrajets(): Observable<Trajet[]> {
-    return this.apiService.get(this.config.my_trajets_url).map(response => response);
+    return this.apiService.get<Trajet[]>(this.config.my_trajets_url);
   }
 
   findTrajetsDist(search: Search): Observable<Trajet[]> {
-    return this.apiService.post(this.config.trajet_dist_url, search).map((response) => {
-      return response;
-    });
+    return this.apiService.post(this.config.trajet_dist_url, search);
   }
 
   getOne(id: number): Observable<Trajet> {
-    return this.apiService.get(this.config.trajet_one_url + '?id=' + id).map((response) => {
-      return response;
-    });
+    return this.apiService.get<Trajet>(this.config.trajet_one_url + '?id=' + id);
   }
 
   postOne(trajet: Trajet): Observable<Trajet> {
-    return this.apiService.post(this.config.trajet_one_url, trajet).map(response => response);
+    return this.apiService.post(this.config.trajet_one_url, trajet);
   }
 
   findTrajetsSpecific(): Observable<Trajet[]> {
-    return this.apiService.get(this.config.trajet_from_users_url).map(response => response);
+    return this.apiService.get<Trajet[]>(this.config.trajet_from_users_url);
   }
 }

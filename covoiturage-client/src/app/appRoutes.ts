@@ -26,6 +26,6 @@ export const appRoutes: Routes = [
     { path: 'add-path', component: AddPathComponent },
     { path: 'contact/:id', component: ContactComponent },
     { path: 'my-trajets', component: MyTrajetsComponent, canActivate: [AuthGuard] },
-    { path: 'my-messages', component: MyMessagesComponent, canActivate: [AuthGuard] },
+    // { path: 'my-messages', component: MyMessagesComponent, canActivate: [AuthGuard] },
     { path: '**', redirectTo: '/not-found' }
 ];

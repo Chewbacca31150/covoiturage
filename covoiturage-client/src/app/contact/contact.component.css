@@ -1,0 +1,18 @@
+.message
+{
+    margin: 10px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    width: 75%;
+    background: #e6f2ff;
+    box-shadow: #b3d7ff 2px 2px 2px;
+}
+
+.message:nth-child(2n+1)
+{
+    float: left;
+}
+.message:nth-child(2n)
+{
+    float: right;
+}

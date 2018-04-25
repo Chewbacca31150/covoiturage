@@ -16,6 +16,7 @@ import { MatSnackBar } from '@angular/material';
 })
 export class ContactComponent implements OnInit {
   messageForm: FormGroup;
+  messages: Contact[];
   trajet: Trajet;
   constructor(private contactService: ContactService, private route: ActivatedRoute, private snackBar: MatSnackBar,
     private fb: FormBuilder, private trajetService: TrajetService, private authService: AuthService, private userService: UserService) { }
@@ -26,6 +27,10 @@ export class ContactComponent implements OnInit {
         this.trajet = trajet;
         // this.userService
       });
+      this.contactService.getMessagesByTrajet(params['id']).subscribe(messages => {
+        console.log(messages);
+        this.messages = messages;
+      })
     });
     this.messageForm = this.fb.group({
       message: ''
