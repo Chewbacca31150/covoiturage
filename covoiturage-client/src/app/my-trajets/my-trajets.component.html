@@ -9,7 +9,10 @@
           <button mat-button (click)="addOrRefuse(trajet, passenger, false)">Refuser</button>
         </p>
       </div>
-      <p></p>
+      <div>
+        <h4>Passagers Acceptés :</h4>
+        <p *ngFor="let passenger of trajet.passengersAccepted">{{passenger.username}}</p>
+      </div>
     </mat-card>
   </mat-tab>
   <mat-tab label="Passager" style="width:50%;">
