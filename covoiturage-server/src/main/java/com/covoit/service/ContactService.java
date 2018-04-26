@@ -9,7 +9,6 @@ public interface ContactService {
 	Contact findById(Long id);
 	List<Contact> findAll();
 	Contact save(Contact contact);
-	List<Contact> findByReceiverId(Long userId);
 	List<Contact> findBySenderId(Long userId);
 	List<Contact> findByTrajetId(long trajetId);
 }
