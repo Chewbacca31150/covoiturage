@@ -9,8 +9,8 @@
                 <form class="example-form" fxLayout="column" fxLayoutAlign="center stretch" name="form" [formGroup]="form" (ngSubmit)="onSubmit($event)">
 
                     <!-- Adress depart -->
-                    <mat-form-field class="example-full-width">
-                        <input name="startAddress" formControlName="startAddress" matInput placeholder="Adresse de depart" value="" #startAddress>
+                    <mat-form-field class="example-full-width" *ngIf="!posStart">
+                        <input name="startAddress" formControlName="startAddress" matInput placeholder="Adresse de depart" #startAddress>
                     </mat-form-field>
                     <mat-checkbox formControlName="posStart">Position actuelle</mat-checkbox>
 

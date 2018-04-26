@@ -9,6 +9,7 @@ import { LocationGoogle } from '../models/location.google';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import { RegularDays } from '../models/regulardays';
+import { timeout } from 'q';
 
 @Component({
     selector: 'app-add-path',
@@ -82,6 +83,7 @@ export class AddPathComponent implements OnInit {
                     lng: place.geometry.location.lng(),
                     address: place.formatted_address
                 };
+                console.log(this.startLocation, 'start')
 
             });
 
@@ -113,14 +115,16 @@ export class AddPathComponent implements OnInit {
 
     getLocation(): void {
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(this.showPosition.bind(this));
+            navigator.geolocation.getCurrentPosition((pos) => { this.showPosition(pos); });
         } else {
             console.log('Geolocation is not supported by this browser.');
         }
     }
     showPosition(position): void {
+        console.log(position)
         this.actualLocation.lat = position.coords.latitude;
         this.actualLocation.lng = position.coords.longitude;
+        console.log(this.actualLocation)
     }
 
     /////////////////////////////////////////////////////////////////////
@@ -138,13 +142,14 @@ export class AddPathComponent implements OnInit {
     }
 
     onSubmit(event: Event) {
+        event.preventDefault();
+        console.log(this.actualLocation)
         if ((this.form.value.startAddress === '' && !this.form.value.posStart)
             || (this.form.value.stopAddress === '' && !this.form.value.posEnd) ||
             this.form.value.numberPlaces === '' || (this.form.value.pathDepartureDate === ''
                 && this.form.value.pathRegularDays === '')) {
             return;
         }
-        event.preventDefault();
         if (this.regularPath === 'pathRegularTrue') {
             this.form.controls['pathDepartureDate'].setValue('');
         } else if (this.regularPath === 'pathRegularFalse') {
@@ -159,13 +164,13 @@ export class AddPathComponent implements OnInit {
             const arry: String[] = form.pathRegularDays;
             pathRegularDays = arry.join(',');
         }
+
         if (this.form.value.posStart) {
             this.startLocation = this.actualLocation;
         }
         if (this.form.value.posEnd) {
             this.stopLocation = this.actualLocation;
         }
-
         const trajet: Trajet = {
             dateDeparture: form.pathDepartureDate,
             hourDeparture: form.pathDepartureHour,
