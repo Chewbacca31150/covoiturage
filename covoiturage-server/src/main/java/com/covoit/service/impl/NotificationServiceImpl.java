@@ -24,33 +24,31 @@ public class NotificationServiceImpl implements NotificationService {
 
 	@Autowired
 	private ContactRepository contacts;
-	
+
 	@Autowired
 	private UserRepository users;
-	
+
 	@Override
 	public void createNotification(Contact contact) {
-		try
-		{
+		try {
 			List<Contact> contacts = this.contacts.findByTrajetId(contact.getTrajet().getId());
 			ArrayList<Long> users = new ArrayList<Long>();
-			for(Contact c : contacts)
-			{
-				if(!users.contains(c.getSenderId()))
+			for (Contact c : contacts) {
+				if (!users.contains(c.getSenderId()))
 					users.add(c.getSenderId());
 			}
-			
-			for(Long u : users)
-			{
+
+			for (Long u : users) {
 				Notification notification = new Notification();
-				notification.setMessage("Nouveau message : " + contact.getMessage().substring(20) + "...");
+				String message = "Nouveau message : " + (contact.getMessage().length() > 20 ? (contact.getMessage().substring(20) + "...") : contact.getMessage());
+				notification.setMessage(message);
 				notification.setTrajet(contact.getTrajet());
 				notification.setUser(this.users.getOne(u));
 				repo.save(notification);
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		catch(Exception e)
-		{}
 	}
 
 	@Override
@@ -60,9 +58,8 @@ public class NotificationServiceImpl implements NotificationService {
 	}
 
 	@Override
-	public void delete(Notification notification) {
-		// TODO Auto-generated method stub
-		
+	public void delete(Long id) {
+		repo.delete(id);
 	}
 
 }

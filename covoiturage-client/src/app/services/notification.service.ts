@@ -9,9 +9,16 @@ export class NotificationService {
   get() {
     return this.apiService.get<NotificationDto[]>(this.config.notification_dist_url);
   }
+
+  delete(notification: NotificationDto) {
+    return this.apiService.delete(`${this.config.notification_dist_url}?id=${notification.id}`);
+  }
 }
 
 export interface NotificationDto
 {
-  Id: number;
+  id: number;
+  trajetId: number;
+  userId: number;
+  message: string;
 }

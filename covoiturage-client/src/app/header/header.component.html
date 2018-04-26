@@ -7,6 +7,7 @@
             <button class="toolbar-other-button" mat-button routerLink="/map" *ngIf="user != null">Map</button>
         </span>
         <button class="toolbar-other-button" mat-button routerLink="/login" *ngIf="user == null">Login</button>
+        <button class="toolbar-other-button" mat-button *ngIf="user && notifications && notifications.length > 0" [matMenuTriggerFor]="notif"><i class="material-icons">notifications</i></button>
         <button class="toolbar-other-button" mat-button *ngIf="user" [matMenuTriggerFor]="menu">{{user.username}}</button>
         <mat-menu #menu="matMenu">
             <!-- <button mat-menu-item routerLink="/my-messages">Mes messages</button> -->
@@ -15,5 +16,9 @@
             <button mat-menu-item (click)="logout()">Déconnexion</button>
             <button mat-menu-item class="buttonSupress" (click)="openDialog()">Supprimer compte</button>
         </mat-menu>
+        <mat-menu #notif="matMenu">
+            <!-- <button mat-menu-item routerLink="/my-messages">Mes messages</button> -->
+            <button *ngFor="let notif of notifications" mat-menu-item (click)="open(notif)">{{notif.message}}</button>
+        </mat-menu>  
     </mat-toolbar>
 </div>

@@ -11,6 +11,6 @@ public interface NotificationService {
 	
 	List<Notification> GetMyNotifications();
 	
-	void delete(Notification notification);
+	void delete(Long id);
 	
 }

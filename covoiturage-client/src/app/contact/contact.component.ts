@@ -26,16 +26,20 @@ export class ContactComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.trajetService.getOne(params['id']).subscribe(trajet => {
         this.trajet = trajet;
-        // this.userService
+        this.LoadMessages();
       });
-      this.contactService.getMessagesByTrajet(params['id']).subscribe(messages => {
-        console.log(messages);
-        this.messages = messages;
-      })
     });
     this.messageForm = this.fb.group({
       message: ''
     }, {});
+  }
+
+  private LoadMessages() {
+    if(this.trajet){
+      this.contactService.getMessagesByTrajet(this.trajet.id).subscribe(messages => {
+        this.messages = messages;
+      });
+    }
   }
 
   onSubmit(event: Event) {
@@ -48,6 +52,8 @@ export class ContactComponent implements OnInit {
     };
     this.contactService.send(message).subscribe(m => {
       this.notif.get().subscribe(e => console.log(e));
+      this.LoadMessages();
+      this.messageForm.reset();
     });
     this.snackBar.open('Message envoyé', '', {
       duration: 3500,
