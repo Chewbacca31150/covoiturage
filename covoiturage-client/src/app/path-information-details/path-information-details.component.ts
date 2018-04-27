@@ -5,6 +5,7 @@ import { TrajetService } from '../services/trajet.service';
 import { User } from '../models/user';
 import { UserService } from '../services/user.service';
 import { not } from '@angular/compiler/src/output/output_ast';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-path-information-details',
@@ -13,14 +14,15 @@ import { not } from '@angular/compiler/src/output/output_ast';
 })
 export class PathInformationDetailsComponent implements OnInit {
   trajet: Trajet;
-  user: User;
+  user: User; //Driver du trajet
+  userConnect: User; //Utilisateur connecte
   smoke = 'Non';
   music = 'Non';
   speak = 'Non';
   back = 'Non';
 
   constructor(private route: ActivatedRoute, private router: Router,
-    private trajetService: TrajetService, private userService: UserService) { }
+    private trajetService: TrajetService, private _authService: AuthService, private userService: UserService) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -41,7 +43,13 @@ export class PathInformationDetailsComponent implements OnInit {
           if (trajet.pathBack) {
             this.back = 'Oui';
           }
+          console.log(user);
+          console.log(trajet);
+          
         });
+        this._authService.getMyInfo().subscribe(user => {
+          this.userConnect = user;
+      });
       });
     });
 

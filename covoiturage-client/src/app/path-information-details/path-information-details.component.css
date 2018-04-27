@@ -1,3 +1,15 @@
 p{
     margin:10px; 
 }
+mat-card{
+    margin: 10px;
+}
+button{
+
+    background-color:red;
+    color: aliceblue;
+    height: 30px;
+    margin: 7px;
+    border-radius: 7px;
+    border: none;
+}
