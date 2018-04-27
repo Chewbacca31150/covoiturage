@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.covoit.model.Contact;
-import com.covoit.model.Trajet;
 import com.covoit.repository.ContactRepository;
 import com.covoit.service.ContactService;
 import com.covoit.service.NotificationService;
@@ -40,12 +39,6 @@ public class ContactServiceImpl implements ContactService {
 	@Override
 	public List<Contact> findBySenderId(Long userId) {
 		return contactRepository.findBySenderId(userId);
-	}
-	
-	@Override
-	public List<Contact> findByReceiverId(Long userId) {
-		return null;
-		//return contactRepository.findByReceiverId(userId);
 	}
 
 	@Override

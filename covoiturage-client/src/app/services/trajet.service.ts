@@ -14,10 +14,8 @@ export class TrajetService {
   constructor(private apiService: ApiService, private authService: AuthService, private config: ConfigService) {
   }
 
-  saveTrajet(trajet: Trajet) {
-    return this.apiService.post(this.config.trajet_url, JSON.stringify(trajet)).map((response) => {
-      console.log('lol method is empty');
-    });
+  saveTrajet(trajet: Trajet): Observable<Trajet> {
+    return this.apiService.post(this.config.trajet_url, JSON.stringify(trajet));
   }
 
   getTrajets(): Observable<Trajet[]> {

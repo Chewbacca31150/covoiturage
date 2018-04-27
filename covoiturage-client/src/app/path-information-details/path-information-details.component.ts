@@ -14,8 +14,8 @@ import { AuthService } from '../services/auth.service';
 })
 export class PathInformationDetailsComponent implements OnInit {
   trajet: Trajet;
-  user: User; //Driver du trajet
-  userConnect: User; //Utilisateur connecte
+  user: User; // Driver du trajet
+  userConnect: User; // Utilisateur connecte
   smoke = 'Non';
   music = 'Non';
   speak = 'Non';
@@ -43,13 +43,10 @@ export class PathInformationDetailsComponent implements OnInit {
           if (trajet.pathBack) {
             this.back = 'Oui';
           }
-          console.log(user);
-          console.log(trajet);
-          
         });
         this._authService.getMyInfo().subscribe(user => {
           this.userConnect = user;
-      });
+        });
       });
     });
 

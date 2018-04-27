@@ -20,13 +20,18 @@ export class ContactComponent implements OnInit {
   messages: Contact[];
   trajet: Trajet;
   constructor(private contactService: ContactService, private route: ActivatedRoute, private snackBar: MatSnackBar,
-    private fb: FormBuilder, private trajetService: TrajetService, private authService: AuthService, private userService: UserService, private notif: NotificationService) { }
+    private fb: FormBuilder, private trajetService: TrajetService,
+    private authService: AuthService, private userService: UserService,
+    private notif: NotificationService) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.trajetService.getOne(params['id']).subscribe(trajet => {
         this.trajet = trajet;
         this.LoadMessages();
+      });
+      this.contactService.getMessagesByTrajet(params['id']).subscribe(messages => {
+        this.messages = messages;
       });
     });
     this.messageForm = this.fb.group({

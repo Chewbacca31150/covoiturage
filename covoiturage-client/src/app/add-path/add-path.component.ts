@@ -83,8 +83,6 @@ export class AddPathComponent implements OnInit {
                     lng: place.geometry.location.lng(),
                     address: place.formatted_address
                 };
-                console.log(this.startLocation, 'start')
-
             });
 
             const stopAddressAutocomplete = new google.maps.places.Autocomplete(this.stopAddress.nativeElement, {
@@ -121,10 +119,8 @@ export class AddPathComponent implements OnInit {
         }
     }
     showPosition(position): void {
-        console.log(position)
         this.actualLocation.lat = position.coords.latitude;
         this.actualLocation.lng = position.coords.longitude;
-        console.log(this.actualLocation)
     }
 
     /////////////////////////////////////////////////////////////////////
@@ -143,7 +139,6 @@ export class AddPathComponent implements OnInit {
 
     onSubmit(event: Event) {
         event.preventDefault();
-        console.log(this.actualLocation)
         if ((this.form.value.startAddress === '' && !this.form.value.posStart)
             || (this.form.value.stopAddress === '' && !this.form.value.posEnd) ||
             this.form.value.numberPlaces === '' || (this.form.value.pathDepartureDate === ''
