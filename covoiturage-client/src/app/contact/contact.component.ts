@@ -40,7 +40,7 @@ export class ContactComponent implements OnInit {
   }
 
   private LoadMessages() {
-    if(this.trajet){
+    if (this.trajet) {
       this.contactService.getMessagesByTrajet(this.trajet.id).subscribe(messages => {
         this.messages = messages;
       });

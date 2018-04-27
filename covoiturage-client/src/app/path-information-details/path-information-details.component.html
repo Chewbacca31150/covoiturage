@@ -57,9 +57,9 @@
                             <p>
                                 Nombre de place restantes : {{trajet?.maxPlaces}}
                             </p>
-                            <div id="divButton" fxLayout="row" fxLayoutAlign="center center" *ngIf="trajet?.driverId != userConnect?.id">
-                                <button class="button-contact-driver" (click)="contact()">Contacter le conducteur</button>
-                                <button class="button-select-path" (click)="add()">Choisir ce trajet</button>
+                            <div id="divButton" fxLayout="row" fxLayoutAlign="center center">
+                                <button class="button-contact-driver" (click)="contact()">Discussions sur le trajet</button>
+                                <button class="button-select-path" (click)="add()" *ngIf="trajet?.driverId != userConnect?.id">Choisir ce trajet</button>
                             </div>
                         </div>
                     </mat-card>
